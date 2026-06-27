@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T4-atual — Menu contextual (controle Spotify atual)</title>
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/telas/t4-atual.css" />
+</head>
+<body class="t4-atual-body">
+  <!-- ====== Tela de fundo: playlist (contexto visual) ====== -->
+  <main class="t4-stage" aria-label="Tela da playlist (fundo do menu contextual)">
+    <header class="t4-playlist-header">
+      <button class="icon-btn" aria-label="Voltar" type="button">
+        <i data-lucide="chevron-left" aria-hidden="true"></i>
+      </button>
+      <h1 class="t4-playlist-header__title">Discover Weekly</h1>
+      <button class="icon-btn" aria-label="Mais opcoes da playlist" type="button">
+        <i data-lucide="more-horizontal" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <section class="t4-playlist-cover-wrap" aria-hidden="true">
+      <div class="t4-playlist-cover">
+        <i data-lucide="disc-3" aria-hidden="true"></i>
+      </div>
+      <p class="t4-playlist-meta">Playlist · 30 musicas · 1h 58min</p>
+    </section>
+
+    <ul class="t4-playlist-list" aria-label="Lista de musicas da playlist">
+      <li class="t4-mini-row" data-current="true">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Blinding Lights</span>
+          <span class="t4-mini-row__artist">The Weeknd</span>
+        </span>
+        <button class="t4-mini-row__more" type="button" aria-label="Mais opções">
+          <i data-lucide="more-horizontal" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li class="t4-mini-row">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Midnight City</span>
+          <span class="t4-mini-row__artist">M83</span>
+        </span>
+        <button class="t4-mini-row__more" type="button" aria-label="Mais opções">
+          <i data-lucide="more-horizontal" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li class="t4-mini-row">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Levitating</span>
+          <span class="t4-mini-row__artist">Dua Lipa</span>
+        </span>
+        <button class="t4-mini-row__more" type="button" aria-label="Mais opções">
+          <i data-lucide="more-horizontal" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+  </main>
+
+  <!-- ====== Backdrop ====== -->
+  <div class="t4-backdrop" id="t4-backdrop" data-state="open" aria-hidden="true"></div>
+
+  <!-- ====== Bottom Sheet (aberto) — VERSAO CONTROLE ====== -->
+  <section
+    class="t4-sheet"
+    id="t4-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="t4-song-title"
+    data-state="open"
+  >
+    <div class="t4-sheet__handle" aria-hidden="true"></div>
+
+    <!-- Cabecalho: musica atual -->
+    <header class="t4-song-meta">
+      <div class="t4-song-meta__cover" aria-hidden="true">
+        <i data-lucide="music-2"></i>
+      </div>
+      <div class="t4-song-meta__text">
+        <h2 class="t4-song-meta__title" id="t4-song-title">Blinding Lights</h2>
+        <p class="t4-song-meta__sub">The Weeknd · After Hours</p>
+      </div>
+      <button class="icon-btn" aria-label="Fechar menu" type="button" id="t4-close">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <!--
+      LISTA PLANA — sem dividers, sem grupos.
+      Ordem reproduz fielmente o Spotify atual (junho 2025):
+        Curtir / Adicionar a playlist / Adicionar a fila / Tocar proxima /
+        Ver artista / Ver album / Compartilhar / Mostrar credito / Denunciar
+      ATENCAO ao territorio10: "Adicionar a fila" (list-plus) fica
+      IMEDIATAMENTE acima de "Adicionar a playlist" (plus) com icones
+      visualmente similares — esse e o problema documentado.
+    -->
+    <ul class="t4-menu-flat" aria-label="Opcoes da musica">
+      <li>
+        <button class="t4-row" type="button" data-action="like">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="heart"></i></span>
+          <span class="t4-row__label">Curtir</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="add-playlist">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="plus"></i></span>
+          <span class="t4-row__label">Adicionar a playlist</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="add-queue">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="list-plus"></i></span>
+          <span class="t4-row__label">Adicionar a fila</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="play-next">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="skip-forward"></i></span>
+          <span class="t4-row__label">Tocar proxima</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="view-artist">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="user-round"></i></span>
+          <span class="t4-row__label">Ver artista</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="view-album">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="disc"></i></span>
+          <span class="t4-row__label">Ver album</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="share">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="share-2"></i></span>
+          <span class="t4-row__label">Compartilhar</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="credits">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="info"></i></span>
+          <span class="t4-row__label">Mostrar credito</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="sleep-timer">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="moon"></i></span>
+          <span class="t4-row__label">Temporizador</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="report">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="flag"></i></span>
+          <span class="t4-row__label">Denunciar</span>
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Aviso de controle -->
+  <div class="t4-controle-footer" role="note" aria-label="Versao atual usada como controle">
+    Versao atual (controle)
+  </div>
+
+  <!-- Lucide icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Telemetria compartilhada -->
+  <script src="../../js/telemetria.js"></script>
+  <script src="../../js/dom-utils.js"></script>
+  <script src="../../js/modal.js"></script>
+  <script>
+    // Renderiza icones
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+
+    (function () {
+      var TELA = 't4-atual';
+      var sheet = document.getElementById('t4-sheet');
+      var backdrop = document.getElementById('t4-backdrop');
+      var closeBtn = document.getElementById('t4-close');
+
+      var tAbertura = performance.now();
+      if (window.Telemetria) {
+        Telemetria.log(TELA, 'sheet_aberto', { ts: Date.now() });
+      }
+
+      function close(motivo) {
+        if (!sheet || !backdrop) return;
+        sheet.setAttribute('data-state', 'closed');
+        backdrop.setAttribute('data-state', 'closed');
+        if (window.Telemetria) {
+          Telemetria.log(TELA, 'sheet_fechado', {
+            motivo: motivo || 'desconhecido',
+            duracao_ms: Math.round(performance.now() - tAbertura)
+          });
+        }
+      }
+      function open() {
+        if (!sheet || !backdrop) return;
+        sheet.setAttribute('data-state', 'open');
+        backdrop.setAttribute('data-state', 'open');
+        tAbertura = performance.now();
+        if (window.Telemetria) Telemetria.log(TELA, 'sheet_reaberto', {});
+      }
+
+      if (backdrop) backdrop.addEventListener('click', function () { close('backdrop'); });
+      if (closeBtn) closeBtn.addEventListener('click', function () { close('botao_x'); });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close('escape');
+        if (e.key === 'r' || e.key === 'R') open();
+      });
+
+      // Loga cada acao do menu (mede tempo ate a primeira escolha)
+      var rows = document.querySelectorAll('.t4-row[data-action]');
+      var primeiraEscolha = true;
+      rows.forEach(function (r) {
+        r.addEventListener('click', function () {
+          var acao = r.getAttribute('data-action');
+          var label = (r.querySelector('.t4-row__label') || {}).textContent || '';
+          if (window.Telemetria) {
+            Telemetria.log(TELA, 'acao_menu', {
+              acao: acao,
+              label: label.trim(),
+              tempo_ms: Math.round(performance.now() - tAbertura),
+              primeira: primeiraEscolha
+            });
+          }
+          primeiraEscolha = false;
+          // Feedback visual minimo (sem snackbar — versao atual nao tem desfazer)
+          r.style.background = 'var(--background-elevated-highlight)';
+          setTimeout(function () { r.style.background = ''; }, 180);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

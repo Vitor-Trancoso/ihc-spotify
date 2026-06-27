@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#121212" />
+  <title>T3 — Sua Biblioteca | Spotify Redesign (IHC)</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/telas/t3.css" />
+</head>
+<body class="t3-body">
+
+  <!-- ============= TOPBAR (modo padrao) ============= -->
+  <header class="topbar t3-topbar" id="t3-topbar-default" data-state="default">
+    <button class="t3-avatar" type="button" aria-label="Abrir perfil do usuario">
+      <span aria-hidden="true">VT</span>
+    </button>
+    <h1 class="t3-topbar__title">Sua biblioteca</h1>
+    <div class="t3-topbar__actions">
+      <button class="icon-btn" type="button" aria-label="Buscar na biblioteca" data-action="focus-search">
+        <i data-lucide="search" aria-hidden="true"></i>
+      </button>
+      <button class="icon-btn" type="button" aria-label="Adicionar nova playlist">
+        <i data-lucide="plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============= TOPBAR (modo selecao) ============= -->
+  <header class="topbar t3-topbar t3-topbar--selection" id="t3-topbar-selection" data-state="closed" hidden>
+    <button class="icon-btn" type="button" aria-label="Cancelar selecao" data-action="cancel-selection">
+      <i data-lucide="x" aria-hidden="true"></i>
+    </button>
+    <h2 class="t3-topbar__title" aria-live="polite">
+      <span id="t3-selection-count">0</span> selecionados
+    </h2>
+    <button class="t3-select-all" type="button" data-action="select-all" aria-label="Selecionar todas as playlists">
+      Selec. tudo
+    </button>
+  </header>
+
+  <main class="t3-main" id="t3-main">
+
+    <!-- Campo de busca (sempre visivel) -->
+    <div class="t3-search">
+      <label class="t3-search__field">
+        <i data-lucide="search" aria-hidden="true"></i>
+        <input
+          type="search"
+          id="t3-search-input"
+          placeholder="Buscar em playlists, artistas e albuns"
+          aria-label="Buscar na biblioteca"
+          autocomplete="off"
+        />
+      </label>
+    </div>
+
+    <!-- Chips de filtro -->
+    <nav class="t3-chips" aria-label="Filtros de biblioteca">
+      <button class="chip" type="button" data-filter="all" data-active="true">Playlists</button>
+      <button class="chip" type="button" data-filter="artistas">Artistas</button>
+      <button class="chip" type="button" data-filter="albuns">Albuns</button>
+      <button class="chip" type="button" data-filter="podcasts">Podcasts</button>
+      <button class="chip" type="button" data-filter="baixadas">Baixadas</button>
+      <button class="chip" type="button" data-filter="curtidas">Curtidas</button>
+    </nav>
+
+    <!-- Linha de ordenacao + toggle view -->
+    <div class="t3-sort-row">
+      <button class="t3-sort" type="button" aria-label="Ordenacao: recentes">
+        <i data-lucide="arrow-down-up" aria-hidden="true"></i>
+        <span>Recentes</span>
+      </button>
+      <div class="t3-view-toggle" role="group" aria-label="Modo de visualizacao">
+        <button
+          class="t3-view-toggle__btn"
+          type="button"
+          data-view="list"
+          data-active="true"
+          aria-pressed="true"
+          aria-label="Lista"
+        >
+          <i data-lucide="list" aria-hidden="true"></i>
+        </button>
+        <button
+          class="t3-view-toggle__btn"
+          type="button"
+          data-view="grid"
+          aria-pressed="false"
+          aria-label="Grade"
+        >
+          <i data-lucide="grid-3x3" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de playlists -->
+    <ul
+      class="t3-list"
+      id="t3-list"
+      data-view="list"
+      role="list"
+      aria-label="Suas playlists"
+    ></ul>
+
+    <!-- Alfabeto lateral -->
+    <div class="t3-alpha" id="t3-alpha" aria-hidden="true"></div>
+
+    <!-- Overlay grande da letra durante drag -->
+    <div class="t3-alpha-overlay" id="t3-alpha-overlay" aria-hidden="true"></div>
+
+    <!-- Estado vazio (busca sem resultado) -->
+    <div class="t3-empty" id="t3-empty" hidden>
+      <i data-lucide="search-x" aria-hidden="true"></i>
+      <p>Nenhum item para sua busca.</p>
+      <span>Tente outro termo ou limpe a busca.</span>
+    </div>
+  </main>
+
+  <!-- ============= ACTION BAR (modo selecao) ============= -->
+  <div class="t3-action-bar" id="t3-action-bar" data-state="closed" role="toolbar" aria-label="Acoes em lote" hidden>
+    <button class="t3-action-bar__btn" type="button" data-bulk="mover" aria-label="Mover selecionados">
+      <i data-lucide="folder-input" aria-hidden="true"></i>
+      <span>Mover</span>
+    </button>
+    <button class="t3-action-bar__btn" type="button" data-bulk="baixar" aria-label="Baixar selecionados">
+      <i data-lucide="download" aria-hidden="true"></i>
+      <span>Baixar</span>
+    </button>
+    <button class="t3-action-bar__btn" type="button" data-bulk="adicionar" aria-label="Adicionar selecionados a playlist">
+      <i data-lucide="list-plus" aria-hidden="true"></i>
+      <span>Adicionar</span>
+    </button>
+    <button class="t3-action-bar__btn" type="button" data-bulk="compartilhar" aria-label="Compartilhar selecionados">
+      <i data-lucide="share-2" aria-hidden="true"></i>
+      <span>Compart.</span>
+    </button>
+    <button class="t3-action-bar__btn t3-action-bar__btn--danger" type="button" data-bulk="remover" aria-label="Remover selecionados">
+      <i data-lucide="trash-2" aria-hidden="true"></i>
+      <span>Remover</span>
+    </button>
+  </div>
+
+  <!-- Snackbar region -->
+  <div class="snackbar-region" id="snackbar-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Bottom nav (referencia, nao interativa nesta tela) -->
+  <nav class="bottom-nav" aria-label="Navegacao principal">
+    <a href="../index.html" class="bottom-nav__item" aria-label="Inicio">
+      <i data-lucide="house" aria-hidden="true"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="#" class="bottom-nav__item" aria-label="Buscar">
+      <i data-lucide="search" aria-hidden="true"></i>
+      <span>Buscar</span>
+    </a>
+    <a href="t3.html" class="bottom-nav__item" aria-current="page" aria-label="Sua biblioteca">
+      <i data-lucide="library" aria-hidden="true"></i>
+      <span>Biblioteca</span>
+    </a>
+    <a href="#" class="bottom-nav__item" aria-label="Criar">
+      <i data-lucide="plus-square" aria-hidden="true"></i>
+      <span>Criar</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/telemetria.js"></script>
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="../js/telas/t3.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

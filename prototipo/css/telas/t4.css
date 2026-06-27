@@ -1,0 +1,365 @@
+/* ============================================================
+   T4 — Menu contextual da música (MOCKUP — bottom-sheet aberto)
+   Foco heurístico: H5 prevenção + Lei de Fitts.
+   Grupos visuais (Reproducao / Colecao / Outros+Denunciar) com
+   dividers e ordenacao que NUNCA coloca "Adicionar a fila" e
+   "Adicionar a playlist" como rows adjacentes.
+   ============================================================ */
+
+/* -------------------- Body / stage -------------------- */
+.t4-body {
+  background: var(--background-base);
+  color: var(--text-base);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Badge "mockup estático" */
+.mockup-badge {
+  position: fixed;
+  top: calc(var(--safe-top) + var(--sp-2));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-modal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 28px;
+  padding: 0 var(--sp-3);
+  background: var(--background-elevated-highlight);
+  color: var(--text-base);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-card);
+  pointer-events: none;
+}
+.mockup-badge svg {
+  width: 14px;
+  height: 14px;
+  color: var(--text-bright-accent);
+}
+
+/* -------------------- Tela de fundo (playlist) -------------------- */
+.t4-stage {
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(var(--safe-top) + 48px);
+  padding-bottom: calc(var(--safe-bottom) + var(--sp-4));
+  background: linear-gradient(
+    180deg,
+    #2b3a55 0%,
+    var(--background-base) 320px
+  );
+}
+
+.t4-playlist-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 56px;
+  padding: 0 var(--sp-3);
+}
+.t4-playlist-header__title {
+  text-align: center;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t4-playlist-cover-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+}
+.t4-playlist-cover {
+  width: 184px;
+  height: 184px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, #6b8cff 0%, #2b3a55 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-cover);
+}
+.t4-playlist-cover svg {
+  width: 64px;
+  height: 64px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.t4-playlist-meta {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+}
+
+/* mini-rows estaticas (apenas decorativas) */
+.t4-playlist-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--sp-2);
+}
+.t4-mini-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 32px;
+  gap: var(--sp-3);
+  align-items: center;
+  min-height: 56px;
+  padding: var(--sp-2) var(--sp-2);
+  color: var(--text-base);
+}
+.t4-mini-row[data-current="true"] .t4-mini-row__title {
+  color: var(--text-bright-accent);
+}
+.t4-mini-row__cover {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: var(--background-tinted-highlight);
+  display: block;
+}
+.t4-mini-row__info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.t4-mini-row__title {
+  font-size: var(--fs-row);
+  font-weight: var(--fw-medium);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t4-mini-row__artist {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t4-mini-row__more {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-subdued);
+}
+
+/* -------------------- Backdrop -------------------- */
+.t4-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--d-standard) var(--ease-emphasized);
+}
+.t4-backdrop[data-state="open"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* -------------------- Bottom sheet -------------------- */
+.t4-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-sheet);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--sp-2) var(--sp-3) calc(var(--safe-bottom) + var(--sp-3));
+  background: var(--background-elevated-base);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  box-shadow: var(--shadow-sheet);
+  transform: translateY(100%);
+  transition: transform var(--d-slow) var(--ease-emphasized);
+  -webkit-overflow-scrolling: touch;
+}
+.t4-sheet[data-state="open"] {
+  transform: translateY(0);
+}
+
+.t4-sheet__handle {
+  width: 36px;
+  height: 4px;
+  margin: var(--sp-2) auto var(--sp-3);
+  border-radius: 2px;
+  background: var(--background-unsafe-small-text);
+}
+
+/* -------------------- Cabecalho da musica -------------------- */
+.t4-song-meta {
+  display: grid;
+  grid-template-columns: 56px 1fr 40px;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-2) var(--sp-2) var(--sp-3);
+}
+.t4-song-meta__cover {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, #c44 0%, #420 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+.t4-song-meta__cover svg {
+  width: 24px;
+  height: 24px;
+}
+.t4-song-meta__text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.t4-song-meta__title {
+  font-size: var(--fs-row);
+  font-weight: var(--fw-bold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t4-song-meta__sub {
+  font-size: var(--fs-body);
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* -------------------- Divider entre grupos -------------------- */
+.t4-divider {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  /* gap visual 24px entre grupos => 12px de cada lado */
+  margin: var(--sp-3) var(--sp-2);
+}
+
+/* -------------------- Grupo + rows -------------------- */
+.t4-menu-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.t4-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  width: 100%;
+  min-height: 56px; /* >= 44pt touch */
+  padding: var(--sp-2) var(--sp-3);
+  background: none;
+  border: 0;
+  color: var(--text-base);
+  font-family: var(--font-family);
+  font-size: var(--fs-row);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-row);
+  text-align: left;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition:
+    background-color var(--d-fast) var(--ease-standard),
+    transform var(--d-micro) var(--ease-standard),
+    color var(--d-fast) var(--ease-standard);
+}
+.t4-row:hover {
+  background: var(--background-tinted-highlight);
+}
+.t4-row:active {
+  background: var(--background-elevated-highlight);
+  transform: scale(0.98);
+}
+.t4-row:focus-visible {
+  outline: 2px solid var(--spotify-green);
+  outline-offset: 2px;
+}
+
+.t4-row__ico {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-base);
+  flex: 0 0 24px;
+}
+.t4-row__ico svg {
+  width: 22px;
+  height: 22px;
+}
+/* Cor verde para acoes de colecao (Adicionar, Curtir, Baixar) */
+.t4-row__ico--accent {
+  color: var(--essential-positive);
+}
+.t4-row__ico--accent svg {
+  stroke-width: 2.25;
+}
+
+.t4-row__label {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Variante destrutiva (Denunciar) — vermelho */
+.t4-row--danger {
+  color: var(--text-negative);
+}
+.t4-row--danger .t4-row__ico {
+  color: var(--essential-negative);
+}
+.t4-row--danger:hover {
+  background: var(--danger-tint);
+}
+
+/* -------------------- Reduced motion -------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .t4-sheet {
+    transition: opacity var(--d-fast) linear;
+    transform: none;
+    opacity: 0;
+  }
+  .t4-sheet[data-state="open"] {
+    opacity: 1;
+    transform: none;
+  }
+  .t4-backdrop {
+    transition: opacity var(--d-fast) linear;
+  }
+}
+
+/* -------------------- Viewport guardrails (360 a 414) -------------------- */
+@media (max-width: 360px) {
+  .t4-playlist-cover {
+    width: 160px;
+    height: 160px;
+  }
+  .t4-row {
+    font-size: 15px;
+    padding: var(--sp-2);
+    gap: var(--sp-3);
+  }
+}

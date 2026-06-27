@@ -1,0 +1,459 @@
+/* ============================================================
+   T2-ATUAL — PLAYER (Now Playing) · VERSÃO CONTROLE
+   Reproduz fielmente o comportamento do Spotify atual (2024/2025):
+   - "+" (adicionar) no destaque ao lado do título — coração NÃO está no destaque
+   - Botão único de shuffle CICLA off → shuffle → smart shuffle
+     (3 estados sutis no MESMO botão, sem rótulo textual visível)
+   - Botão repeat também tri-estado (off → all → one) sem label textual
+   - Sem status-row textual reforçando estados
+   - Mini-player (footer compacto) NÃO indica shuffle/repeat
+   Mesma estética (tokens, cores, fonte) — diferença é COMPORTAMENTO/LAYOUT
+   ============================================================ */
+
+.t2a-body {
+  background:
+    radial-gradient(ellipse at top, #2a2a2a 0%, var(--background-base) 60%, #000 100%);
+  min-height: 100dvh;
+  color: var(--text-base);
+  font-family: var(--font-family);
+}
+
+.npa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding:
+    calc(var(--safe-top) + var(--sp-2))
+    var(--sp-4)
+    calc(var(--safe-bottom) + var(--sp-4));
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+}
+
+/* ---------- HEADER (igual ao redesign) ---------- */
+.npa__header {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+}
+
+.npa__context {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.npa__context-label {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-micro);
+  color: var(--text-subdued);
+  text-transform: uppercase;
+}
+
+.npa__context-name {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60vw;
+}
+
+.npa__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text-base);
+  border-radius: var(--r-circle);
+  cursor: pointer;
+  transition: background-color var(--d-fast) var(--ease-standard),
+              transform var(--d-fast) var(--ease-standard);
+}
+.npa__icon-btn:hover { background: var(--background-tinted-highlight); }
+.npa__icon-btn:active { transform: scale(0.92); }
+.npa__icon-btn:focus-visible { outline: 2px solid var(--spotify-green); outline-offset: 2px; }
+.npa__icon-btn i { width: 24px; height: 24px; }
+
+/* ---------- COVER ---------- */
+.npa__cover-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--sp-3) 0 var(--sp-2);
+}
+
+.npa__cover {
+  width: min(320px, 86vw);
+  height: min(320px, 86vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-cover);
+  background: var(--background-elevated-base);
+}
+
+/* ---------- TRACK INFO — botão "+" em destaque (atual Spotify) ---------- */
+.npa__track {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  margin-top: var(--sp-2);
+}
+
+.npa__track-text { min-width: 0; }
+
+.npa__title {
+  margin: 0;
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  letter-spacing: var(--ls-section);
+  font-weight: var(--fw-black);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.npa__artist {
+  margin: 2px 0 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-medium);
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Único botão visível ao lado do título: "+" (adicionar à playlist)
+   No Spotify atual, o coração foi removido desse slot — vira "Adicionar".
+   Quando já adicionado, mostra ícone "check". */
+.npa__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-subdued);
+  border-radius: var(--r-circle);
+  transition: color var(--d-fast) var(--ease-standard),
+              transform var(--d-fast) var(--ease-standard),
+              background-color var(--d-fast) var(--ease-standard);
+}
+.npa__add i { width: 26px; height: 26px; }
+.npa__add:hover { background: var(--background-tinted-highlight); color: var(--text-base); }
+.npa__add:active { transform: scale(0.9); }
+.npa__add:focus-visible { outline: 2px solid var(--spotify-green); outline-offset: 2px; }
+.npa__add[aria-pressed="true"] { color: var(--spotify-green); }
+.npa__add[aria-pressed="true"] i { fill: currentColor; }
+
+/* ---------- PROGRESS ---------- */
+.npa__progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-top: var(--sp-2);
+}
+
+.npa__seek {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.npa__seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--progress-bar-fill) 0%,
+    var(--progress-bar-fill) var(--npa-progress, 42%),
+    var(--progress-bar-bg) var(--npa-progress, 42%),
+    var(--progress-bar-bg) 100%
+  );
+}
+
+.npa__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-circle);
+  background: var(--text-base);
+  margin-top: -10px;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-standard);
+}
+.npa__seek:hover::-webkit-slider-thumb,
+.npa__seek:active::-webkit-slider-thumb,
+.npa__seek:focus::-webkit-slider-thumb { opacity: 1; }
+@media (hover: none) and (pointer: coarse) {
+  .npa__seek::-webkit-slider-thumb { opacity: 1; }
+  .npa__seek::-moz-range-thumb { opacity: 1; }
+}
+
+.npa__seek::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--progress-bar-bg);
+}
+.npa__seek::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--progress-bar-fill);
+}
+.npa__seek::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: var(--r-circle);
+  background: var(--text-base);
+  opacity: 0;
+}
+.npa__seek:hover::-moz-range-thumb,
+.npa__seek:active::-moz-range-thumb,
+.npa__seek:focus::-moz-range-thumb { opacity: 1; }
+
+.npa__seek:focus-visible {
+  outline: 2px solid var(--spotify-green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.npa__times {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-micro);
+  line-height: var(--lh-micro);
+  color: var(--text-subdued);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--fw-medium);
+}
+
+/* ---------- CONTROLES PRINCIPAIS (sem status row textual) ---------- */
+.npa__controls {
+  display: grid;
+  grid-template-columns: 44px 1fr 64px 1fr 44px;
+  align-items: center;
+  justify-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+.npa__ctrl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text-base);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform var(--d-fast) var(--ease-standard),
+              color var(--d-fast) var(--ease-standard),
+              background-color var(--d-fast) var(--ease-standard);
+  position: relative;
+}
+
+.npa__ctrl i { width: 22px; height: 22px; }
+.npa__ctrl:hover { background: rgba(255,255,255,0.06); }
+.npa__ctrl:active { transform: scale(0.9); }
+.npa__ctrl:focus-visible { outline: 2px solid var(--spotify-green); outline-offset: 2px; }
+
+.npa__prev i,
+.npa__next i { width: 28px; height: 28px; }
+
+/* SHUFFLE COMBINADO — comportamento ATUAL do Spotify:
+   ciclo único: off → shuffle → smart shuffle → off
+   3 estados sutis NO MESMO botão, SEM label textual.
+   - off:           ícone shuffle cinza
+   - shuffle:       ícone shuffle verde + pontinho
+   - smart-shuffle: ícone shuffle verde + sparkle pequeno sobreposto */
+.npa__shuffle {
+  color: var(--text-subdued);
+}
+.npa__shuffle[data-mode="off"] { color: var(--text-subdued); }
+.npa__shuffle[data-mode="shuffle"],
+.npa__shuffle[data-mode="smart"] { color: var(--essential-positive); }
+
+.npa__shuffle[data-mode="shuffle"]::after,
+.npa__shuffle[data-mode="smart"]::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-circle);
+  background: var(--essential-positive);
+}
+/* Smart shuffle: sparkle pequeno sobreposto ao ícone (sem texto) */
+.npa__shuffle-sparkle {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  color: var(--essential-positive);
+  display: none;
+  pointer-events: none;
+}
+.npa__shuffle[data-mode="smart"] .npa__shuffle-sparkle {
+  display: inline-block;
+}
+
+/* REPEAT — também tri-estado SEM label textual */
+.npa__repeat { color: var(--text-subdued); }
+.npa__repeat[data-mode="all"],
+.npa__repeat[data-mode="one"] { color: var(--essential-positive); }
+.npa__repeat[data-mode="all"]::after,
+.npa__repeat[data-mode="one"]::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-circle);
+  background: var(--essential-positive);
+}
+
+/* PLAY/PAUSE central */
+.npa__play {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-circle);
+  background: var(--text-base);
+  color: var(--text-on-accent);
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--d-fast) var(--ease-spotify-pulse),
+              background-color var(--d-fast) var(--ease-standard);
+}
+.npa__play i { width: 30px; height: 30px; }
+.npa__play:hover { transform: scale(1.05); background: var(--spotify-green-hover); }
+.npa__play:active { transform: scale(0.94); }
+.npa__play:focus-visible { outline: 2px solid var(--spotify-green); outline-offset: 3px; }
+
+/* ---------- MINI-PLAYER FOOTER (sem indicação de shuffle/repeat) ---------- */
+/* Reproduz o atual: footer enxuto com devices + share. NÃO mostra
+   nenhum indicador do estado de shuffle/repeat — o usuário precisa
+   subir para o player completo pra saber o que está ligado. */
+.npa__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-4);
+}
+
+.npa__foot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 0;
+  color: var(--text-subdued);
+  border-radius: var(--r-circle);
+  cursor: pointer;
+  transition: color var(--d-fast) var(--ease-standard),
+              background-color var(--d-fast) var(--ease-standard),
+              transform var(--d-fast) var(--ease-standard);
+}
+.npa__foot-btn i { width: 20px; height: 20px; }
+.npa__foot-btn:hover { color: var(--text-base); background: var(--background-tinted-highlight); }
+.npa__foot-btn:active { transform: scale(0.92); }
+.npa__foot-btn:focus-visible { outline: 2px solid var(--spotify-green); outline-offset: 2px; }
+
+/* ---------- TOAST (mesmo do redesign para paridade) ---------- */
+.npa__toast-region {
+  position: fixed;
+  left: var(--sp-4);
+  right: var(--sp-4);
+  bottom: calc(var(--safe-bottom) + var(--sp-4));
+  z-index: var(--z-snackbar);
+  pointer-events: none;
+}
+
+.npa__toast {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--background-elevated-highlight);
+  color: var(--text-base);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  pointer-events: auto;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity var(--d-standard) var(--ease-out),
+              transform var(--d-standard) var(--ease-out);
+}
+.npa__toast[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- RODAPÉ DE AVISO (versão controle) ---------- */
+.npa__control-badge {
+  position: fixed;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-subdued);
+  font-weight: var(--fw-bold);
+  padding: 2px 8px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 360px) {
+  .npa__cover { width: min(280px, 80vw); height: min(280px, 80vw); }
+  .npa__title { font-size: 20px; }
+  .npa__controls { grid-template-columns: 40px 1fr 60px 1fr 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .npa__play:active { animation: none; }
+}

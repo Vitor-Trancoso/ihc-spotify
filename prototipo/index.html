@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>Protótipo Spotify IHC</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    body { background: #0a0a0a; }
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: var(--sp-5) var(--sp-4) var(--sp-7);
+    }
+    .page-header {
+      text-align: center;
+      padding: var(--sp-5) 0 var(--sp-6);
+    }
+    .page-header h1 {
+      font-size: var(--fs-display);
+      line-height: var(--lh-display);
+      letter-spacing: var(--ls-display);
+      font-weight: var(--fw-black);
+    }
+    .page-header p {
+      margin-top: var(--sp-2);
+      color: var(--text-subdued);
+      font-size: var(--fs-body);
+    }
+    .group-title {
+      font-size: var(--fs-section);
+      font-weight: var(--fw-extrabold);
+      letter-spacing: var(--ls-section);
+      margin: var(--sp-6) 0 var(--sp-4);
+    }
+    .group-title small {
+      display: block;
+      font-size: var(--fs-meta);
+      color: var(--text-subdued);
+      font-weight: var(--fw-medium);
+      margin-top: 4px;
+      letter-spacing: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--sp-4);
+    }
+    .card {
+      background: var(--background-elevated-base);
+      border-radius: var(--r-md);
+      padding: var(--sp-4);
+      color: var(--text-base);
+      text-decoration: none;
+      transition: background var(--d-fast) var(--ease-standard),
+                  transform var(--d-fast) var(--ease-standard);
+      border: 1px solid var(--border-subtle);
+    }
+    .card:hover {
+      background: var(--background-elevated-highlight);
+      transform: translateY(-2px);
+    }
+    .card[data-variant="controle"] {
+      background: var(--background-tinted-base);
+      border-color: rgba(255,255,255,0.06);
+    }
+    .card .badge {
+      display: inline-block;
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-micro);
+      text-transform: uppercase;
+      color: var(--spotify-green);
+      margin-bottom: var(--sp-2);
+    }
+    .card[data-variant="controle"] .badge { color: var(--text-subdued); }
+    .card h3 {
+      font-size: var(--fs-row);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--sp-1);
+    }
+    .card p {
+      font-size: var(--fs-meta);
+      color: var(--text-subdued);
+      line-height: 1.4;
+    }
+    /* ---- STAGE (preview device frame) ---- */
+    #stage {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+    .stage__topbar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      height: 48px;
+      padding: 0 var(--sp-4);
+      background: #0a0a0a;
+      color: var(--text-base);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .stage__topbar button {
+      width: 36px; height: 36px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: var(--r-circle);
+      color: var(--text-base);
+      font-size: 18px;
+    }
+    .stage__topbar button:hover { background: var(--background-tinted-highlight); }
+    .stage__title {
+      flex: 1;
+      font-size: var(--fs-body);
+      font-weight: var(--fw-semibold);
+      color: var(--text-base);
+    }
+    .stage__body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: var(--sp-4);
+    }
+    .device-frame {
+      width: 375px;
+      height: 812px;
+      max-width: 100%;
+      background: #000;
+      border: 8px solid #1a1a1a;
+      border-radius: 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      overflow: hidden;
+      position: relative;
+    }
+    .device-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: var(--background-base);
+      display: block;
+    }
+    /* Em telas pequenas, ocupa tudo */
+    @media (max-width: 480px) {
+      .stage__body { padding: 0; }
+      .device-frame {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page" id="galeria">
+    <header class="page-header">
+      <h1>Protótipo Spotify IHC</h1>
+      <p>5 telas em redesign (alta fidelidade) e 5 versões-controle (Spotify atual) para o estudo de validação.</p>
+    </header>
+
+    <h2 class="group-title">
+      Redesign
+      <small>HTML/CSS/JS de alta fidelidade — algumas telas são mockups estáticos por decisão do council.</small>
+    </h2>
+    <div class="grid">
+      <a class="card" href="#/t1">
+        <span class="badge">T1 · Mockup</span>
+        <h3>Home minimalista</h3>
+        <p>Toggle Compacto/Descobrir + chips de mídia.</p>
+      </a>
+      <a class="card" href="#/t2">
+        <span class="badge">T2 · Interativo</span>
+        <h3>Player redesenhado</h3>
+        <p>Shuffle/Smart Shuffle/Repeat com status textual.</p>
+      </a>
+      <a class="card" href="#/t3">
+        <span class="badge">T3 · Interativo</span>
+        <h3>Biblioteca + seleção</h3>
+        <p>Long-press para selecionar múltiplos + ações em lote.</p>
+      </a>
+      <a class="card" href="#/t4">
+        <span class="badge">T4 · Mockup</span>
+        <h3>Menu da música</h3>
+        <p>Bottom sheet com 4 grupos hierárquicos.</p>
+      </a>
+      <a class="card" href="#/t5">
+        <span class="badge">T5 · Interativo</span>
+        <h3>Configurações</h3>
+        <p>Busca incremental com highlight em tempo real.</p>
+      </a>
+      <a class="card" href="#/ma">
+        <span class="badge">MA · Interativo</span>
+        <h3>Snackbar Desfazer</h3>
+        <p>Reversibilidade com countdown visual de 6s.</p>
+      </a>
+    </div>
+
+    <h2 class="group-title">
+      Controle — Spotify atual
+      <small>Versões pareadas em fidelidade para comparação antes/depois.</small>
+    </h2>
+    <div class="grid">
+      <a class="card" data-variant="controle" href="#/controle/t1">
+        <span class="badge">T1 · Controle</span>
+        <h3>Home atual</h3>
+        <p>Versão "Spotify atual" para comparação.</p>
+      </a>
+      <a class="card" data-variant="controle" href="#/controle/t2">
+        <span class="badge">T2 · Controle</span>
+        <h3>Player atual</h3>
+        <p>Versão "Spotify atual" para comparação.</p>
+      </a>
+      <a class="card" data-variant="controle" href="#/controle/t3">
+        <span class="badge">T3 · Controle</span>
+        <h3>Biblioteca atual</h3>
+        <p>Versão "Spotify atual" para comparação.</p>
+      </a>
+      <a class="card" data-variant="controle" href="#/controle/t4">
+        <span class="badge">T4 · Controle</span>
+        <h3>Menu da música atual</h3>
+        <p>Versão "Spotify atual" para comparação.</p>
+      </a>
+      <a class="card" data-variant="controle" href="#/controle/t5">
+        <span class="badge">T5 · Controle</span>
+        <h3>Configurações atuais</h3>
+        <p>Versão "Spotify atual" para comparação.</p>
+      </a>
+    </div>
+  </main>
+
+  <section id="stage" hidden>
+    <div class="stage__topbar">
+      <button id="stage-back" type="button" aria-label="Voltar à galeria">←</button>
+      <span id="stage-titulo" class="stage__title">—</span>
+    </div>
+    <div class="stage__body">
+      <div class="device-frame">
+        <iframe id="stage-frame" src="about:blank" title="Pré-visualização da tela"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/telemetria.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

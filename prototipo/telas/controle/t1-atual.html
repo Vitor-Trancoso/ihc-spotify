@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T1 — Home Spotify atual (controle) · Protótipo IHC</title>
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/telas/t1-atual.css" />
+</head>
+<body class="t1a-body">
+  <div class="device-frame" role="application" aria-label="Versão controle: Home Spotify atual">
+
+    <!-- ============ TOPBAR ============ -->
+    <header class="t1a-topbar" role="banner">
+      <button class="t1a-avatar" type="button" aria-label="Abrir perfil de Vitor" data-tel="avatar">
+        <span aria-hidden="true">VT</span>
+      </button>
+      <nav class="t1a-chips" role="tablist" aria-label="Filtro de tipo de mídia">
+        <button class="t1a-chip t1a-chip--active" role="tab" type="button" aria-selected="true" data-tel="chip-tudo">Tudo</button>
+        <button class="t1a-chip" role="tab" type="button" aria-selected="false" data-tel="chip-musica">Música</button>
+        <button class="t1a-chip" role="tab" type="button" aria-selected="false" data-tel="chip-podcasts">Podcasts</button>
+      </nav>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="t1a-main" id="t1a-main">
+
+      <!-- Banner promocional Premium (comum no Spotify atual) -->
+      <aside class="t1a-promo" role="button" tabindex="0" aria-label="Oferta Premium" data-tel="promo-premium">
+        <span class="t1a-promo__icon" aria-hidden="true">
+          <i data-lucide="sparkles"></i>
+        </span>
+        <span class="t1a-promo__text">
+          <span class="t1a-promo__title">Experimente o Premium grátis</span>
+          <span class="t1a-promo__sub">2 meses sem anúncios. Cancele quando quiser.</span>
+        </span>
+        <span class="t1a-promo__cta" aria-hidden="true">
+          <i data-lucide="chevron-right"></i>
+        </span>
+      </aside>
+
+      <!-- ============ QUICK PICKS (sem título — Spotify atual) ============ -->
+      <section aria-label="Atalhos">
+        <ul class="t1a-quick-grid" role="list">
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-curtidas">
+            <div class="t1a-quick-card__cover t1a-quick-card__cover--liked" aria-hidden="true">
+              <i data-lucide="heart"></i>
+            </div>
+            <span class="t1a-quick-card__title">Músicas Curtidas</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-discover">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/discover/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">Discover Weekly</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-dailymix">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/dailymix/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">Daily Mix 1</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-lofi">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/lofi/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">Lo-fi Beats</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-podcast">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/joe/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">The Joe Rogan Experience</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-mixbr">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/mixbr/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">Mix BR</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-audiolivro">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/audiobook/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">A Sutil Arte de Ligar o F***</span>
+          </li>
+          <li class="t1a-quick-card" tabindex="0" data-tel="quick-rock">
+            <div class="t1a-quick-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/rock/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1a-quick-card__title">Rock Clássicos</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ FEED TIKTOK: cards verticais gigantes
+           Música, podcast e audiolivro misturados sem distinção clara ============ -->
+      <section aria-labelledby="t1a-feed-title">
+        <header class="t1a-section__header">
+          <h2 id="t1a-feed-title" class="t1a-section__title">Recomendados pra você</h2>
+        </header>
+        <ul class="t1a-feed" role="list">
+
+          <!-- Card 1: Música com badge VÍDEO -->
+          <li>
+            <article class="t1a-feed-card" tabindex="0" aria-labelledby="t1a-fc1-title" data-tel="feed-1-musica-video">
+              <div class="t1a-feed-card__bg" style="background-image: url('https://picsum.photos/seed/feed1/600/900');" aria-hidden="true"></div>
+              <span class="t1a-feed-card__badge" aria-label="Conteúdo em vídeo">
+                <i data-lucide="video" aria-hidden="true"></i>
+                Vídeo
+              </span>
+              <button class="t1a-feed-card__close" type="button" aria-label="Dispensar este card" data-tel="feed-1-close">
+                <i data-lucide="x" aria-hidden="true"></i>
+              </button>
+              <div class="t1a-feed-card__content">
+                <span class="t1a-feed-card__eyebrow">Música</span>
+                <h3 id="t1a-fc1-title" class="t1a-feed-card__title">Midnight City</h3>
+                <span class="t1a-feed-card__sub">M83 · Hurry Up, We're Dreaming</span>
+                <div class="t1a-feed-card__actions">
+                  <button class="t1a-feed-card__play" type="button" aria-label="Tocar Midnight City" data-tel="feed-1-play">
+                    <i data-lucide="play" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Curtir" data-tel="feed-1-like">
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Mais opções" data-tel="feed-1-more">
+                    <i data-lucide="ellipsis" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 2: Podcast (mesma aparência do card de música) -->
+          <li>
+            <article class="t1a-feed-card" tabindex="0" aria-labelledby="t1a-fc2-title" data-tel="feed-2-podcast">
+              <div class="t1a-feed-card__bg" style="background-image: url('https://picsum.photos/seed/feed2/600/900');" aria-hidden="true"></div>
+              <button class="t1a-feed-card__close" type="button" aria-label="Dispensar este card" data-tel="feed-2-close">
+                <i data-lucide="x" aria-hidden="true"></i>
+              </button>
+              <div class="t1a-feed-card__content">
+                <span class="t1a-feed-card__eyebrow">Episódio · 2h 14min</span>
+                <h3 id="t1a-fc2-title" class="t1a-feed-card__title">#2150 — Conversa sobre IA, ética e o futuro</h3>
+                <span class="t1a-feed-card__sub">The Joe Rogan Experience</span>
+                <div class="t1a-feed-card__actions">
+                  <button class="t1a-feed-card__play" type="button" aria-label="Tocar episódio" data-tel="feed-2-play">
+                    <i data-lucide="play" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Salvar para depois" data-tel="feed-2-save">
+                    <i data-lucide="bookmark" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Mais opções" data-tel="feed-2-more">
+                    <i data-lucide="ellipsis" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 3: Música com badge VÍDEO novamente -->
+          <li>
+            <article class="t1a-feed-card" tabindex="0" aria-labelledby="t1a-fc3-title" data-tel="feed-3-musica-video">
+              <div class="t1a-feed-card__bg" style="background-image: url('https://picsum.photos/seed/feed3/600/900');" aria-hidden="true"></div>
+              <span class="t1a-feed-card__badge" aria-label="Conteúdo em vídeo">
+                <i data-lucide="video" aria-hidden="true"></i>
+                Vídeo
+              </span>
+              <button class="t1a-feed-card__close" type="button" aria-label="Dispensar este card" data-tel="feed-3-close">
+                <i data-lucide="x" aria-hidden="true"></i>
+              </button>
+              <div class="t1a-feed-card__content">
+                <span class="t1a-feed-card__eyebrow">Música</span>
+                <h3 id="t1a-fc3-title" class="t1a-feed-card__title">Borderline</h3>
+                <span class="t1a-feed-card__sub">Tame Impala · Currents</span>
+                <div class="t1a-feed-card__actions">
+                  <button class="t1a-feed-card__play" type="button" aria-label="Tocar Borderline" data-tel="feed-3-play">
+                    <i data-lucide="play" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Curtir" data-tel="feed-3-like">
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Mais opções" data-tel="feed-3-more">
+                    <i data-lucide="ellipsis" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 4: Audiolivro -->
+          <li>
+            <article class="t1a-feed-card" tabindex="0" aria-labelledby="t1a-fc4-title" data-tel="feed-4-audiolivro">
+              <div class="t1a-feed-card__bg" style="background-image: url('https://picsum.photos/seed/feed4/600/900');" aria-hidden="true"></div>
+              <button class="t1a-feed-card__close" type="button" aria-label="Dispensar este card" data-tel="feed-4-close">
+                <i data-lucide="x" aria-hidden="true"></i>
+              </button>
+              <div class="t1a-feed-card__content">
+                <span class="t1a-feed-card__eyebrow">Audiolivro · 6h 32min</span>
+                <h3 id="t1a-fc4-title" class="t1a-feed-card__title">A Sutil Arte de Ligar o F***</h3>
+                <span class="t1a-feed-card__sub">Mark Manson · Narrado por Erick Bowen</span>
+                <div class="t1a-feed-card__actions">
+                  <button class="t1a-feed-card__play" type="button" aria-label="Ouvir audiolivro" data-tel="feed-4-play">
+                    <i data-lucide="play" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Salvar" data-tel="feed-4-save">
+                    <i data-lucide="bookmark" aria-hidden="true"></i>
+                  </button>
+                  <button class="t1a-feed-card__icon-btn" type="button" aria-label="Mais opções" data-tel="feed-4-more">
+                    <i data-lucide="ellipsis" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- ============ CARROSSEL PROMOCIONAL 1 ============ -->
+      <section aria-labelledby="t1a-pop-title">
+        <header class="t1a-section__header">
+          <h2 id="t1a-pop-title" class="t1a-section__title">Popular esta semana</h2>
+          <button class="t1a-section__more" type="button" data-tel="pop-more">Ver mais</button>
+        </header>
+        <ul class="t1a-carousel" role="list" aria-label="Popular esta semana">
+          <li class="t1a-promo-card" tabindex="0" data-tel="pop-1">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pop1/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Top BR 50</span>
+            <span class="t1a-promo-card__sub">Atualizada diariamente</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="pop-2">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pop2/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Hot Hits Brasil</span>
+            <span class="t1a-promo-card__sub">As mais tocadas</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="pop-3">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pop3/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Sertanejo</span>
+            <span class="t1a-promo-card__sub">Os sucessos do momento</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="pop-4">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pop4/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Funk Hits</span>
+            <span class="t1a-promo-card__sub">Quem manda no funk</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ CARROSSEL PROMOCIONAL 2 ============ -->
+      <section aria-labelledby="t1a-jump-title">
+        <header class="t1a-section__header">
+          <h2 id="t1a-jump-title" class="t1a-section__title">Volte ao que estava ouvindo</h2>
+        </header>
+        <ul class="t1a-carousel" role="list" aria-label="Volte ao que estava ouvindo">
+          <li class="t1a-promo-card" tabindex="0" data-tel="jump-1">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/jump1/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Currents</span>
+            <span class="t1a-promo-card__sub">Tame Impala</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="jump-2">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/jump2/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Lo-fi Beats</span>
+            <span class="t1a-promo-card__sub">Playlist · Spotify</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="jump-3">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/jump3/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Discover Weekly</span>
+            <span class="t1a-promo-card__sub">Playlist · Spotify</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ CARROSSEL PROMOCIONAL 3: Podcasts ============ -->
+      <section aria-labelledby="t1a-pod-title">
+        <header class="t1a-section__header">
+          <h2 id="t1a-pod-title" class="t1a-section__title">Podcasts para você</h2>
+        </header>
+        <ul class="t1a-carousel" role="list" aria-label="Podcasts para você">
+          <li class="t1a-promo-card" tabindex="0" data-tel="pod-1">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pod1/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Flow Podcast</span>
+            <span class="t1a-promo-card__sub">Igor 3K e Bruno Aiub</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="pod-2">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pod2/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">Café da Manhã</span>
+            <span class="t1a-promo-card__sub">Folha de S.Paulo</span>
+          </li>
+          <li class="t1a-promo-card" tabindex="0" data-tel="pod-3">
+            <div class="t1a-promo-card__cover"><img src="https://picsum.photos/seed/pod3/200/200" alt="" loading="lazy" /></div>
+            <span class="t1a-promo-card__title">PrimoCast</span>
+            <span class="t1a-promo-card__sub">Thiago Nigro</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Rodapé controle -->
+      <footer class="t1a-footnote" role="contentinfo">
+        <i data-lucide="info" aria-hidden="true"></i>
+        <span>Versão atual (controle) — reproduz a Home atual do Spotify para comparação A/B.</span>
+      </footer>
+    </main>
+
+    <!-- ============ BOTTOM NAV ============ -->
+    <nav class="t1a-bottom-nav" role="navigation" aria-label="Navegação principal">
+      <a class="t1a-bottom-nav__item t1a-bottom-nav__item--active" href="#" aria-current="page" aria-label="Início" data-tel="nav-home">
+        <i data-lucide="house" aria-hidden="true"></i>
+        <span>Início</span>
+      </a>
+      <a class="t1a-bottom-nav__item" href="#" aria-label="Buscar" data-tel="nav-search">
+        <i data-lucide="search" aria-hidden="true"></i>
+        <span>Buscar</span>
+      </a>
+      <a class="t1a-bottom-nav__item" href="#" aria-label="Sua Biblioteca" data-tel="nav-lib">
+        <i data-lucide="library" aria-hidden="true"></i>
+        <span>Biblioteca</span>
+      </a>
+      <a class="t1a-bottom-nav__item" href="#" aria-label="Criar" data-tel="nav-create">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        <span>Criar</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Telemetria + Lucide -->
+  <script src="../../js/telemetria.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      if (window.lucide) { window.lucide.createIcons(); }
+
+      // Tempo de tarefa: marca início ao montar
+      const tStart = performance.now();
+      if (window.Telemetria) {
+        Telemetria.logEvent("t1-atual", "tela_aberta", { viewport: window.innerWidth + "x" + window.innerHeight });
+      }
+
+      // Loga primeiro clique como "primeiro_alvo" + delta ms
+      let primeiroClique = false;
+      document.addEventListener("click", function (e) {
+        const alvo = e.target.closest("[data-tel]");
+        if (!alvo) return;
+        const id = alvo.getAttribute("data-tel");
+        const dt = Math.round(performance.now() - tStart);
+        if (window.Telemetria) {
+          if (!primeiroClique) {
+            Telemetria.logEvent("t1-atual", "primeiro_alvo", { alvo: id, ms: dt });
+            primeiroClique = true;
+          }
+          Telemetria.logEvent("t1-atual", "clique", { alvo: id, ms: dt });
+        }
+      }, true);
+
+      // Loga profundidade de scroll a cada 25%
+      let marcos = { 25: false, 50: false, 75: false, 100: false };
+      window.addEventListener("scroll", function () {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        if (max <= 0) return;
+        const pct = Math.round((h.scrollTop / max) * 100);
+        [25, 50, 75, 100].forEach(function (m) {
+          if (!marcos[m] && pct >= m) {
+            marcos[m] = true;
+            if (window.Telemetria) {
+              Telemetria.logEvent("t1-atual", "scroll_marco", { pct: m, ms: Math.round(performance.now() - tStart) });
+            }
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>

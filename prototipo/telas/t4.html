@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T4 — Menu contextual da música (mockup) · Spotify Redesign</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/telas/t4.css" />
+</head>
+<body class="t4-body">
+  <!-- Badge "Mockup estático" -->
+  <div class="mockup-badge" role="note" aria-label="Aviso: tela é um mockup estático">
+    <i data-lucide="image" aria-hidden="true"></i>
+    <span>Mockup estático — interação completa em T3</span>
+  </div>
+
+  <!-- ====== Tela de fundo: playlist (estática, apenas contexto visual) ====== -->
+  <main class="t4-stage" aria-label="Tela da playlist (fundo do menu contextual)">
+    <header class="t4-playlist-header">
+      <button class="icon-btn" aria-label="Voltar" type="button">
+        <i data-lucide="chevron-left" aria-hidden="true"></i>
+      </button>
+      <h1 class="t4-playlist-header__title">Discover Weekly</h1>
+      <button class="icon-btn" aria-label="Mais opções da playlist" type="button">
+        <i data-lucide="more-horizontal" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <section class="t4-playlist-cover-wrap" aria-hidden="true">
+      <div class="t4-playlist-cover">
+        <i data-lucide="disc-3" aria-hidden="true"></i>
+      </div>
+      <p class="t4-playlist-meta">Playlist · 30 músicas · 1h 58min</p>
+    </section>
+
+    <ul class="t4-playlist-list" aria-label="Lista de músicas da playlist">
+      <li class="t4-mini-row" data-current="true">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Blinding Lights</span>
+          <span class="t4-mini-row__artist">The Weeknd</span>
+        </span>
+        <span class="t4-mini-row__more" aria-hidden="true">
+          <i data-lucide="more-horizontal"></i>
+        </span>
+      </li>
+      <li class="t4-mini-row">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Midnight City</span>
+          <span class="t4-mini-row__artist">M83</span>
+        </span>
+        <span class="t4-mini-row__more" aria-hidden="true">
+          <i data-lucide="more-horizontal"></i>
+        </span>
+      </li>
+      <li class="t4-mini-row">
+        <span class="t4-mini-row__cover" aria-hidden="true"></span>
+        <span class="t4-mini-row__info">
+          <span class="t4-mini-row__title">Levitating</span>
+          <span class="t4-mini-row__artist">Dua Lipa</span>
+        </span>
+        <span class="t4-mini-row__more" aria-hidden="true">
+          <i data-lucide="more-horizontal"></i>
+        </span>
+      </li>
+    </ul>
+  </main>
+
+  <!-- ====== Backdrop ====== -->
+  <div class="t4-backdrop" id="t4-backdrop" data-state="open" aria-hidden="true"></div>
+
+  <!-- ====== Bottom Sheet (aberto) ====== -->
+  <section
+    class="t4-sheet"
+    id="t4-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="t4-song-title"
+    data-state="open"
+  >
+    <div class="t4-sheet__handle" aria-hidden="true"></div>
+
+    <!-- Cabeçalho: música atual -->
+    <header class="t4-song-meta">
+      <div class="t4-song-meta__cover" aria-hidden="true">
+        <i data-lucide="music-2"></i>
+      </div>
+      <div class="t4-song-meta__text">
+        <h2 class="t4-song-meta__title" id="t4-song-title">Blinding Lights</h2>
+        <p class="t4-song-meta__sub">The Weeknd · After Hours</p>
+      </div>
+      <button class="icon-btn" aria-label="Fechar menu" type="button" id="t4-close">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <hr class="t4-divider" />
+
+    <!-- GRUPO 1: REPRODUÇÃO -->
+    <ul class="t4-menu-group" role="group" aria-label="Reprodução">
+      <li>
+        <button class="t4-row" type="button" data-action="play-now">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="play"></i></span>
+          <span class="t4-row__label">Tocar agora</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="play-next">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="skip-forward"></i></span>
+          <span class="t4-row__label">Próxima na fila</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="add-queue">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="list-plus"></i></span>
+          <span class="t4-row__label">Adicionar à fila</span>
+        </button>
+      </li>
+    </ul>
+
+    <hr class="t4-divider" />
+
+    <!-- GRUPO 2: COLEÇÃO (verde) -->
+    <ul class="t4-menu-group" role="group" aria-label="Coleção">
+      <li>
+        <button class="t4-row" type="button" data-action="add-playlist">
+          <span class="t4-row__ico t4-row__ico--accent" aria-hidden="true"><i data-lucide="plus"></i></span>
+          <span class="t4-row__label">Adicionar à playlist</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="like">
+          <span class="t4-row__ico t4-row__ico--accent" aria-hidden="true"><i data-lucide="heart"></i></span>
+          <span class="t4-row__label">Curtir</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="download">
+          <span class="t4-row__ico t4-row__ico--accent" aria-hidden="true"><i data-lucide="download"></i></span>
+          <span class="t4-row__label">Baixar</span>
+        </button>
+      </li>
+    </ul>
+
+    <hr class="t4-divider" />
+
+    <!-- GRUPO 3: OUTROS -->
+    <ul class="t4-menu-group" role="group" aria-label="Outros">
+      <li>
+        <button class="t4-row" type="button" data-action="share">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="share-2"></i></span>
+          <span class="t4-row__label">Compartilhar</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="view-artist">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="user-round"></i></span>
+          <span class="t4-row__label">Ver artista</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="view-album">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="disc"></i></span>
+          <span class="t4-row__label">Ver álbum</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row" type="button" data-action="credits">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="info"></i></span>
+          <span class="t4-row__label">Créditos</span>
+        </button>
+      </li>
+      <li>
+        <button class="t4-row t4-row--danger" type="button" data-action="report">
+          <span class="t4-row__ico" aria-hidden="true"><i data-lucide="flag"></i></span>
+          <span class="t4-row__label">Denunciar</span>
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Lucide icons (CDN) -->
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    // Render icons
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+
+    // JS mínimo: fechar sheet ao tap no backdrop ou botão X (apenas demo visual)
+    (function () {
+      var sheet = document.getElementById('t4-sheet');
+      var backdrop = document.getElementById('t4-backdrop');
+      var closeBtn = document.getElementById('t4-close');
+
+      function close() {
+        if (!sheet || !backdrop) return;
+        sheet.setAttribute('data-state', 'closed');
+        backdrop.setAttribute('data-state', 'closed');
+        if (window.closeModal) window.closeModal();
+      }
+      function open() {
+        if (!sheet || !backdrop) return;
+        sheet.setAttribute('data-state', 'open');
+        backdrop.setAttribute('data-state', 'open');
+        if (window.openModal) window.openModal(sheet, { onClose: function(){
+          sheet.setAttribute('data-state', 'closed');
+          backdrop.setAttribute('data-state', 'closed');
+        }});
+      }
+      // Inicial: sheet ja vem com data-state=open; abre via openModal para aplicar inert+trap
+      if (window.openModal && sheet && sheet.getAttribute('data-state') === 'open') {
+        window.openModal(sheet, { onClose: function(){
+          sheet.setAttribute('data-state', 'closed');
+          backdrop.setAttribute('data-state', 'closed');
+        }});
+      }
+      if (backdrop) backdrop.addEventListener('click', close);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) {
+        // Atalho 'R' reabre, mas com Shift para evitar conflito com AT
+        if ((e.key === 'r' || e.key === 'R') && e.shiftKey) open();
+      });
+    })();
+  </script>
+</body>
+</html>

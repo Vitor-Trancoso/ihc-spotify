@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#121212" />
+  <title>T5 — Configurações (versão atual / controle) | Spotify</title>
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/telas/t5-atual.css" />
+</head>
+<body>
+  <div class="t5a-frame" data-variant="controle">
+
+    <!-- TOPBAR (idêntica em estética à redesign) -->
+    <header class="t5a-topbar" role="banner">
+      <a href="../../index.html" class="t5a-topbar__back" aria-label="Voltar para o menu de telas">
+        <i data-lucide="chevron-left" aria-hidden="true"></i>
+      </a>
+      <h1 class="t5a-topbar__title">Configurações</h1>
+      <span class="t5a-topbar__spacer" aria-hidden="true"></span>
+    </header>
+
+    <!-- LISTA (SEM CAMPO DE BUSCA — comportamento atual do Spotify) -->
+    <main class="t5a-main" role="main">
+      <ul class="t5a-settings-list" id="t5a-settings-list" aria-label="Lista de configurações"></ul>
+
+      <footer class="t5a-foot">
+        <p class="t5a-foot__app">Spotify · v0.1 (protótipo IHC)</p>
+        <p class="t5a-foot__build">Build 2026.06.27</p>
+        <p class="t5a-foot__notice" role="note">Versão atual (controle) — comportamento sem busca</p>
+      </footer>
+    </main>
+
+    <!-- OVERLAY DE DETALHE -->
+    <div class="t5a-detail" hidden role="dialog" aria-modal="true" aria-labelledby="t5a-detail-title">
+      <div class="t5a-detail__backdrop" data-close></div>
+      <section class="t5a-detail__sheet">
+        <header class="t5a-detail__head">
+          <button class="t5a-detail__back" data-close aria-label="Fechar detalhe">
+            <i data-lucide="chevron-left" aria-hidden="true"></i>
+          </button>
+          <h2 class="t5a-detail__title" id="t5a-detail-title">Detalhe</h2>
+          <span class="t5a-detail__spacer" aria-hidden="true"></span>
+        </header>
+        <div class="t5a-detail__body">
+          <p class="t5a-detail__hint">
+            (Tela de detalhe simplificada — só para demonstrar a navegação a partir
+            da lista de configurações atual.)
+          </p>
+          <p class="t5a-detail__current">
+            Item: <strong class="t5a-detail__current-name">—</strong>
+          </p>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- ICONS -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>window.lucide && window.lucide.createIcons();</script>
+
+  <!-- SHARED + TELA -->
+  <script src="../../js/telemetria.js"></script>
+  <script src="../../js/dom-utils.js"></script>
+  <script src="../../js/modal.js"></script>
+  <script>
+  /* ============================================================
+     T5-ATUAL — versão controle "Spotify atual" (sem busca)
+     Mesmas seções de T5 redesign, mas o usuário precisa scrollar
+     toda a lista até encontrar a configuração desejada.
+     Loga eventos via Telemetria.logEvent("t5-atual", ...).
+     ============================================================ */
+  (function () {
+    "use strict";
+
+    const TELA = "t5-atual";
+
+    // Mesmas seções/itens da T5 redesign (NÃO repetir ícones de busca
+    // ou highlight — esta é fielmente a estrutura atual do Spotify)
+    const GRUPOS = [
+      { id: "conta", label: "Conta", itens: [
+        { id: "perfil",  icone: "user",     titulo: "Perfil",            valor: "Vitor M." },
+        { id: "email",   icone: "mail",     titulo: "E-mail",            valor: "vitor@ex.com" },
+        { id: "plano",   icone: "star",     titulo: "Plano",             valor: "Premium" },
+        { id: "vinculo", icone: "link",     titulo: "Contas vinculadas", valor: "2 ativas" },
+        { id: "logout",  icone: "log-out",  titulo: "Sair da conta",     valor: "" }
+      ]},
+      { id: "reproducao", label: "Reprodução", itens: [
+        { id: "autoplay",   icone: "play",        titulo: "Autoplay",                valor: "Ativado" },
+        { id: "crossfade",  icone: "shuffle",     titulo: "Crossfade",               valor: "5s" },
+        { id: "normalizar", icone: "bar-chart-2", titulo: "Normalizar volume",       valor: "Normal" },
+        { id: "smart",      icone: "sparkles",    titulo: "Persistir Smart Shuffle", valor: "Ativado" },
+        { id: "gapless",    icone: "minimize-2",  titulo: "Gapless playback",        valor: "Ativado" },
+        { id: "monitor",    icone: "headphones",  titulo: "Monitorar áudio",         valor: "Off" }
+      ]},
+      { id: "qualidade", label: "Qualidade de áudio", itens: [
+        { id: "wifi",     icone: "wifi",        titulo: "Streaming em Wi-Fi",    valor: "Muito alta" },
+        { id: "celular",  icone: "smartphone",  titulo: "Streaming em Celular",  valor: "Alta" },
+        { id: "download", icone: "download",    titulo: "Qualidade de download", valor: "Muito alta" },
+        { id: "auto",     icone: "activity",    titulo: "Ajuste automático",     valor: "Ativado" }
+      ]},
+      { id: "notificacoes", label: "Notificações", itens: [
+        { id: "novos",   icone: "bell",     titulo: "Novos lançamentos",   valor: "Push" },
+        { id: "shows",   icone: "calendar", titulo: "Shows e eventos",     valor: "E-mail" },
+        { id: "ofertas", icone: "tag",      titulo: "Ofertas e promoções", valor: "Off" }
+      ]},
+      { id: "privacidade", label: "Privacidade", itens: [
+        { id: "sessao",    icone: "eye-off",   titulo: "Sessão privada",       valor: "Off" },
+        { id: "atividade", icone: "users",     titulo: "Atividade aos amigos", valor: "Visível" },
+        { id: "explicito", icone: "shield",    titulo: "Conteúdo explícito",   valor: "Permitido" },
+        { id: "dados",     icone: "file-text", titulo: "Solicitar meus dados", valor: "" }
+      ]},
+      { id: "acessibilidade", label: "Acessibilidade", itens: [
+        { id: "legenda",   icone: "captions",     titulo: "Legendas em podcasts", valor: "Ativado" },
+        { id: "contraste", icone: "contrast",     titulo: "Alto contraste",       valor: "Off" },
+        { id: "movimento", icone: "pause-circle", titulo: "Reduzir animações",    valor: "Sistema" },
+        { id: "tamanho",   icone: "type",         titulo: "Tamanho da fonte",     valor: "Padrão" }
+      ]},
+      { id: "sobre", label: "Sobre", itens: [
+        { id: "versao",   icone: "info",         titulo: "Versão do app",           valor: "0.1.0" },
+        { id: "termos",   icone: "file",         titulo: "Termos de uso",           valor: "" },
+        { id: "politica", icone: "shield-check", titulo: "Política de privacidade", valor: "" },
+        { id: "licencas", icone: "book-open",    titulo: "Licenças de terceiros",   valor: "" }
+      ]}
+    ];
+
+    function escapeHTML(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    const lista       = document.getElementById("t5a-settings-list");
+    const topbar      = document.querySelector(".t5a-topbar");
+    const detalhe     = document.querySelector(".t5a-detail");
+    const detalheTit  = document.querySelector(".t5a-detail__title");
+    const detalheNome = document.querySelector(".t5a-detail__current-name");
+
+    let ultimoFoco = null;
+    let tInicio    = Date.now();
+
+    function render() {
+      lista.innerHTML = GRUPOS.map(grupoHTML).join("");
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    }
+    function grupoHTML(g) {
+      const rows = g.itens.map((it) => rowHTML(g.id, it)).join("");
+      return (
+        `<li class="t5a-group" data-group="${g.id}">` +
+          `<h2 class="t5a-group__label">${escapeHTML(g.label)}</h2>` +
+          `<ul class="t5a-card">${rows}</ul>` +
+        `</li>`
+      );
+    }
+    function rowHTML(grupoId, it) {
+      const ariaValor = it.valor ? ", valor atual " + it.valor : "";
+      return (
+        `<li>` +
+          `<button type="button" class="t5a-row"` +
+            ` data-row data-group="${grupoId}" data-id="${it.id}"` +
+            ` data-titulo="${escapeHTML(it.titulo)}"` +
+            ` aria-label="${escapeHTML(it.titulo + ariaValor)}">` +
+            `<span class="t5a-row__icon" aria-hidden="true"><i data-lucide="${it.icone}"></i></span>` +
+            `<span class="t5a-row__text"><span class="t5a-row__title">${escapeHTML(it.titulo)}</span></span>` +
+            `<span class="t5a-row__value">${escapeHTML(it.valor)}</span>` +
+            `<span class="t5a-row__chevron" aria-hidden="true"><i data-lucide="chevron-right"></i></span>` +
+          `</button>` +
+        `</li>`
+      );
+    }
+
+    function abrirDetalhe(row) {
+      const titulo = row.dataset.titulo || "Detalhe";
+      const id     = row.dataset.id     || "";
+      const grupo  = row.dataset.group  || "";
+      const tDecorrido = Date.now() - tInicio;
+      detalheTit.textContent  = titulo;
+      detalheNome.textContent = titulo;
+      ultimoFoco = row;
+      detalhe.hidden = false;
+      const back = detalhe.querySelector(".t5a-detail__back");
+      if (back) back.focus();
+      if (window.Telemetria) {
+        Telemetria.logEvent(TELA, "abrir_detalhe", {
+          id, grupo, ms_desde_entrada: tDecorrido, scroll_y: window.scrollY | 0
+        });
+      }
+    }
+    function fecharDetalhe() {
+      if (detalhe.hidden) return;
+      detalhe.hidden = true;
+      if (ultimoFoco) ultimoFoco.focus();
+      if (window.Telemetria) Telemetria.logEvent(TELA, "fechar_detalhe");
+    }
+
+    lista.addEventListener("click", (e) => {
+      const row = e.target.closest("[data-row]");
+      if (!row) return;
+      abrirDetalhe(row);
+    });
+    detalhe.addEventListener("click", (e) => {
+      if (e.target.matches("[data-close]")) fecharDetalhe();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !detalhe.hidden) fecharDetalhe();
+    });
+
+    // marca scroll máximo atingido — proxy de "esforço" sem busca
+    let maxScroll = 0;
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > maxScroll) maxScroll = y;
+      topbar.dataset.elevated = y > 4 ? "true" : "false";
+    }, { passive: true });
+
+    window.addEventListener("beforeunload", () => {
+      if (window.Telemetria) {
+        Telemetria.logEvent(TELA, "sair_tela", {
+          ms_total: Date.now() - tInicio,
+          scroll_max_y: maxScroll | 0
+        });
+      }
+    });
+
+    function init() {
+      render();
+      tInicio = Date.now();
+      if (window.Telemetria) {
+        Telemetria.logEvent(TELA, "tela_carregada", {
+          totalItens: GRUPOS.reduce((a, g) => a + g.itens.length, 0),
+          temBusca: false
+        });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>

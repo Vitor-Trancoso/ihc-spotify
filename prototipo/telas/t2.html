@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T2 — Player (Now Playing) · Redesign Spotify</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/telas/t2.css" />
+</head>
+<body class="t2-body">
+  <main class="np" aria-label="Player de música">
+
+    <!-- HEADER -->
+    <header class="np__header">
+      <button class="np__icon-btn" id="np-collapse" aria-label="Recolher player">
+        <i data-lucide="chevron-down"></i>
+      </button>
+      <div class="np__context">
+        <span class="np__context-label">TOCANDO DE PLAYLIST</span>
+        <span class="np__context-name" id="np-context-name">Discover Weekly</span>
+      </div>
+      <button class="np__icon-btn" id="np-more" aria-label="Mais opções desta faixa">
+        <i data-lucide="more-horizontal"></i>
+      </button>
+    </header>
+
+    <!-- COVER -->
+    <section class="np__cover-wrap">
+      <img class="np__cover" id="np-cover" alt="" />
+    </section>
+
+    <!-- TRACK INFO -->
+    <section class="np__track">
+      <div class="np__track-text">
+        <h1 class="np__title" id="np-title">Midnight City</h1>
+        <p class="np__artist" id="np-artist">M83</p>
+      </div>
+      <div class="np__track-actions">
+        <button class="np__heart" id="np-heart" aria-pressed="false" aria-label="Curtir música">
+          <i data-lucide="heart"></i>
+        </button>
+        <button class="np__add" id="np-add" aria-label="Adicionar à playlist">
+          <i data-lucide="plus"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="np__progress" aria-label="Progresso da faixa">
+      <input
+        type="range"
+        id="np-seek"
+        class="np__seek"
+        min="0"
+        max="243"
+        value="102"
+        step="1"
+        aria-label="Posição da faixa em segundos"
+      />
+      <div class="np__times">
+        <span class="np__time" id="np-current">1:42</span>
+        <span class="np__time" id="np-total">4:03</span>
+      </div>
+    </section>
+
+    <!-- STATUS ROW (texto reforça shuffle/repeat) -->
+    <section class="np__status-row" aria-live="polite">
+      <span class="np__status" id="np-status-shuffle" data-active="true">
+        <i data-lucide="shuffle"></i>
+        <span class="np__status-text" id="np-status-shuffle-text">Aleatório ativado</span>
+      </span>
+      <span class="np__status" id="np-status-repeat" data-mode="all">
+        <i data-lucide="repeat"></i>
+        <span class="np__status-text" id="np-status-repeat-text">Repetir: Tudo</span>
+      </span>
+    </section>
+
+    <!-- CONTROLES PRINCIPAIS -->
+    <section class="np__controls" aria-label="Controles de reprodução">
+      <button class="np__ctrl np__shuffle" id="np-shuffle" aria-pressed="true" aria-label="Aleatório">
+        <i data-lucide="shuffle"></i>
+      </button>
+      <button class="np__ctrl np__prev" id="np-prev" aria-label="Faixa anterior">
+        <i data-lucide="skip-back"></i>
+      </button>
+      <button class="np__play" id="np-play" aria-label="Pausar" aria-pressed="true">
+        <i data-lucide="pause" id="np-play-icon"></i>
+      </button>
+      <button class="np__ctrl np__next" id="np-next" aria-label="Próxima faixa">
+        <i data-lucide="skip-forward"></i>
+      </button>
+      <button class="np__ctrl np__repeat" id="np-repeat" aria-label="Repetir: Tudo">
+        <i data-lucide="repeat" id="np-repeat-icon"></i>
+        <span class="np__repeat-label" id="np-repeat-label">Tudo</span>
+      </button>
+    </section>
+
+    <!-- SMART SHUFFLE TOGGLE SEPARADO -->
+    <section class="np__smart" aria-label="Smart Shuffle">
+      <div class="np__smart-info">
+        <i data-lucide="sparkles" class="np__smart-icon"></i>
+        <div class="np__smart-text">
+          <span class="np__smart-title">Smart Shuffle</span>
+          <span class="np__smart-sub">Adiciona recomendações à fila</span>
+        </div>
+      </div>
+      <button
+        class="np__switch"
+        id="np-smart"
+        role="switch"
+        aria-checked="false"
+        aria-label="Ativar Smart Shuffle"
+      >
+        <span class="np__switch-track">
+          <span class="np__switch-thumb"></span>
+        </span>
+      </button>
+    </section>
+
+    <!-- FOOTER: devices / share / queue -->
+    <footer class="np__footer">
+      <button class="np__foot-btn" id="np-devices" aria-label="Conectar a um dispositivo">
+        <i data-lucide="monitor-speaker"></i>
+      </button>
+      <button class="np__foot-btn" id="np-share" aria-label="Compartilhar">
+        <i data-lucide="share-2"></i>
+      </button>
+      <button class="np__foot-btn" id="np-queue" aria-label="Ver fila">
+        <i data-lucide="list-music"></i>
+      </button>
+    </footer>
+
+    <!-- SNACKBAR (compartilhado leve) -->
+    <div class="np__toast-region" aria-live="polite" aria-atomic="true">
+      <div class="np__toast" id="np-toast" role="status" hidden>
+        <span class="np__toast-msg" id="np-toast-msg"></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- DEPENDENCIES -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/telemetria.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../js/telas/t2.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

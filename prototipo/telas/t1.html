@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T1 — Home minimalista (mockup) · Spotify Redesign</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/telas/t1.css" />
+</head>
+<body class="t1-body">
+  <div class="device-frame" role="application" aria-label="Protótipo T1 Home minimalista">
+
+    <!-- ============ TOPBAR ============ -->
+    <header class="t1-topbar" role="banner">
+      <button class="t1-avatar" type="button" aria-label="Abrir perfil de Vitor">
+        <span class="t1-avatar__initials" aria-hidden="true">VT</span>
+      </button>
+      <nav class="t1-chips" role="tablist" aria-label="Filtro de tipo de mídia">
+        <button class="t1-chip t1-chip--active" role="tab" type="button" aria-selected="true">Tudo</button>
+        <button class="t1-chip" role="tab" type="button" aria-selected="false">Música</button>
+        <button class="t1-chip" role="tab" type="button" aria-selected="false">Podcasts</button>
+        <button class="t1-chip" role="tab" type="button" aria-selected="false">Audiolivros</button>
+      </nav>
+    </header>
+
+    <!-- ============ CONTEÚDO ============ -->
+    <main class="t1-main" id="t1-main">
+
+      <!-- Greeting -->
+      <section class="t1-greeting" aria-labelledby="t1-greeting-title">
+        <h1 id="t1-greeting-title" class="t1-greeting__title">Boa noite, Vitor</h1>
+      </section>
+
+      <!-- View toggle (estado visível, não funcional) -->
+      <div class="t1-mode-toggle" role="tablist" aria-label="Modo de visualização da Home">
+        <button class="t1-mode-toggle__btn t1-mode-toggle__btn--active" role="tab" type="button" aria-selected="true">
+          <i data-lucide="layout-list" aria-hidden="true"></i>
+          <span>Compacto</span>
+        </button>
+        <button class="t1-mode-toggle__btn" role="tab" type="button" aria-selected="false">
+          <i data-lucide="sparkles" aria-hidden="true"></i>
+          <span>Descobrir</span>
+        </button>
+      </div>
+
+      <!-- ============ TOCADOS RECENTEMENTE ============ -->
+      <section class="t1-section" aria-labelledby="t1-recent-title">
+        <header class="t1-section__header">
+          <h2 id="t1-recent-title" class="t1-section__title">Tocados recentemente</h2>
+        </header>
+        <ul class="t1-recent-grid" role="list">
+          <li class="t1-recent-card">
+            <div class="t1-recent-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/discover/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1-recent-card__title">Discover Weekly</span>
+          </li>
+          <li class="t1-recent-card">
+            <div class="t1-recent-card__cover t1-recent-card__cover--liked" aria-hidden="true">
+              <i data-lucide="heart" aria-hidden="true"></i>
+            </div>
+            <span class="t1-recent-card__title">Músicas Curtidas</span>
+          </li>
+          <li class="t1-recent-card">
+            <div class="t1-recent-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/dailymix/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1-recent-card__title">Daily Mix 1</span>
+          </li>
+          <li class="t1-recent-card">
+            <div class="t1-recent-card__cover" aria-hidden="true">
+              <img src="https://picsum.photos/seed/lofi/120/120" alt="" loading="lazy" />
+            </div>
+            <span class="t1-recent-card__title">Lo-fi Beats</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ SUA MISTURA (carrossel) ============ -->
+      <section class="t1-section" aria-labelledby="t1-mix-title">
+        <header class="t1-section__header">
+          <h2 id="t1-mix-title" class="t1-section__title">Sua mistura</h2>
+          <button class="t1-collapse" type="button" aria-expanded="true" aria-controls="t1-mix-row" aria-label="Recolher seção Sua mistura">
+            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul id="t1-mix-row" class="t1-carousel" role="list">
+          <li class="t1-mix-card">
+            <div class="t1-mix-card__cover">
+              <img src="https://picsum.photos/seed/mixtame/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="t1-mix-card__title">Mix Tame Impala</span>
+            <span class="t1-mix-card__sub">MGMT, Pond, Kevin Parker</span>
+          </li>
+          <li class="t1-mix-card">
+            <div class="t1-mix-card__cover">
+              <img src="https://picsum.photos/seed/mixchill/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="t1-mix-card__title">Mix Chill</span>
+            <span class="t1-mix-card__sub">Bon Iver, Sufjan, Phoebe</span>
+          </li>
+          <li class="t1-mix-card">
+            <div class="t1-mix-card__cover">
+              <img src="https://picsum.photos/seed/mixbr/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="t1-mix-card__title">Mix BR</span>
+            <span class="t1-mix-card__sub">Caetano, Tim Maia, Marisa</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ EDITORIAL (colapsada) ============ -->
+      <section class="t1-section t1-section--collapsed" aria-labelledby="t1-editorial-title">
+        <header class="t1-section__header t1-section__header--button">
+          <h2 id="t1-editorial-title" class="t1-section__title">Editorial</h2>
+          <button class="t1-collapse" type="button" aria-expanded="false" aria-controls="t1-editorial-list" aria-label="Expandir seção Editorial">
+            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          </button>
+        </header>
+        <p class="t1-section__hint">Selecionado pela equipe Spotify · toque em expandir para ver</p>
+        <ul id="t1-editorial-list" class="t1-carousel" role="list" hidden>
+          <li class="t1-mix-card">
+            <div class="t1-mix-card__cover">
+              <img src="https://picsum.photos/seed/edit1/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="t1-mix-card__title">Top Brasil</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Nota de mockup -->
+      <footer class="t1-footnote" role="contentinfo">
+        <i data-lucide="info" aria-hidden="true"></i>
+        <span>Mockup estático — sem interatividade. Serve apenas como contexto visual para comparação com o Spotify atual.</span>
+      </footer>
+    </main>
+
+    <!-- ============ BOTTOM NAV ============ -->
+    <nav class="t1-bottom-nav" role="navigation" aria-label="Navegação principal">
+      <a class="t1-bottom-nav__item t1-bottom-nav__item--active" href="#" aria-current="page" aria-label="Início">
+        <i data-lucide="house" aria-hidden="true"></i>
+        <span>Início</span>
+      </a>
+      <a class="t1-bottom-nav__item" href="#" aria-label="Buscar">
+        <i data-lucide="search" aria-hidden="true"></i>
+        <span>Buscar</span>
+      </a>
+      <a class="t1-bottom-nav__item" href="#" aria-label="Sua Biblioteca">
+        <i data-lucide="library" aria-hidden="true"></i>
+        <span>Biblioteca</span>
+      </a>
+      <a class="t1-bottom-nav__item" href="#" aria-label="Criar">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        <span>Criar</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    if (window.lucide) { window.lucide.createIcons(); }
+  </script>
+</body>
+</html>

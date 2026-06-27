@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T2-Atual — Player (controle, Spotify atual)</title>
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/telas/t2-atual.css" />
+</head>
+<body class="t2a-body">
+  <main class="npa" aria-label="Player de música (versão atual)">
+
+    <!-- HEADER -->
+    <header class="npa__header">
+      <button class="npa__icon-btn" id="npa-collapse" aria-label="Recolher player">
+        <i data-lucide="chevron-down"></i>
+      </button>
+      <div class="npa__context">
+        <span class="npa__context-label">TOCANDO DE PLAYLIST</span>
+        <span class="npa__context-name" id="npa-context-name">Discover Weekly</span>
+      </div>
+      <button class="npa__icon-btn" id="npa-more" aria-label="Mais opções desta faixa">
+        <i data-lucide="more-horizontal"></i>
+      </button>
+    </header>
+
+    <!-- COVER -->
+    <section class="npa__cover-wrap">
+      <img class="npa__cover" id="npa-cover" alt="" />
+    </section>
+
+    <!-- TRACK INFO — destaque é o "+" (coração foi removido do destaque no Spotify atual) -->
+    <section class="npa__track">
+      <div class="npa__track-text">
+        <h1 class="npa__title" id="npa-title">Midnight City</h1>
+        <p class="npa__artist" id="npa-artist">M83</p>
+      </div>
+      <div class="npa__track-actions">
+        <button class="npa__add" id="npa-add" aria-pressed="false" aria-label="Adicionar à playlist">
+          <i data-lucide="plus" id="npa-add-icon"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="npa__progress" aria-label="Progresso da faixa">
+      <input
+        type="range"
+        id="npa-seek"
+        class="npa__seek"
+        min="0"
+        max="243"
+        value="102"
+        step="1"
+        aria-label="Posição da faixa em segundos"
+      />
+      <div class="npa__times">
+        <span class="npa__time" id="npa-current">1:42</span>
+        <span class="npa__time" id="npa-total">4:03</span>
+      </div>
+    </section>
+
+    <!-- CONTROLES PRINCIPAIS — sem status row textual.
+         Shuffle compartilha 1 botão com Smart Shuffle (3 estados).
+         Repeat também tri-estado, sem label. -->
+    <section class="npa__controls" aria-label="Controles de reprodução">
+      <button class="npa__ctrl npa__shuffle" id="npa-shuffle"
+              data-mode="off"
+              aria-label="Aleatório: desativado. Toque para alternar.">
+        <i data-lucide="shuffle"></i>
+        <i data-lucide="sparkles" class="npa__shuffle-sparkle" aria-hidden="true"></i>
+      </button>
+      <button class="npa__ctrl npa__prev" id="npa-prev" aria-label="Faixa anterior">
+        <i data-lucide="skip-back"></i>
+      </button>
+      <button class="npa__play" id="npa-play" aria-label="Pausar" aria-pressed="true">
+        <i data-lucide="pause" id="npa-play-icon"></i>
+      </button>
+      <button class="npa__ctrl npa__next" id="npa-next" aria-label="Próxima faixa">
+        <i data-lucide="skip-forward"></i>
+      </button>
+      <button class="npa__ctrl npa__repeat" id="npa-repeat"
+              data-mode="off"
+              aria-label="Repetir: desativado. Toque para alternar.">
+        <i data-lucide="repeat" id="npa-repeat-icon"></i>
+      </button>
+    </section>
+
+    <!-- FOOTER: devices + share — SEM nenhum indicador de shuffle/repeat
+         (atual Spotify: mini-player não comunica esse estado) -->
+    <footer class="npa__footer">
+      <button class="npa__foot-btn" id="npa-devices" aria-label="Conectar a um dispositivo">
+        <i data-lucide="monitor-speaker"></i>
+      </button>
+      <button class="npa__foot-btn" id="npa-share" aria-label="Compartilhar">
+        <i data-lucide="share-2"></i>
+      </button>
+      <button class="npa__foot-btn" id="npa-queue" aria-label="Ver fila">
+        <i data-lucide="list-music"></i>
+      </button>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="npa__toast-region" aria-live="polite" aria-atomic="true">
+      <div class="npa__toast" id="npa-toast" role="status" hidden>
+        <span class="npa__toast-msg" id="npa-toast-msg"></span>
+      </div>
+    </div>
+
+    <!-- Aviso discreto: versão controle -->
+    <p class="npa__control-badge" aria-hidden="true">Versão atual (controle)</p>
+  </main>
+
+  <!-- DEPENDENCIES -->
+  <script src="../../js/mock-data.js"></script>
+  <script src="../../js/telemetria.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../../js/telas/t2-atual.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

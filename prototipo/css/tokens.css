@@ -1,0 +1,164 @@
+/* ============================================================
+   SPOTIFY MOBILE REDESIGN — DESIGN TOKENS
+   Baseado em Encore Design System (Spotify, 2024/2025)
+   Tipografia: Inter (Google Fonts) — fallback system stack.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* --- BRAND GREENS --- */
+  --spotify-green:           #1ED760;
+  --spotify-green-press:     #1DB954;
+  --spotify-green-hover:     #1FDF64;
+  --spotify-green-essential: #1ED760;
+
+  /* --- BACKGROUND HIERARCHY (dark, layered) --- */
+  --background-base:                  #121212;
+  --background-elevated-base:         #1A1A1A;
+  --background-tinted-base:           #1F1F1F;
+  --background-elevated-highlight:    #2A2A2A;
+  --background-tinted-highlight:      #282828;
+  --background-press:                 #000000;
+  --background-highlight:             #333333;
+  --background-unsafe-small-text:     #535353;
+
+  /* --- TEXT --- */
+  --text-base:           #FFFFFF;
+  --text-subdued:        #A7A7A7;
+  --text-bright-accent:  #1ED760;
+  --text-negative:       #F15E6C;
+  --text-warning:        #FFA42B;
+  --text-positive:       #1ED760;
+  --text-announcement:   #3D91F4;
+  --text-disabled:       #6A6A6A;
+
+  /* --- ESSENTIALS / STATES --- */
+  --essential-base:           #FFFFFF;
+  --essential-subdued:        #727272;
+  --essential-bright-accent:  #1ED760;
+  --essential-negative:       #E91429;
+  --essential-warning:        #FFA42B;
+  --essential-positive:       #1ED760;
+  --essential-announcement:   #0D72EA;
+
+  /* --- DECORATIVE / BORDERS --- */
+  --decorative-base:    #FFFFFF;
+  --decorative-subdued: #292929;
+  --border-subtle:      rgba(255,255,255,0.10);
+  --border-strong:      rgba(255,255,255,0.20);
+
+  /* --- PROGRESS / NOW PLAYING --- */
+  --progress-bar-bg:         rgba(255,255,255,0.30);
+  --progress-bar-fill:       #FFFFFF;
+  --progress-bar-fill-hover: #1ED760;
+  --now-playing-indicator:   #1ED760;
+
+  /* --- GRADIENTS --- */
+  --gradient-playlist-header: linear-gradient(180deg, var(--header-color,#535353) 0%, #121212 100%);
+  --gradient-now-playing-bar: linear-gradient(180deg, #181818 0%, #000000 100%);
+  --gradient-liked-songs:     linear-gradient(149.46deg, #450AF5 0%, #8E8EE5 99.16%);
+  --gradient-podcast:         linear-gradient(149.46deg, #27856A 0%, #1ED760 99.16%);
+  --gradient-card-hover:      linear-gradient(transparent 0, rgba(0,0,0,0.5) 100%);
+
+  /* --- TYPOGRAPHY (Inter como primaria) --- */
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --fw-book:   400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold:   700;
+  --fw-extrabold: 800;
+  --fw-black:  900;
+
+  /* type scale (aliases compativeis com plano + nomenclatura do briefing) */
+  --fs-micro:    11px;  --lh-micro:    1.27; --ls-micro:    0.06em;
+  --fs-caption:  12px;  --lh-caption:  1.33;
+  --fs-meta:     12px;  --lh-meta:     1.33;
+  --fs-body:     14px;  --lh-body:     1.43;
+  --fs-row:      16px;  --lh-row:      1.5;
+  --fs-section:  22px;  --lh-section:  1.25; --ls-section: -0.02em;
+  --fs-title:    24px;  --lh-title:    1.15; --ls-title:   -0.02em;
+  --fs-display:  32px;  --lh-display:  1.08; --ls-display: -0.04em;
+  --fs-hero:     32px;  --lh-hero:     1.08; --ls-hero:    -0.04em;
+
+  /* --- SPACING (4pt grid) --- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  /* aliases legados do plano */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-6: 24px; --s-8: 32px; --s-12: 48px;
+
+  /* --- RADIUS --- */
+  --r-sm:     4px;
+  --r-md:     8px;
+  --r-lg:     12px;
+  --r-xl:     16px;
+  --r-pill:   999px;
+  --r-circle: 50%;
+  /* aliases legados */
+  --r-cover:  4px;
+  --r-card:   8px;
+  --r-sheet:  16px;
+
+  /* --- SHADOW --- */
+  --shadow-card:  0 4px 12px rgba(0,0,0,0.4);
+  --shadow-cover: 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-sheet: 0 -8px 24px rgba(0,0,0,0.5);
+
+  /* --- EASING --- */
+  --ease-out:           cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-standard:      cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-decelerate:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-accelerate:    cubic-bezier(0.4, 0.0, 1.0, 1);
+  --ease-emphasized:    cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --ease-spotify-pulse: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --- DURATION --- */
+  --d-fast:     150ms;
+  --d-micro:    120ms;
+  --d-tap:      180ms;
+  --d-standard: 250ms;
+  --d-medium:   280ms;
+  --d-slow:     350ms;
+  --d-sheet:    350ms;
+
+  /* --- SEMANTIC OVERLAYS / TINTS / HIT-AREA HELPERS --- */
+  --text-on-accent:    #000000;
+  --backdrop-color:    rgba(0,0,0,0.55);
+  --bg-hover-subtle:   rgba(255,255,255,0.06);
+  --danger-tint:       rgba(233,20,41,0.16);
+  --green-tint:        rgba(30,215,96,0.12);
+  --progress-track:    rgba(255,255,255,0.18);
+  --overlay-dark-40:   rgba(0,0,0,0.40);
+
+  /* --- SAFE AREA --- */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+
+  /* --- Z-LAYERS --- */
+  --z-base:      1;
+  --z-sticky:    10;
+  --z-nav:       50;
+  --z-mini:      60;
+  --z-toast:     70;
+  --z-snackbar:  80;
+  --z-backdrop:  85;
+  --z-sheet:     90;
+  --z-modal:     95;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 150ms !important;
+  }
+}

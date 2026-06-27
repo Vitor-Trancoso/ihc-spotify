@@ -1,0 +1,484 @@
+/* ============================================================
+   T1-ATUAL — Home Spotify atual (controle / "antes")
+   Reproduz fielmente o comportamento atual:
+   - Feed estilo TikTok: cards verticais gigantes (aspect 9:16)
+   - Auto-preview simulado (gradiente animado)
+   - Mistura música/podcast/audiolivro sem distinção clara
+   - Carrosséis promocionais empilhados
+   - Badges "Vídeo" em alguns cards
+   - Densidade BAIXA, scroll longo
+   Mesma stack/tokens que t1.css. A diferença está em LAYOUT/COMPORTAMENTO.
+   ============================================================ */
+
+.t1a-body {
+  background: var(--background-base);
+  color: var(--text-base);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.device-frame {
+  width: 100%;
+  max-width: 414px;
+  min-height: 100vh;
+  background: var(--background-base);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: calc(64px + var(--safe-bottom));
+}
+
+/* ============ TOPBAR ============
+   Atual: avatar + chips (Tudo/Música/Podcasts), idênticos visualmente.
+   A diferença surge depois, no feed. */
+.t1a-topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--background-base);
+  padding: calc(var(--safe-top) + var(--sp-2)) var(--sp-4) var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.t1a-avatar {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-circle);
+  background: linear-gradient(135deg, #5f4bb6 0%, #1ed760 100%);
+  color: var(--text-base);
+  border: 0;
+  font: var(--fw-bold) var(--fs-caption)/1 var(--font-family);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.t1a-avatar::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  min-width: 44px;
+  min-height: 44px;
+  pointer-events: auto;
+}
+
+.t1a-chips {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.t1a-chips::-webkit-scrollbar { display: none; }
+
+.t1a-chip {
+  flex: 0 0 auto;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-pill);
+  border: 0;
+  background: var(--background-tinted-highlight);
+  color: var(--text-base);
+  font: var(--fw-semibold) var(--fs-body)/1 var(--font-family);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.t1a-chip--active {
+  background: var(--spotify-green);
+  color: var(--text-on-accent);
+}
+
+/* ============ MAIN ============ */
+.t1a-main {
+  flex: 1;
+  padding: var(--sp-3) 0 var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* Banner promocional (Premium) — comum no Spotify atual */
+.t1a-promo {
+  margin: 0 var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: linear-gradient(135deg, #1e3264 0%, #4527a0 100%);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  cursor: pointer;
+}
+.t1a-promo__icon {
+  width: 32px; height: 32px;
+  flex: 0 0 32px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--r-circle);
+  color: var(--text-base);
+}
+.t1a-promo__icon i { width: 18px; height: 18px; }
+.t1a-promo__text { flex: 1; }
+.t1a-promo__title {
+  display: block;
+  font: var(--fw-bold) var(--fs-body)/1.2 var(--font-family);
+  color: var(--text-base);
+}
+.t1a-promo__sub {
+  display: block;
+  font: var(--fw-book) var(--fs-caption)/var(--lh-caption) var(--font-family);
+  color: rgba(255,255,255,0.92);
+  margin-top: 2px;
+}
+.t1a-promo__cta {
+  color: var(--text-base);
+}
+.t1a-promo__cta i { width: 18px; height: 18px; }
+
+/* ---- Section header ---- */
+.t1a-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.t1a-section__header {
+  padding: 0 var(--sp-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.t1a-section__title {
+  margin: 0;
+  font: var(--fw-bold) var(--fs-section)/var(--lh-section) var(--font-family);
+  letter-spacing: var(--ls-section);
+  color: var(--text-base);
+}
+.t1a-section__more {
+  color: var(--text-subdued);
+  font: var(--fw-semibold) var(--fs-caption)/1 var(--font-family);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---- Quick picks grid 2x4 (compacto, como o Spotify abre) ---- */
+.t1a-quick-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--sp-4);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+}
+.t1a-quick-card {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--background-elevated-base);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  min-height: 56px;
+  cursor: pointer;
+}
+.t1a-quick-card__cover {
+  flex: 0 0 56px;
+  width: 56px; height: 56px;
+  background: var(--background-tinted-base);
+  overflow: hidden;
+}
+.t1a-quick-card__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.t1a-quick-card__cover--liked {
+  background: var(--gradient-liked-songs);
+  display: grid; place-items: center;
+  color: var(--text-base);
+}
+.t1a-quick-card__cover--liked i { width: 22px; height: 22px; }
+.t1a-quick-card__title {
+  flex: 1;
+  font: var(--fw-semibold) var(--fs-body)/1.2 var(--font-family);
+  color: var(--text-base);
+  padding-right: var(--sp-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   FEED TIKTOK: cards verticais gigantes
+   Cada card ocupa quase 1 viewport — densidade BAIXA, scroll longo
+   ============================================================ */
+.t1a-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.t1a-feed-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 14;        /* gigante, ocupa ~70% viewport */
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--background-elevated-base);
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+}
+
+/* Auto-preview simulado: gradiente animado lento */
+.t1a-feed-card__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.t1a-feed-card__bg::after {
+  /* "play preview" sutil — pulsa devagar para sugerir vídeo/áudio em loop */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.3) 50%,
+    rgba(0,0,0,0.85) 100%);
+  animation: t1a-preview-pulse 3.2s ease-in-out infinite;
+}
+@keyframes t1a-preview-pulse {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+
+/* Badge tipo de mídia (Vídeo / Podcast / Audiolivro) */
+.t1a-feed-card__badge {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  padding: 4px var(--sp-2);
+  background: var(--overlay-dark-40);
+  color: var(--text-base);
+  font: var(--fw-bold) var(--fs-micro)/1 var(--font-family);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  backdrop-filter: blur(8px);
+}
+.t1a-feed-card__badge i { width: 11px; height: 11px; }
+
+/* Botão mais opções (X) topo direito */
+.t1a-feed-card__close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--overlay-dark-40);
+  color: var(--text-base);
+  border: 0;
+  border-radius: var(--r-circle);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.t1a-feed-card__close i { width: 16px; height: 16px; }
+
+/* Conteúdo inferior */
+.t1a-feed-card__content {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  color: var(--text-base);
+}
+.t1a-feed-card__eyebrow {
+  font: var(--fw-semibold) var(--fs-caption)/1 var(--font-family);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+}
+.t1a-feed-card__title {
+  margin: 0;
+  font: var(--fw-extrabold) 20px/1.15 var(--font-family);
+  letter-spacing: -0.01em;
+  color: var(--text-base);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.t1a-feed-card__sub {
+  font: var(--fw-book) var(--fs-body)/1.3 var(--font-family);
+  color: rgba(255,255,255,0.78);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.t1a-feed-card__actions {
+  margin-top: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.t1a-feed-card__play {
+  width: 48px; height: 48px;
+  border-radius: var(--r-circle);
+  background: var(--spotify-green);
+  color: var(--text-on-accent);
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.t1a-feed-card__play i { width: 22px; height: 22px; }
+.t1a-feed-card__icon-btn {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  background: transparent;
+  color: var(--text-base);
+  border: 0;
+  cursor: pointer;
+}
+.t1a-feed-card__icon-btn i { width: 22px; height: 22px; }
+
+/* ---- Carrosséis promocionais empilhados ---- */
+.t1a-carousel {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--sp-4) var(--sp-1);
+  display: flex;
+  gap: var(--sp-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.t1a-carousel::-webkit-scrollbar { display: none; }
+
+.t1a-promo-card {
+  flex: 0 0 160px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+.t1a-promo-card__cover {
+  width: 160px; height: 160px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--background-elevated-base);
+}
+.t1a-promo-card__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.t1a-promo-card__title {
+  font: var(--fw-semibold) var(--fs-body)/1.25 var(--font-family);
+  color: var(--text-base);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.t1a-promo-card__sub {
+  font: var(--fw-book) var(--fs-caption)/var(--lh-caption) var(--font-family);
+  color: var(--text-subdued);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rodapé controle */
+.t1a-footnote {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  margin: var(--sp-4) var(--sp-4) 0;
+  padding: var(--sp-3);
+  background: var(--background-elevated-base);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--r-md);
+  color: var(--text-subdued);
+  font: var(--fw-medium) var(--fs-caption)/var(--lh-caption) var(--font-family);
+}
+.t1a-footnote i {
+  flex: 0 0 16px;
+  width: 16px; height: 16px;
+  margin-top: 2px;
+  color: var(--text-subdued);
+}
+
+/* ============ BOTTOM NAV (idêntico ao redesign) ============ */
+.t1a-bottom-nav {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: var(--z-nav);
+  height: calc(64px + var(--safe-bottom));
+  padding: 0 var(--sp-2) var(--safe-bottom);
+  background: var(--gradient-now-playing-bar);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  max-width: 414px;
+  margin: 0 auto;
+}
+.t1a-bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 56px;
+  color: var(--text-subdued);
+  text-decoration: none;
+  font: var(--fw-medium) 10px/1.2 var(--font-family);
+  letter-spacing: 0.02em;
+}
+.t1a-bottom-nav__item i { width: 24px; height: 24px; }
+.t1a-bottom-nav__item--active { color: var(--text-base); }
+
+/* ============ FOCUS VISIBLE ============ */
+.t1a-chip:focus-visible,
+.t1a-avatar:focus-visible,
+.t1a-quick-card:focus-visible,
+.t1a-feed-card:focus-visible,
+.t1a-feed-card__play:focus-visible,
+.t1a-feed-card__close:focus-visible,
+.t1a-feed-card__icon-btn:focus-visible,
+.t1a-promo-card:focus-visible,
+.t1a-section__more:focus-visible,
+.t1a-bottom-nav__item:focus-visible,
+.t1a-promo:focus-visible {
+  outline: 2px solid var(--spotify-green);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* ============ RESPONSIVE 360-414 ============ */
+@media (max-width: 374px) {
+  .t1a-promo-card,
+  .t1a-promo-card__cover { flex-basis: 140px; width: 140px; height: 140px; }
+  .t1a-feed-card__title { font-size: 18px; }
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .t1a-feed-card__bg::after { animation: none; }
+}

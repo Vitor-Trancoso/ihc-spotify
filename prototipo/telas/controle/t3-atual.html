@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#121212" />
+  <title>T3 (Atual) — Sua Biblioteca | Spotify Atual (Controle IHC)</title>
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/telas/t3-atual.css" />
+</head>
+<body class="t3a-body">
+
+  <!-- ============= TOPBAR ============= -->
+  <header class="t3a-topbar" role="banner">
+    <button class="t3a-avatar" type="button" aria-label="Abrir perfil do usuario">
+      <span aria-hidden="true">VT</span>
+    </button>
+    <h1 class="t3a-topbar__title">Sua biblioteca</h1>
+    <div class="t3a-topbar__actions">
+      <button class="icon-btn" type="button" aria-label="Buscar na biblioteca" data-action="toggle-search">
+        <i data-lucide="search" aria-hidden="true"></i>
+      </button>
+      <button class="icon-btn" type="button" aria-label="Adicionar nova playlist">
+        <i data-lucide="plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="t3a-main" id="t3a-main">
+
+    <!-- Campo de busca OCULTO atras de toggle (comportamento atual) -->
+    <div class="t3a-search" id="t3a-search" data-open="false">
+      <label class="t3a-search__field">
+        <i data-lucide="search" aria-hidden="true"></i>
+        <input
+          type="search"
+          id="t3a-search-input"
+          placeholder="Buscar na biblioteca"
+          aria-label="Buscar na biblioteca"
+          autocomplete="off"
+        />
+      </label>
+    </div>
+
+    <!-- Chips de filtro (como hoje) -->
+    <nav class="t3a-chips" aria-label="Filtros de biblioteca">
+      <button class="chip" type="button" data-filter="all" data-active="true">Playlists</button>
+      <button class="chip" type="button" data-filter="artistas">Artistas</button>
+      <button class="chip" type="button" data-filter="albuns">Albuns</button>
+      <button class="chip" type="button" data-filter="podcasts">Podcasts</button>
+      <button class="chip" type="button" data-filter="baixadas">Baixadas</button>
+    </nav>
+
+    <!-- Sort row -->
+    <div class="t3a-sort-row">
+      <button class="t3a-sort" type="button" aria-label="Ordenacao: recentes">
+        <i data-lucide="arrow-down-up" aria-hidden="true"></i>
+        <span>Recentes</span>
+      </button>
+      <button class="t3a-view-btn" type="button" aria-label="Modo de visualizacao">
+        <i data-lucide="list" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Lista (SEM checkboxes, SEM selecao multipla) -->
+    <ul
+      class="t3a-list"
+      id="t3a-list"
+      role="list"
+      aria-label="Suas playlists"
+    ></ul>
+
+    <!-- Estado vazio -->
+    <div class="t3a-empty" id="t3a-empty" hidden>
+      <p>Nenhum item para sua busca.</p>
+      <span>Tente outro termo ou limpe a busca.</span>
+    </div>
+  </main>
+
+  <!-- ============= BOTTOM SHEET (acoes single-item) ============= -->
+  <div class="t3a-backdrop" id="t3a-backdrop" data-open="false" aria-hidden="true"></div>
+
+  <aside
+    class="t3a-sheet"
+    id="t3a-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="t3a-sheet-title"
+    data-open="false"
+  >
+    <div class="t3a-sheet__handle" aria-hidden="true"></div>
+    <header class="t3a-sheet__header">
+      <img class="t3a-sheet__cover" id="t3a-sheet-cover" src="" alt="" />
+      <div>
+        <div class="t3a-sheet__title" id="t3a-sheet-title">Playlist</div>
+        <div class="t3a-sheet__sub" id="t3a-sheet-sub">Playlist · Voce</div>
+      </div>
+    </header>
+    <div class="t3a-sheet__list">
+      <button class="t3a-sheet__row" type="button" data-sheet-action="tocar">
+        <i data-lucide="play" aria-hidden="true"></i>
+        <span>Tocar</span>
+      </button>
+      <button class="t3a-sheet__row" type="button" data-sheet-action="baixar">
+        <i data-lucide="download" aria-hidden="true"></i>
+        <span>Baixar</span>
+      </button>
+      <button class="t3a-sheet__row" type="button" data-sheet-action="adicionar">
+        <i data-lucide="list-plus" aria-hidden="true"></i>
+        <span>Adicionar a outra playlist</span>
+      </button>
+      <button class="t3a-sheet__row" type="button" data-sheet-action="mover">
+        <i data-lucide="folder-input" aria-hidden="true"></i>
+        <span>Mover para pasta</span>
+      </button>
+      <button class="t3a-sheet__row" type="button" data-sheet-action="compartilhar">
+        <i data-lucide="share-2" aria-hidden="true"></i>
+        <span>Compartilhar</span>
+      </button>
+      <button class="t3a-sheet__row t3a-sheet__row--danger" type="button" data-sheet-action="remover">
+        <i data-lucide="trash-2" aria-hidden="true"></i>
+        <span>Excluir playlist</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============= DIALOG de confirmacao ============= -->
+  <div
+    class="t3a-dialog"
+    id="t3a-dialog"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="t3a-dialog-title"
+    aria-describedby="t3a-dialog-msg"
+    data-open="false"
+  >
+    <div class="t3a-dialog__title" id="t3a-dialog-title">Excluir playlist?</div>
+    <div class="t3a-dialog__msg" id="t3a-dialog-msg">Esta playlist sera removida.</div>
+    <div class="t3a-dialog__actions">
+      <button class="t3a-dialog__btn t3a-dialog__btn--primary" type="button" data-dialog="confirmar">Excluir</button>
+      <button class="t3a-dialog__btn t3a-dialog__btn--ghost" type="button" data-dialog="cancelar">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ============= TOAST simples (sem desfazer) ============= -->
+  <div class="t3a-toast" id="t3a-toast" role="status" aria-live="polite" data-open="false"></div>
+
+  <!-- Tag discreta de versao controle -->
+  <div class="t3a-controle-tag" aria-hidden="true">Versao atual (controle)</div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav" aria-label="Navegacao principal">
+    <a href="../../index.html" class="bottom-nav__item" aria-label="Inicio">
+      <i data-lucide="house" aria-hidden="true"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="#" class="bottom-nav__item" aria-label="Buscar">
+      <i data-lucide="search" aria-hidden="true"></i>
+      <span>Buscar</span>
+    </a>
+    <a href="t3-atual.html" class="bottom-nav__item" aria-current="page" aria-label="Sua biblioteca">
+      <i data-lucide="library" aria-hidden="true"></i>
+      <span>Biblioteca</span>
+    </a>
+    <a href="#" class="bottom-nav__item" aria-label="Criar">
+      <i data-lucide="plus-square" aria-hidden="true"></i>
+      <span>Criar</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../../js/mock-data.js"></script>
+  <script src="../../js/telemetria.js"></script>
+  <script src="../../js/dom-utils.js"></script>
+  <script src="../../js/modal.js"></script>
+  <script src="../../js/telas/t3-atual.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
+
