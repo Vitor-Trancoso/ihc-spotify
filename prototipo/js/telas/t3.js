@@ -500,6 +500,47 @@
         sairSelecao();
       }
     });
+
+    // ----- BOTTOM SHEET: CRIAR -----
+    const $createBtn   = document.getElementById("t3-create-btn");
+    const $createSheet = document.getElementById("t3-create-sheet");
+
+    function abrirSheetCriar() {
+      if (!$createSheet) return;
+      log("criar_abrir");
+      if (window.openModal) {
+        window.openModal($createSheet, {
+          onClose: () => log("criar_fechar")
+        });
+      } else {
+        $createSheet.hidden = false;
+      }
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    }
+
+    function fecharSheetCriar() {
+      if (window.closeModal) window.closeModal();
+      else if ($createSheet) $createSheet.hidden = true;
+    }
+
+    if ($createBtn) $createBtn.addEventListener("click", abrirSheetCriar);
+
+    if ($createSheet) {
+      // backdrop / botoes com data-close-sheet
+      $createSheet.querySelectorAll("[data-close-sheet]").forEach((el) => {
+        el.addEventListener("click", fecharSheetCriar);
+      });
+
+      // itens criar
+      $createSheet.querySelectorAll(".t3-create-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tipo = btn.dataset.create;
+          log("criar_selecionar", { tipo });
+          fecharSheetCriar();
+          showSnack("Em breve", null, 2400);
+        });
+      });
+    }
   }
 
   // ---------- INIT ----------

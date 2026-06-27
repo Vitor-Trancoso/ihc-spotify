@@ -14,12 +14,15 @@
 
   <!-- ============= TOPBAR (modo padrao) ============= -->
   <header class="topbar t3-topbar" id="t3-topbar-default" data-state="default">
+    <a class="t3-avatar" href="t5.html" aria-label="Abrir perfil do usuario">
+      <span aria-hidden="true">VT</span>
+    </a>
     <h1 class="t3-topbar__title">Sua biblioteca</h1>
     <div class="t3-topbar__actions">
       <button class="icon-btn" type="button" aria-label="Buscar na biblioteca" data-action="focus-search">
         <i data-lucide="search" aria-hidden="true"></i>
       </button>
-      <button class="icon-btn" type="button" aria-label="Adicionar nova playlist">
+      <button class="icon-btn" type="button" aria-label="Criar" data-action="open-create-sheet" id="t3-create-btn">
         <i data-lucide="plus" aria-hidden="true"></i>
       </button>
     </div>
@@ -157,11 +160,51 @@
       <i data-lucide="library" aria-hidden="true"></i>
       <span>Biblioteca</span>
     </a>
-      <a class="t1-bottom-nav__item" href="#" aria-label="Seu Perfil">
-        <i class="t3-avatar" type="button" aria-label="Abrir perfil do usuario">
-          <span aria-hidden="true">VT</span>
-      </i>
+    <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil e Configurações">
+      <span class="bottom-nav__avatar" aria-hidden="true">VT</span>
+      <span>Perfil</span>
+    </a>
   </nav>
+
+  <!-- ============= BOTTOM SHEET: CRIAR ============= -->
+  <section id="t3-create-sheet" class="bottom-sheet" hidden role="dialog" aria-label="Criar" aria-modal="true">
+    <div class="bottom-sheet__backdrop" data-close-sheet></div>
+    <div class="bottom-sheet__panel" role="document">
+      <div class="bottom-sheet__handle" aria-hidden="true"></div>
+      <header class="bottom-sheet__header">
+        <h2 class="bottom-sheet__title">Criar</h2>
+      </header>
+      <ul class="t3-create-list" role="list">
+        <li>
+          <button class="t3-create-item" type="button" data-create="playlist">
+            <span class="t3-create-item__icon" aria-hidden="true"><i data-lucide="music"></i></span>
+            <span class="t3-create-item__body">
+              <span class="t3-create-item__title">Criar playlist</span>
+              <span class="t3-create-item__desc">Monte uma nova playlist do zero</span>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="t3-create-item" type="button" data-create="pasta">
+            <span class="t3-create-item__icon" aria-hidden="true"><i data-lucide="folder"></i></span>
+            <span class="t3-create-item__body">
+              <span class="t3-create-item__title">Criar pasta</span>
+              <span class="t3-create-item__desc">Organize suas playlists em pastas</span>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="t3-create-item" type="button" data-create="jam">
+            <span class="t3-create-item__icon" aria-hidden="true"><i data-lucide="radio"></i></span>
+            <span class="t3-create-item__body">
+              <span class="t3-create-item__title">Iniciar uma sessão Jam</span>
+              <span class="t3-create-item__desc">Ouça em tempo real com amigos</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Scripts -->
   <script src="../js/mock-data.js"></script>

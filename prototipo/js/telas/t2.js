@@ -265,18 +265,257 @@
   }
 
   function onToggleHeart() {
+    const previo = state.curtida;
     state.curtida = !state.curtida;
     salvarEstado();
     render();
-    toast(state.curtida
-      ? "Adicionado a Músicas Curtidas"
-      : "Removido de Músicas Curtidas");
+    const adicionou = state.curtida;
     log("heart_toggle", { curtida: state.curtida });
+    showSnackbar({
+      msg: adicionou
+        ? "Adicionada às Músicas Curtidas"
+        : "Removida das Curtidas",
+      icon: adicionou ? "heart" : "heart-off",
+      actionLabel: "DESFAZER",
+      duration: 6000,
+      onAction: (elapsedMs) => {
+        state.curtida = previo;
+        salvarEstado();
+        render();
+        log("curtir-desfazer", { restaurada_para: previo, tempo_ms: elapsedMs });
+        showSnackbar({
+          msg: previo ? "Restaurada às Curtidas" : "Removida novamente",
+          icon: "rotate-ccw",
+          duration: 2000,
+          variant: "confirm"
+        });
+      },
+      onExpire: () => {
+        log("curtir_undo_expirou", { estado_final: adicionou });
+      }
+    });
   }
 
   function onAdd() {
-    toast("Adicionado à playlist");
-    log("add_to_playlist", { faixa: state.titulo });
+    log("add_to_playlist_open");
+    openPlaylistPicker();
+  }
+
+  // ---------- PLAYLIST PICKER ----------
+  let pickerInited = false;
+  function ensurePickerData() {
+    const list = document.getElementById("t2-picker-list");
+    if (!list) return [];
+    const playlists = (window.MOCK && Array.isArray(window.MOCK.playlists))
+      ? window.MOCK.playlists.slice() : [];
+    // garantir minimo 8
+    while (playlists.length < 8) {
+      playlists.push({
+        id: "fb-" + playlists.length,
+        nome: "Playlist " + (playlists.length + 1),
+        total: 12 + playlists.length,
+        capa: null,
+        gradiente: "var(--gradient-liked-songs)"
+      });
+    }
+    return playlists;
+  }
+
+  function renderPickerList(filter) {
+    const list = document.getElementById("t2-picker-list");
+    if (!list) return;
+    const term = (filter || "").trim().toLowerCase();
+    const playlists = ensurePickerData()
+      .filter(p => !term || (p.nome || "").toLowerCase().includes(term));
+    list.innerHTML = "";
+    if (!playlists.length) {
+      const li = window.el("li", { class: "t2-picker__empty" }, "Nenhuma playlist encontrada");
+      list.appendChild(li);
+      return;
+    }
+    playlists.forEach(p => {
+      const cover = window.el("span", { class: "t2-picker__cover", "aria-hidden": "true" });
+      if (p.capa) {
+        cover.style.backgroundImage = `url("${p.capa}")`;
+      } else if (p.gradiente) {
+        cover.style.background = p.gradiente;
+      }
+      const meta = window.el("span", { class: "t2-picker__meta" }, [
+        window.el("span", { class: "t2-picker__nome", text: p.nome || "Sem nome" }),
+        window.el("span", { class: "t2-picker__sub", text: (p.total || 0) + " músicas" })
+      ]);
+      const btn = window.el("button", {
+        class: "t2-picker__item",
+        type: "button",
+        "data-id": p.id,
+        "aria-label": "Adicionar a " + (p.nome || "playlist")
+      }, [cover, meta]);
+      btn.addEventListener("click", () => onPickPlaylist(p));
+      const li = window.el("li", null, btn);
+      list.appendChild(li);
+    });
+  }
+
+  function openPlaylistPicker() {
+    const sheet = document.getElementById("t2-playlist-picker");
+    if (!sheet) return;
+    renderPickerList("");
+    const search = document.getElementById("t2-picker-search");
+    if (search) search.value = "";
+    if (!pickerInited) {
+      pickerInited = true;
+      const closeBtn = document.getElementById("t2-picker-close");
+      if (closeBtn) closeBtn.addEventListener("click", () => window.closeModal && window.closeModal());
+      sheet.querySelectorAll("[data-close-picker]").forEach(n => {
+        n.addEventListener("click", () => window.closeModal && window.closeModal());
+      });
+      if (search) {
+        search.addEventListener("input", (e) => renderPickerList(e.target.value));
+      }
+      const nova = document.getElementById("t2-picker-new");
+      if (nova) {
+        nova.addEventListener("click", () => {
+          log("nova_playlist_a_partir_picker", { faixa: state.titulo });
+          window.closeModal && window.closeModal();
+          showSnackbar({
+            msg: "Nova playlist criada",
+            icon: "plus-circle",
+            duration: 2400,
+            variant: "confirm"
+          });
+        });
+      }
+    }
+    if (window.openModal) {
+      window.openModal(sheet, {
+        onClose: () => {
+          sheet.setAttribute("data-state", "closed");
+          // espera animacao para reesconder
+          setTimeout(() => { sheet.hidden = true; }, 280);
+        }
+      });
+    } else {
+      sheet.hidden = false;
+    }
+    requestAnimationFrame(() => sheet.setAttribute("data-state", "open"));
+    refreshIcons();
+  }
+
+  function closePlaylistPicker() {
+    if (window.closeModal) window.closeModal();
+  }
+
+  function onPickPlaylist(p) {
+    const nome = p.nome || "playlist";
+    log("playlist_pick", { playlist_id: p.id, playlist_nome: nome, faixa: state.titulo });
+    closePlaylistPicker();
+    showSnackbar({
+      msg: "Adicionada a " + nome,
+      icon: "list-plus",
+      actionLabel: "DESFAZER",
+      duration: 6000,
+      onAction: (elapsedMs) => {
+        log("playlist_add_desfazer", {
+          playlist_id: p.id,
+          playlist_nome: nome,
+          tempo_ms: elapsedMs
+        });
+        showSnackbar({
+          msg: "Removida de " + nome,
+          icon: "rotate-ccw",
+          duration: 2000,
+          variant: "confirm"
+        });
+      },
+      onExpire: () => {
+        log("playlist_add_confirmada", { playlist_id: p.id });
+      }
+    });
+  }
+
+  // ---------- SNACKBAR ENGINE (mirror de ma.js) ----------
+  const snackbarState = {
+    active: null,
+    timer: null,
+    start: 0
+  };
+
+  function hideSnackbar(sb, immediate) {
+    if (!sb) return;
+    if (snackbarState.timer) { clearTimeout(snackbarState.timer); snackbarState.timer = null; }
+    sb.dataset.state = "closing";
+    const delay = immediate ? 0 : 200;
+    setTimeout(() => {
+      if (sb.parentNode) sb.parentNode.removeChild(sb);
+      if (snackbarState.active === sb) snackbarState.active = null;
+    }, delay);
+  }
+
+  function showSnackbar(opts) {
+    const region = document.getElementById("t2-snackbar-region");
+    if (!region) return;
+    if (snackbarState.active) hideSnackbar(snackbarState.active, true);
+
+    const duration = opts.duration || 6000;
+    const sb = document.createElement("div");
+    sb.className = "snackbar";
+    sb.setAttribute("role", "status");
+    sb.dataset.state = "closed";
+    sb.dataset.variant = opts.variant || "undo";
+    sb.style.setProperty("--snackbar-duration", duration + "ms");
+
+    const icon = document.createElement("span");
+    icon.className = "snackbar__icon";
+    icon.innerHTML = `<i data-lucide="${window.escapeHTML(opts.icon || "info")}" aria-hidden="true"></i>`;
+
+    const msg = window.el("span", { class: "snackbar__msg" });
+    msg.textContent = String(opts.msg == null ? "" : opts.msg);
+
+    sb.appendChild(icon);
+    sb.appendChild(msg);
+
+    if (opts.actionLabel) {
+      const btn = document.createElement("button");
+      btn.className = "snackbar__action";
+      btn.type = "button";
+      btn.textContent = opts.actionLabel;
+      btn.setAttribute("aria-label", opts.actionLabel + " ultima acao");
+      btn.addEventListener("click", () => {
+        const elapsed = Date.now() - snackbarState.start;
+        if (snackbarState.timer) clearTimeout(snackbarState.timer);
+        snackbarState.timer = null;
+        if (opts.onAction) opts.onAction(elapsed);
+        hideSnackbar(sb, false);
+      });
+      sb.appendChild(btn);
+    }
+
+    if (duration > 0) {
+      const prog = document.createElement("div");
+      prog.className = "snackbar__progress";
+      const fill = document.createElement("div");
+      fill.className = "snackbar__progress-fill";
+      prog.appendChild(fill);
+      sb.appendChild(prog);
+    }
+
+    region.appendChild(sb);
+    snackbarState.active = sb;
+    snackbarState.start = Date.now();
+
+    if (window.lucide) {
+      try { window.lucide.createIcons({ root: sb }); } catch(e) { refreshIcons(); }
+    }
+
+    void sb.offsetWidth;
+    sb.dataset.state = "open";
+
+    if (duration > 0) {
+      snackbarState.timer = setTimeout(() => {
+        if (opts.onExpire) opts.onExpire();
+        hideSnackbar(sb, false);
+      }, duration);
+    }
   }
 
   function onToggleShuffle() {

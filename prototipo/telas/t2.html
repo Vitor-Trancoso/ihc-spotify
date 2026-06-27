@@ -139,11 +139,42 @@
         <span class="np__toast-msg" id="np-toast-msg"></span>
       </div>
     </div>
+
+    <!-- SNACKBAR REGION (undo / playlist) -->
+    <div class="snackbar-region" id="t2-snackbar-region" aria-live="polite" aria-atomic="true"></div>
   </main>
+
+  <!-- ============= BOTTOM SHEET: ADICIONAR A PLAYLIST ============= -->
+  <section id="t2-playlist-picker" class="bottom-sheet" hidden role="dialog" aria-label="Adicionar à playlist" aria-modal="true">
+    <div class="bottom-sheet__backdrop" data-close-picker></div>
+    <div class="bottom-sheet__panel" role="document">
+      <div class="bottom-sheet__handle" aria-hidden="true"></div>
+      <header class="bottom-sheet__header">
+        <h2 class="bottom-sheet__title">Adicionar a playlist</h2>
+        <button class="bottom-sheet__close" type="button" id="t2-picker-close" aria-label="Fechar">
+          <i data-lucide="x"></i>
+        </button>
+      </header>
+
+      <div class="t2-picker__search">
+        <i data-lucide="search" aria-hidden="true"></i>
+        <input type="search" id="t2-picker-search" placeholder="Buscar playlist" aria-label="Buscar playlist" />
+      </div>
+
+      <button class="t2-picker__new" type="button" id="t2-picker-new">
+        <span class="t2-picker__new-icon" aria-hidden="true"><i data-lucide="plus"></i></span>
+        <span class="t2-picker__new-text">Nova playlist</span>
+      </button>
+
+      <ul class="t2-picker__list" id="t2-picker-list" role="list"></ul>
+    </div>
+  </section>
 
   <!-- DEPENDENCIES -->
   <script src="../js/mock-data.js"></script>
   <script src="../js/telemetria.js"></script>
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/modal.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="../js/telas/t2.js"></script>
   <script>

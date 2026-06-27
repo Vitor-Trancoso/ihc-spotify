@@ -54,13 +54,13 @@
       </section>
 
       <section class="ma-toolbar" aria-label="Ações da playlist">
-        <button class="ma-toolbar__btn ma-toolbar__btn--danger" id="ma-clear-playlist" type="button">
-          <i data-lucide="trash-2" aria-hidden="true"></i>
-          <span>Apagar playlist</span>
+        <button class="ma-toolbar__btn" id="ma-sort" type="button" aria-label="Ordenar músicas">
+          <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+          <span>Ordenar</span>
         </button>
-        <button class="ma-toolbar__btn" id="ma-reset" type="button" aria-label="Restaurar todas as músicas">
-          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
-          <span>Restaurar tudo</span>
+        <button class="ma-toolbar__btn" id="ma-history" type="button" aria-label="Histórico de músicas">
+          <i data-lucide="history" aria-hidden="true"></i>
+          <span>Histórico</span>
         </button>
       </section>
 
@@ -69,7 +69,7 @@
       </ol>
 
       <p class="ma-empty" id="ma-empty" hidden>
-        Nenhuma música. Toque em "Restaurar tudo" para recarregar a playlist.
+        Nenhuma música. Abra o Histórico para restaurar músicas removidas.
       </p>
 
       <div class="ma-stats" aria-live="polite">
@@ -99,6 +99,41 @@
       aria-atomic="true"
     ></div>
 
+    <!-- Bottom sheet: Ordenar -->
+    <section id="ma-sort-sheet" class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="ma-sort-title" hidden>
+      <div class="bottom-sheet__backdrop" data-close></div>
+      <div class="bottom-sheet__panel" role="document">
+        <div class="bottom-sheet__handle" aria-hidden="true"></div>
+        <header class="bottom-sheet__header">
+          <h2 class="bottom-sheet__title" id="ma-sort-title">Ordenar por</h2>
+          <button class="bottom-sheet__close" type="button" aria-label="Fechar" data-close>
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="ma-sort-list" role="radiogroup" aria-label="Critério de ordenação" id="ma-sort-list">
+          <!-- preenchido por JS -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Bottom sheet: Histórico -->
+    <section id="ma-history-sheet" class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="ma-history-title" hidden>
+      <div class="bottom-sheet__backdrop" data-close></div>
+      <div class="bottom-sheet__panel" role="document">
+        <div class="bottom-sheet__handle" aria-hidden="true"></div>
+        <header class="bottom-sheet__header">
+          <h2 class="bottom-sheet__title" id="ma-history-title">Histórico de músicas</h2>
+          <button class="bottom-sheet__close" type="button" aria-label="Fechar" data-close>
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </header>
+        <p class="ma-history__sub">Músicas que já passaram por esta playlist</p>
+        <ul class="ma-history-list" id="ma-history-list" aria-label="Lista de histórico">
+          <!-- preenchido por JS -->
+        </ul>
+      </div>
+    </section>
+
     <nav class="bottom-nav" aria-label="Navegacao principal">
       <a href="#" class="bottom-nav__item">
         <i data-lucide="home" aria-hidden="true"></i>
@@ -112,9 +147,9 @@
         <i data-lucide="library" aria-hidden="true"></i>
         <span>Biblioteca</span>
       </a>
-      <a href="#" class="bottom-nav__item">
-        <i data-lucide="plus" aria-hidden="true"></i>
-        <span>Criar</span>
+      <a href="t5.html" class="bottom-nav__item" aria-label="Perfil — abrir Configurações">
+        <span class="bottom-nav__avatar" aria-hidden="true">VT</span>
+        <span>Perfil</span>
       </a>
     </nav>
   </div>

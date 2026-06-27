@@ -367,6 +367,21 @@
 .t1-bottom-nav__item--active { color: var(--text-base); }
 .t1-bottom-nav__item:hover { color: var(--text-base); }
 
+/* Avatar redondo do item Perfil */
+.t1-bottom-nav__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--fw-bold) 10px/1 var(--font-family);
+  color: #fff;
+  background: linear-gradient(135deg, var(--spotify-green, #1db954) 0%, #6c4ad0 100%);
+  letter-spacing: 0.02em;
+}
+.t1-bottom-nav__item--profile { color: var(--text-subdued); }
+
 /* ============ FOCUS VISIBLE ============ */
 .t1-chip:focus-visible,
 .t1-mode-toggle__btn:focus-visible,

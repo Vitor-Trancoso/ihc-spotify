@@ -10,58 +10,126 @@
   const TELA = "MA";
   const DURATION = 6000;
   const RESTORE_DURATION = 2000;
+  const LS_SORT = "ma:sortMode";
+  const LS_HISTORY = "ma:history"; // removidas
+  const LS_TRACKS = "ma:tracks";   // ordem atual
+
+  const SORT_OPTIONS = [
+    { id: "title-asc",     label: "Título (A-Z)" },
+    { id: "title-desc",    label: "Título (Z-A)" },
+    { id: "artist-asc",    label: "Nome do artista (A-Z)" },
+    { id: "added-desc",    label: "Data adicionada (mais recente)" },
+    { id: "added-asc",     label: "Data adicionada (mais antiga)" },
+    { id: "duration-asc",  label: "Duração (menor → maior)" }
+  ];
 
   const $ = (s, ctx = document) => ctx.querySelector(s);
   const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 
   // ---------- STATE ----------
   const state = {
-    tracks: [],          // array atual visivel
-    backup: [],          // playlist original para reset
-    snackbarQueue: [],   // fila de snackbars
+    tracks: [],
+    backup: [],
+    history: [],         // [{ ...track, removedAt: ts }]
+    sortMode: "added-desc",
+    snackbarQueue: [],
     activeSnackbar: null,
     activeTimer: null,
     activeStart: 0,
-    pendingRemovals: [], // agrupa remocoes proximas
+    pendingRemovals: [],
     pendingTimer: null,
-    stats: {
-      removed: 0,
-      undone: 0,
-      undoTimes: []      // ms ate clicar desfazer
-    }
+    stats: { removed: 0, undone: 0, undoTimes: [] }
   };
 
   // ---------- INIT MOCK ----------
   function pickMock() {
-    if (!window.MOCK || !Array.isArray(window.MOCK.tracks)) {
-      // fallback minimo se mock-data nao expor MOCK.tracks
-      return [
-        { id: "t1", title: "Midnight City", artist: "M83", album: "Hurry Up, We're Dreaming", cover: "" },
-        { id: "t2", title: "The Less I Know the Better", artist: "Tame Impala", album: "Currents", cover: "" },
-        { id: "t3", title: "One More Time", artist: "Daft Punk", album: "Discovery", cover: "" },
-        { id: "t4", title: "Blinding Lights", artist: "The Weeknd", album: "After Hours", cover: "" },
-        { id: "t5", title: "Do I Wanna Know?", artist: "Arctic Monkeys", album: "AM", cover: "" },
-        { id: "t6", title: "Karma Police", artist: "Radiohead", album: "OK Computer", cover: "" },
-        { id: "t7", title: "Mariners Apartment Complex", artist: "Lana Del Rey", album: "NFR!", cover: "" },
-        { id: "t8", title: "EARFQUAKE", artist: "Tyler, The Creator", album: "IGOR", cover: "" }
-      ];
-    }
-    return window.MOCK.tracks.slice(0, 8).map((t, i) => ({
-      id: t.id || ("t" + i),
-      title: t.title || t.titulo || "Faixa " + (i + 1),
-      artist: t.artist || t.artista || "Artista",
-      album: t.album || "",
-      cover: t.cover || t.capa || ""
+    const base = (window.MOCK && Array.isArray(window.MOCK.tracks))
+      ? window.MOCK.tracks.slice(0, 8).map((t, i) => ({
+          id: t.id || ("t" + i),
+          title: t.title || t.titulo || "Faixa " + (i + 1),
+          artist: t.artist || t.artista || "Artista",
+          album: t.album || "",
+          cover: t.cover || t.capa || ""
+        }))
+      : [
+          { id: "t1", title: "Midnight City", artist: "M83", album: "Hurry Up, We're Dreaming" },
+          { id: "t2", title: "The Less I Know the Better", artist: "Tame Impala", album: "Currents" },
+          { id: "t3", title: "One More Time", artist: "Daft Punk", album: "Discovery" },
+          { id: "t4", title: "Blinding Lights", artist: "The Weeknd", album: "After Hours" },
+          { id: "t5", title: "Do I Wanna Know?", artist: "Arctic Monkeys", album: "AM" },
+          { id: "t6", title: "Karma Police", artist: "Radiohead", album: "OK Computer" },
+          { id: "t7", title: "Mariners Apartment Complex", artist: "Lana Del Rey", album: "NFR!" },
+          { id: "t8", title: "EARFQUAKE", artist: "Tyler, The Creator", album: "IGOR" }
+        ];
+    // enriquecer com addedAt (mock decrescente) + duration
+    const now = Date.now();
+    return base.map((t, i) => ({
+      ...t,
+      cover: t.cover || "",
+      addedAt: t.addedAt || (now - i * 86400000 * 3),   // ~3 dias entre cada
+      duration: t.duration || (150 + ((i * 37) % 180))  // segundos
     }));
   }
 
   function init() {
-    state.tracks = pickMock();
-    state.backup = state.tracks.map(t => ({ ...t }));
+    // tracks
+    const savedTracks = readLS(LS_TRACKS);
+    state.tracks = Array.isArray(savedTracks) && savedTracks.length
+      ? savedTracks
+      : pickMock();
+    state.backup = pickMock();
+    // history
+    const savedHistory = readLS(LS_HISTORY);
+    if (Array.isArray(savedHistory)) {
+      state.history = savedHistory;
+    } else {
+      // mock inicial: 2 musicas pre-removidas
+      state.history = [
+        { id: "h1", title: "Redbone", artist: "Childish Gambino", album: "Awaken, My Love!",
+          addedAt: Date.now() - 86400000 * 30, duration: 326, removedAt: Date.now() - 86400000 * 4 },
+        { id: "h2", title: "Pyramids", artist: "Frank Ocean", album: "Channel Orange",
+          addedAt: Date.now() - 86400000 * 45, duration: 597, removedAt: Date.now() - 86400000 * 9 },
+        { id: "h3", title: "Borderline", artist: "Tame Impala", album: "The Slow Rush",
+          addedAt: Date.now() - 86400000 * 60, duration: 237, removedAt: Date.now() - 86400000 * 1 }
+      ];
+      writeLS(LS_HISTORY, state.history);
+    }
+    // sort mode
+    const savedSort = localStorage.getItem(LS_SORT);
+    if (savedSort && SORT_OPTIONS.some(o => o.id === savedSort)) {
+      state.sortMode = savedSort;
+    }
+    applySort();
     renderList();
     bindToolbar();
     bindSearch();
     Telemetria.logEvent(TELA, "view", { faixas: state.tracks.length });
+  }
+
+  // ---------- LS HELPERS ----------
+  function readLS(key) {
+    try { return JSON.parse(localStorage.getItem(key)); } catch (_) { return null; }
+  }
+  function writeLS(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (_) {}
+  }
+  function persistTracks() { writeLS(LS_TRACKS, state.tracks); }
+  function persistHistory() { writeLS(LS_HISTORY, state.history); }
+
+  // ---------- SORT ----------
+  function applySort() {
+    const m = state.sortMode;
+    state.tracks.sort((a, b) => {
+      switch (m) {
+        case "title-asc":    return (a.title || "").localeCompare(b.title || "");
+        case "title-desc":   return (b.title || "").localeCompare(a.title || "");
+        case "artist-asc":   return (a.artist || "").localeCompare(b.artist || "");
+        case "added-desc":   return (b.addedAt || 0) - (a.addedAt || 0);
+        case "added-asc":    return (a.addedAt || 0) - (b.addedAt || 0);
+        case "duration-asc": return (a.duration || 0) - (b.duration || 0);
+        default: return 0;
+      }
+    });
   }
 
   // ---------- RENDER ----------
@@ -74,7 +142,7 @@
     if (window.lucide) window.lucide.createIcons();
   }
 
-  function buildRow(track, index) {
+  function buildRow(track) {
     const li = document.createElement("li");
     li.className = "ma-track";
     li.dataset.id = track.id;
@@ -136,15 +204,18 @@
 
     state.tracks.splice(idx, 1);
     state.stats.removed++;
+
+    // adiciona ao histórico
+    state.history.unshift({ ...removed, removedAt: Date.now() });
+    persistHistory();
+    persistTracks();
+
     updateCount();
     updateStats();
 
     if (row) {
-      // captura altura para animacao consistente
       row.style.height = row.offsetHeight + "px";
-      requestAnimationFrame(() => {
-        row.dataset.removing = "true";
-      });
+      requestAnimationFrame(() => { row.dataset.removing = "true"; });
       setTimeout(() => {
         if (row.parentNode) row.parentNode.removeChild(row);
         updateEmpty();
@@ -153,7 +224,6 @@
 
     Telemetria.logEvent(TELA, "track_removed", { id, origem });
 
-    // agrupa remocoes dentro de 800ms
     state.pendingRemovals.push({ track: removed, index: idx });
     if (state.pendingTimer) clearTimeout(state.pendingTimer);
     state.pendingTimer = setTimeout(() => {
@@ -162,6 +232,23 @@
       state.pendingTimer = null;
       showRemovalSnackbar(batch);
     }, 350);
+  }
+
+  function restoreTrack(id) {
+    const idx = state.history.findIndex(h => h.id === id);
+    if (idx < 0) return;
+    const entry = state.history[idx];
+    state.history.splice(idx, 1);
+    const { removedAt, ...track } = entry;
+    state.tracks.push(track);
+    applySort();
+    persistTracks();
+    persistHistory();
+    updateCount();
+    renderList();
+    Telemetria.logEvent(TELA, "history_restore", { id });
+    showConfirmSnackbar("Música restaurada");
+    refreshHistorySheet();
   }
 
   function showRemovalSnackbar(batch) {
@@ -176,34 +263,33 @@
       actionLabel: "Desfazer",
       duration: DURATION,
       onAction: (elapsedMs) => {
-        // reinserir mantendo ordem original
+        // reinserir + remover do histórico
         batch.sort((a, b) => a.index - b.index).forEach(({ track, index }) => {
           const safeIdx = Math.min(index, state.tracks.length);
           state.tracks.splice(safeIdx, 0, track);
+          // remover correspondente do histórico
+          const hi = state.history.findIndex(h => h.id === track.id);
+          if (hi >= 0) state.history.splice(hi, 1);
         });
+        persistTracks();
+        persistHistory();
         state.stats.undone += batch.length;
         state.stats.undoTimes.push(elapsedMs);
         updateStats();
         renderList();
         markRestored(batch.map(b => b.track.id));
         Telemetria.logEvent(TELA, "undo_clicked", {
-          tipo: "remove",
-          quantidade: batch.length,
-          tempo_ms: elapsedMs
+          tipo: "remove", quantidade: batch.length, tempo_ms: elapsedMs
         });
         showConfirmSnackbar(batch.length === 1 ? "Musica restaurada" : `${batch.length} musicas restauradas`);
       },
       onExpire: () => {
-        Telemetria.logEvent(TELA, "undo_expired", {
-          tipo: "remove",
-          quantidade: batch.length
-        });
+        Telemetria.logEvent(TELA, "undo_expired", { tipo: "remove", quantidade: batch.length });
       }
     });
   }
 
   function markRestored(ids) {
-    // animacao de entrada nas rows recem-restauradas
     requestAnimationFrame(() => {
       ids.forEach(id => {
         const row = document.querySelector(`.ma-track[data-id="${cssEscape(id)}"]`);
@@ -217,10 +303,7 @@
 
   // ---------- SNACKBAR ENGINE ----------
   function showSnackbar(opts) {
-    // se existe snackbar ativa, fecha imediatamente (mostra a ultima — Material guideline)
-    if (state.activeSnackbar) {
-      hideSnackbar(state.activeSnackbar, true);
-    }
+    if (state.activeSnackbar) hideSnackbar(state.activeSnackbar, true);
     const region = $("#ma-snackbar-region");
     const sb = document.createElement("div");
     sb.className = "snackbar";
@@ -233,7 +316,6 @@
     icon.className = "snackbar__icon";
     icon.innerHTML = `<i data-lucide="${opts.icon || "info"}" aria-hidden="true"></i>`;
 
-    // XSS-safe: usa createElement + textContent (window.el)
     const msg = (window.el
       ? window.el('span', { class: 'snackbar__msg' })
       : document.createElement('span'));
@@ -272,9 +354,7 @@
     state.activeSnackbar = sb;
     state.activeStart = Date.now();
 
-    if (window.lucide) window.lucide.createIcons({ icons: undefined, attrs: undefined, root: sb });
-
-    // forca reflow + abre
+    if (window.lucide) window.lucide.createIcons({ root: sb });
     void sb.offsetWidth;
     sb.dataset.state = "open";
 
@@ -307,56 +387,147 @@
     });
   }
 
+  // ---------- SORT SHEET ----------
+  function openSortSheet() {
+    const sheet = $("#ma-sort-sheet");
+    const list = $("#ma-sort-list");
+    list.innerHTML = "";
+    SORT_OPTIONS.forEach(opt => {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ma-sort-list__item";
+      btn.setAttribute("role", "radio");
+      btn.setAttribute("aria-checked", String(opt.id === state.sortMode));
+      btn.dataset.sortId = opt.id;
+      btn.innerHTML = `<span class="ma-sort-list__radio" aria-hidden="true"></span><span>${escapeHtml(opt.label)}</span>`;
+      btn.addEventListener("click", () => {
+        state.sortMode = opt.id;
+        localStorage.setItem(LS_SORT, opt.id);
+        applySort();
+        persistTracks();
+        renderList();
+        Telemetria.logEvent(TELA, "sort_changed", { criterio: opt.id });
+        if (window.closeModal) window.closeModal();
+        showConfirmSnackbar("Lista reordenada");
+      });
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+    // close buttons
+    sheet.querySelectorAll("[data-close]").forEach(el => {
+      el.onclick = () => window.closeModal && window.closeModal();
+    });
+    if (window.lucide) window.lucide.createIcons({ root: sheet });
+    if (window.openModal) {
+      window.openModal(sheet);
+      requestAnimationFrame(() => sheet.classList.add("is-open"));
+    }
+    Telemetria.logEvent(TELA, "sort_sheet_open", { atual: state.sortMode });
+  }
+
+  // ---------- HISTORY SHEET ----------
+  function openHistorySheet() {
+    refreshHistorySheet();
+    const sheet = $("#ma-history-sheet");
+    sheet.querySelectorAll("[data-close]").forEach(el => {
+      el.onclick = () => window.closeModal && window.closeModal();
+    });
+    if (window.openModal) {
+      window.openModal(sheet);
+      requestAnimationFrame(() => sheet.classList.add("is-open"));
+    }
+    Telemetria.logEvent(TELA, "history_sheet_open", {
+      atuais: state.tracks.length,
+      removidas: state.history.length
+    });
+  }
+
+  function refreshHistorySheet() {
+    const list = $("#ma-history-list");
+    if (!list) return;
+    list.innerHTML = "";
+
+    const current = state.tracks.map(t => ({ ...t, _kind: "current" }));
+    const removed = state.history.map(t => ({ ...t, _kind: "removed" }));
+    const combined = current.concat(removed)
+      .sort((a, b) => {
+        // current first, then removed by removedAt desc
+        if (a._kind !== b._kind) return a._kind === "current" ? -1 : 1;
+        if (a._kind === "removed") return (b.removedAt || 0) - (a.removedAt || 0);
+        return 0;
+      });
+
+    if (!combined.length) {
+      const empty = document.createElement("li");
+      empty.className = "ma-history-empty";
+      empty.textContent = "Nenhum histórico ainda.";
+      list.appendChild(empty);
+      return;
+    }
+
+    combined.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "ma-history-item " + (item._kind === "current" ? "ma-history-item--current" : "ma-history-item--removed");
+
+      const cover = document.createElement("div");
+      cover.className = "ma-history-item__cover";
+
+      const meta = document.createElement("div");
+      meta.className = "ma-history-item__meta";
+      const title = document.createElement("p");
+      title.className = "ma-history-item__title";
+      title.textContent = item.title;
+      const sub = document.createElement("p");
+      sub.className = "ma-history-item__sub";
+      if (item._kind === "current") {
+        sub.innerHTML = `<span class="ma-history-item__status">● Atual</span> · ${escapeHtml(item.artist || "")}`;
+      } else {
+        sub.innerHTML = `<span class="ma-history-item__status">✕ Removida em ${formatDate(item.removedAt)}</span> · ${escapeHtml(item.artist || "")}`;
+      }
+      meta.appendChild(title);
+      meta.appendChild(sub);
+
+      const action = document.createElement("button");
+      action.type = "button";
+      if (item._kind === "current") {
+        action.className = "ma-history-item__action ma-history-item__action--remove";
+        action.innerHTML = '<i data-lucide="trash-2" aria-hidden="true"></i><span>Remover</span>';
+        action.setAttribute("aria-label", `Remover ${item.title}`);
+        action.addEventListener("click", () => {
+          removeTrack(item.id, "history");
+          refreshHistorySheet();
+        });
+      } else {
+        action.className = "ma-history-item__action ma-history-item__action--restore";
+        action.innerHTML = '<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Restaurar</span>';
+        action.setAttribute("aria-label", `Restaurar ${item.title}`);
+        action.addEventListener("click", () => restoreTrack(item.id));
+      }
+
+      li.appendChild(cover);
+      li.appendChild(meta);
+      li.appendChild(action);
+      list.appendChild(li);
+    });
+
+    if (window.lucide) window.lucide.createIcons({ root: list });
+  }
+
+  function formatDate(ts) {
+    if (!ts) return "?";
+    const d = new Date(ts);
+    const pad = n => String(n).padStart(2, "0");
+    return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
   // ---------- TOOLBAR ----------
   function bindToolbar() {
-    $("#ma-clear-playlist").addEventListener("click", () => {
-      if (state.tracks.length === 0) return;
-      const snapshot = state.tracks.slice();
-      state.tracks = [];
-      state.stats.removed += snapshot.length;
-      updateCount();
-      updateStats();
-      // animacao em cascata
-      $$(".ma-track").forEach((row, i) => {
-        setTimeout(() => { row.dataset.removing = "true"; }, i * 30);
-      });
-      setTimeout(() => {
-        renderList();
-      }, 280 + state.tracks.length * 30 + 40);
+    const sortBtn = $("#ma-sort");
+    if (sortBtn) sortBtn.addEventListener("click", openSortSheet);
 
-      Telemetria.logEvent(TELA, "playlist_cleared", { quantidade: snapshot.length });
-
-      showSnackbar({
-        kind: "undo-clear-playlist",
-        icon: "trash-2",
-        msg: `Playlist apagada (<strong>${snapshot.length}</strong> musicas)`,
-        actionLabel: "Desfazer",
-        duration: DURATION,
-        onAction: (elapsedMs) => {
-          state.tracks = snapshot.slice();
-          state.stats.undone += snapshot.length;
-          state.stats.undoTimes.push(elapsedMs);
-          updateStats();
-          renderList();
-          Telemetria.logEvent(TELA, "undo_clicked", {
-            tipo: "playlist_clear",
-            quantidade: snapshot.length,
-            tempo_ms: elapsedMs
-          });
-          showConfirmSnackbar("Playlist restaurada");
-        },
-        onExpire: () => {
-          Telemetria.logEvent(TELA, "undo_expired", { tipo: "playlist_clear" });
-        }
-      });
-    });
-
-    $("#ma-reset").addEventListener("click", () => {
-      state.tracks = state.backup.map(t => ({ ...t }));
-      renderList();
-      Telemetria.logEvent(TELA, "reset_playlist", {});
-      showConfirmSnackbar("Playlist recarregada");
-    });
+    const histBtn = $("#ma-history");
+    if (histBtn) histBtn.addEventListener("click", openHistorySheet);
 
     const more = $("#ma-playlist-more");
     if (more) more.addEventListener("click", () => {
@@ -364,7 +535,7 @@
     });
   }
 
-  // ---------- BUSCA (demo "limpar busca") ----------
+  // ---------- BUSCA ----------
   function bindSearch() {
     const input = $("#ma-search-input");
     const clear = $("#ma-search-clear");
@@ -392,10 +563,7 @@
           state.stats.undone++;
           state.stats.undoTimes.push(elapsedMs);
           updateStats();
-          Telemetria.logEvent(TELA, "undo_clicked", {
-            tipo: "search_clear",
-            tempo_ms: elapsedMs
-          });
+          Telemetria.logEvent(TELA, "undo_clicked", { tipo: "search_clear", tempo_ms: elapsedMs });
           showConfirmSnackbar("Busca restaurada");
           input.focus();
         },
@@ -405,7 +573,6 @@
       });
     });
 
-    // ESC fecha snackbar ativa
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && state.activeSnackbar) {
         hideSnackbar(state.activeSnackbar, false);
