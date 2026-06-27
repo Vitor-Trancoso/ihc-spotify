@@ -1,0 +1,190 @@
+/Users/vitormarconi/Documents/GitHub/ihc-spotify/docs/analise/analise.py:114: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  sym = corr_b.applymap(symnum)
+=== AMOSTRA ===
+Respondentes válidos: 86
+Variáveis no arquivo: 30
+
+=== DESCRITIVA POR ITEM ===
+            Bloco               Item  N  Media   DP  Mediana  Pct_Baixo_1_2  Pct_Neutro_3  Pct_Alto_4_5
+      H3_Controle      A1_VoltarTela 44   3.25 1.08      4.0           20.5          20.5          59.1
+      H3_Controle    A2_ControleRepr 35   3.03 1.25      4.0           28.6          17.1          54.3
+      H3_Controle    A3_DesfazerPlay 71   2.58 1.09      3.0           46.5          28.2          25.4
+      H3_Controle    A4_CancelarAcao 86   3.62 1.15      4.0           15.1          32.6          52.3
+      H3_Controle  A5_RespeitaConfig 86   3.79 1.33      4.0           16.3          19.8          64.0
+  H4_Consistencia      B1_SemelhApps 86   3.87 1.13      4.0           10.5          17.4          72.1
+  H4_Consistencia B2_IconesEsperados 86   4.12 1.03      4.0            9.3          12.8          77.9
+  H4_Consistencia   B3_LayoutConsist 86   3.47 1.27      4.0           24.4          23.3          52.3
+  H4_Consistencia    B4_AcharAposUpd 86   3.52 1.19      4.0           16.3          27.9          55.8
+  H4_Consistencia  B5_PrevisivBotoes 51   3.06 1.05      3.0           27.5          27.5          45.1
+H5_PrevencaoErros     C1_SemAcidente 86   3.37 1.26      4.0           25.6          20.9          53.5
+H5_PrevencaoErros    C2_ControlesPos 63   2.92 1.10      3.0           28.6          33.3          38.1
+H5_PrevencaoErros  C3_SugestoesBusca 86   3.77 1.23      4.0           17.4          16.3          66.3
+H5_PrevencaoErros      C4_AvisoPerda 86   3.17 1.26      3.0           31.4          24.4          44.2
+H5_PrevencaoErros      C5_TocaRapido 56   3.09 1.05      3.0           28.6          23.2          48.2
+ H7_Flexibilidade    D1_AcoesRapidas 86   3.81 1.13      4.0           14.0          18.6          67.4
+ H7_Flexibilidade   D2_Recomendacoes 86   3.23 1.24      3.5           31.4          18.6          50.0
+ H7_Flexibilidade  D3_GerirPlaylists 86   3.37 1.29      4.0           24.4          22.1          53.5
+ H7_Flexibilidade       D4_AdaptaUso 86   3.65 1.22      4.0           15.1          26.7          58.1
+ H7_Flexibilidade     D5_TelasLimpas 66   2.91 1.12      3.0           33.3          25.8          40.9
+      H8_Estetica    E1_SemDistracao 86   3.08 1.36      3.0           36.0          22.1          41.9
+      H8_Estetica     E2_InfoVisivel 86   4.26 1.05      5.0            7.0          10.5          82.6
+      H8_Estetica        E3_Estetica 86   3.81 1.13      4.0           11.6          25.6          62.8
+      H8_Estetica   E4_HomeRelevante 86   2.99 1.35      3.0           40.7          17.4          41.9
+
+=== DESCRITIVA POR BLOCO (score = média dos itens) ===
+            Bloco  Media   DP  Mediana  Pct_Baixo_<=2.5  Pct_Alto_>=3.5
+      H3_Controle   3.45 0.91     3.50             14.0            52.3
+  H4_Consistencia   3.71 0.94     3.80             11.6            62.8
+H5_PrevencaoErros   3.38 0.86     3.40             12.8            47.7
+ H7_Flexibilidade   3.46 0.92     3.60             15.1            53.5
+      H8_Estetica   3.53 0.98     3.75             19.8            59.3
+
+=== ALPHA DE CRONBACH ===
+Global (24 itens):       alpha = 0.961  (n=18 listwise)  -> EXCELENTE
+H3_Controle            alpha = 0.849  (n=23)         -> BOM
+H4_Consistencia        alpha = 0.785  (n=51)         -> ACEITAVEL
+H5_PrevencaoErros      alpha = 0.672  (n=46)         -> QUESTIONAVEL
+H7_Flexibilidade       alpha = 0.736  (n=66)         -> ACEITAVEL
+H8_Estetica            alpha = 0.809  (n=86)         -> BOM
+
+=== CORRELACAO DE PEARSON entre BLOCOS ===
+                   H3_Controle  H4_Consistencia  H5_PrevencaoErros  H7_Flexibilidade  H8_Estetica
+H3_Controle              1.000            0.691              0.560             0.640        0.693
+H4_Consistencia          0.691            1.000              0.691             0.718        0.714
+H5_PrevencaoErros        0.560            0.691              1.000             0.685        0.675
+H7_Flexibilidade         0.640            0.718              0.685             1.000        0.802
+H8_Estetica              0.693            0.714              0.675             0.802        1.000
+
+symnum (limiares: . 0.3 / , 0.6 / + 0.8 / * 0.9 / B 0.95):
+                  H3_Controle H4_Consistencia H5_PrevencaoErros H7_Flexibilidade H8_Estetica
+H3_Controle                 B               ,                 .                ,           ,
+H4_Consistencia             ,               B                 ,                ,           ,
+H5_PrevencaoErros           .               ,                 B                ,           ,
+H7_Flexibilidade            ,               ,                 ,                B           +
+H8_Estetica                 ,               ,                 ,                +           B
+
+Pares de blocos ordenados por |r|:
+  H7_Flexibilidade       ~ H8_Estetica            r=+0.802  (Forte)
+  H4_Consistencia        ~ H7_Flexibilidade       r=+0.718  (Forte)
+  H4_Consistencia        ~ H8_Estetica            r=+0.714  (Forte)
+  H3_Controle            ~ H8_Estetica            r=+0.693  (Moderada)
+  H4_Consistencia        ~ H5_PrevencaoErros      r=+0.691  (Moderada)
+  H3_Controle            ~ H4_Consistencia        r=+0.691  (Moderada)
+  H5_PrevencaoErros      ~ H7_Flexibilidade       r=+0.685  (Moderada)
+  H5_PrevencaoErros      ~ H8_Estetica            r=+0.675  (Moderada)
+  H3_Controle            ~ H7_Flexibilidade       r=+0.640  (Moderada)
+  H3_Controle            ~ H5_PrevencaoErros      r=+0.560  (Moderada)
+
+=== TOP CORRELACOES ITEM-A-ITEM (|r| >= 0.5) ===
+  A1_VoltarTela          ~ C5_TocaRapido          r=+0.774
+  B4_AcharAposUpd        ~ C2_ControlesPos        r=+0.752
+  C2_ControlesPos        ~ D5_TelasLimpas         r=+0.750
+  B3_LayoutConsist       ~ E3_Estetica            r=+0.723
+  A1_VoltarTela          ~ E2_InfoVisivel         r=+0.714
+  A2_ControleRepr        ~ C5_TocaRapido          r=+0.698
+  E1_SemDistracao        ~ E4_HomeRelevante       r=+0.694
+  A1_VoltarTela          ~ A2_ControleRepr        r=+0.645
+  C2_ControlesPos        ~ E1_SemDistracao        r=+0.639
+  A1_VoltarTela          ~ A5_RespeitaConfig      r=+0.639
+  B3_LayoutConsist       ~ B4_AcharAposUpd        r=+0.633
+  B3_LayoutConsist       ~ D3_GerirPlaylists      r=+0.623
+  B4_AcharAposUpd        ~ D5_TelasLimpas         r=+0.622
+  B5_PrevisivBotoes      ~ C2_ControlesPos        r=+0.614
+  D5_TelasLimpas         ~ E1_SemDistracao        r=+0.610
+  B2_IconesEsperados     ~ B3_LayoutConsist       r=+0.603
+  E3_Estetica            ~ E4_HomeRelevante       r=+0.599
+  B5_PrevisivBotoes      ~ C5_TocaRapido          r=+0.598
+  B3_LayoutConsist       ~ C2_ControlesPos        r=+0.594
+  B4_AcharAposUpd        ~ E3_Estetica            r=+0.590
+
+=== APRIORI — REGRAS DE ASSOCIACAO (BLOCOS) ===
+Transações: 86 | min_sup=0.10, min_conf=0.60 | regras: 90
+
+Top 20 regras (blocos) por LIFT:
+  {H7_Flexibilidade=Baixo} => {H4_Consistencia=Baixo}  sup=0.10 conf=0.69 lift=5.95
+  {H4_Consistencia=Baixo} => {H7_Flexibilidade=Baixo}  sup=0.10 conf=0.90 lift=5.95
+  {H7_Flexibilidade=Baixo} => {H8_Estetica=Baixo}  sup=0.12 conf=0.77 lift=3.89
+  {H8_Estetica=Neutro} => {H7_Flexibilidade=Neutro}  sup=0.14 conf=0.67 lift=2.12
+  {H3_Controle=Neutro, H7_Flexibilidade=Neutro} => {H5_PrevencaoErros=Neutro}  sup=0.12 conf=0.77 lift=1.95
+  {H5_PrevencaoErros=Neutro, H7_Flexibilidade=Neutro} => {H3_Controle=Neutro}  sup=0.12 conf=0.62 lift=1.85
+  {H4_Consistencia=Alto, H5_PrevencaoErros=Neutro} => {H3_Controle=Neutro}  sup=0.14 conf=0.60 lift=1.78
+  {H5_PrevencaoErros=Alto, H8_Estetica=Alto} => {H7_Flexibilidade=Alto}  sup=0.36 conf=0.91 lift=1.70
+  {H7_Flexibilidade=Alto} => {H5_PrevencaoErros=Alto, H8_Estetica=Alto}  sup=0.36 conf=0.67 lift=1.70
+  {H3_Controle=Neutro, H4_Consistencia=Alto} => {H5_PrevencaoErros=Neutro}  sup=0.14 conf=0.67 lift=1.69
+  {H3_Controle=Alto, H7_Flexibilidade=Alto} => {H5_PrevencaoErros=Alto}  sup=0.30 conf=0.79 lift=1.65
+  {H5_PrevencaoErros=Alto} => {H3_Controle=Alto, H7_Flexibilidade=Alto}  sup=0.30 conf=0.63 lift=1.65
+  {H3_Controle=Alto, H4_Consistencia=Alto} => {H5_PrevencaoErros=Alto}  sup=0.31 conf=0.77 lift=1.62
+  {H5_PrevencaoErros=Alto} => {H3_Controle=Alto, H4_Consistencia=Alto}  sup=0.31 conf=0.66 lift=1.62
+  {H3_Controle=Alto, H8_Estetica=Alto} => {H7_Flexibilidade=Alto}  sup=0.35 conf=0.86 lift=1.60
+  {H7_Flexibilidade=Alto} => {H3_Controle=Alto, H8_Estetica=Alto}  sup=0.35 conf=0.65 lift=1.60
+  {H5_PrevencaoErros=Alto} => {H4_Consistencia=Alto, H7_Flexibilidade=Alto}  sup=0.33 conf=0.68 lift=1.59
+  {H4_Consistencia=Alto, H7_Flexibilidade=Alto} => {H5_PrevencaoErros=Alto}  sup=0.33 conf=0.76 lift=1.59
+  {H4_Consistencia=Alto, H5_PrevencaoErros=Alto} => {H7_Flexibilidade=Alto}  sup=0.33 conf=0.85 lift=1.59
+  {H7_Flexibilidade=Alto} => {H4_Consistencia=Alto, H5_PrevencaoErros=Alto}  sup=0.33 conf=0.61 lift=1.59
+
+=== APRIORI — REGRAS DE ASSOCIACAO (ITENS) ===
+Transações: 86 | min_sup=0.20, min_conf=0.80 | regras: 1030
+
+Top 25 regras (itens) por LIFT:
+  {D5_TelasLimpas=Baixo} => {E1_SemDistracao=Baixo}  sup=0.23 conf=0.91 lift=2.52
+  {C4_AvisoPerda=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.22 conf=1.00 lift=2.39
+  {B3_LayoutConsist=Baixo} => {A3_DesfazerPlay=Baixo}  sup=0.21 conf=0.86 lift=2.23
+  {A4_CancelarAcao=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.29 conf=0.89 lift=2.13
+  {A4_CancelarAcao=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.29 conf=0.89 lift=2.13
+  {D1_AcoesRapidas=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.30 conf=0.87 lift=2.07
+  {D4_AdaptaUso=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.30 conf=0.87 lift=2.07
+  {C4_AvisoPerda=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.22 conf=0.86 lift=2.06
+  {B1_SemelhApps=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.28 conf=0.86 lift=2.05
+  {B3_LayoutConsist=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.27 conf=0.85 lift=2.03
+  {B4_AcharAposUpd=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.26 conf=0.85 lift=2.02
+  {D5_TelasLimpas=Baixo} => {E4_HomeRelevante=Baixo}  sup=0.21 conf=0.82 lift=2.01
+  {B2_IconesEsperados=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.30 conf=0.84 lift=2.00
+  {D4_AdaptaUso=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.30 conf=0.84 lift=2.00
+  {C1_SemAcidente=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.23 conf=0.83 lift=1.99
+  {D2_Recomendacoes=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.23 conf=0.83 lift=1.99
+  {D2_Recomendacoes=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.23 conf=0.83 lift=1.99
+  {C3_SugestoesBusca=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.28 conf=0.83 lift=1.98
+  {D3_GerirPlaylists=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.27 conf=0.82 lift=1.96
+  {E2_InfoVisivel=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.31 conf=0.82 lift=1.95
+  {B4_AcharAposUpd=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.26 conf=0.81 lift=1.95
+  {B2_IconesEsperados=Alto, E1_SemDistracao=Alto} => {E4_HomeRelevante=Alto}  sup=0.30 conf=0.81 lift=1.94
+  {D1_AcoesRapidas=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.30 conf=0.81 lift=1.94
+  {A4_CancelarAcao=Alto, D4_AdaptaUso=Alto} => {E4_HomeRelevante=Alto}  sup=0.29 conf=0.81 lift=1.93
+  {E3_Estetica=Alto, E4_HomeRelevante=Alto} => {E1_SemDistracao=Alto}  sup=0.29 conf=0.81 lift=1.93
+
+=== PERFIL DEMOGRAFICO ===
+
+-- Faixa etária --
+  18 a 24 anos                                              N= 57  ( 66.3%)
+  45 anos ou mais                                           N= 16  ( 18.6%)
+  35 a 44 anos                                              N=  8  (  9.3%)
+  25 a 34 anos                                              N=  5  (  5.8%)
+
+-- Escolaridade --
+  Ensino superior (cursando graduação)                      N= 54  ( 62.8%)
+  Ensino superior completo                                  N= 14  ( 16.3%)
+  Pós-Graduação                                             N=  9  ( 10.5%)
+  Ensino médio (completo ou cursando)                       N=  7  (  8.1%)
+  Ensino médio (completo ou cursando                        N=  1  (  1.2%)
+  Prefiro não informar                                      N=  1  (  1.2%)
+
+-- Frequência de uso --
+  Todos os dias (ou quase)                                  N= 64  ( 74.4%)
+  Algumas vezes por semana                                  N=  9  ( 10.5%)
+  Raramente                                                 N=  8  (  9.3%)
+  Cerca de uma vez por semana                               N=  4  (  4.7%)
+  Algumas vezes por mês                                     N=  1  (  1.2%)
+
+-- Horas por semana --
+  De 1 a 5 horas                                            N= 38  ( 44.2%)
+  De 5 a 10 horas                                           N= 26  ( 30.2%)
+  Menos de 1 hora                                           N= 12  ( 14.0%)
+  De 10 a 20 horas                                          N=  6  (  7.0%)
+  Mais de 20 horas                                          N=  4  (  4.7%)
+
+-- Tipo de conta --
+  Premium (Pago)                                            N= 67  ( 77.9%)
+  Gratuita (Free)                                           N= 17  ( 19.8%)
+  Premium (paga)                                            N=  2  (  2.3%)
+
+[ok] Resultados salvos em /Users/vitormarconi/Documents/GitHub/ihc-spotify/docs/analise/saida_*.csv|json

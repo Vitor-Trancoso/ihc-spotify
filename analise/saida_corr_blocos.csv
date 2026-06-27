@@ -1,0 +1,6 @@
+;H3_Controle;H4_Consistencia;H5_PrevencaoErros;H7_Flexibilidade;H8_Estetica
+H3_Controle;1.0;0.691;0.56;0.64;0.693
+H4_Consistencia;0.691;1.0;0.691;0.718;0.714
+H5_PrevencaoErros;0.56;0.691;1.0;0.685;0.675
+H7_Flexibilidade;0.64;0.718;0.685;1.0;0.802
+H8_Estetica;0.693;0.714;0.675;0.802;1.0

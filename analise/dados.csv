@@ -1,0 +1,87 @@
+ID;Idade;Escolaridade;Frequencia;Horas;Conta;A1_VoltarTela;A2_ControleRepr;A3_DesfazerPlay;A4_CancelarAcao;A5_RespeitaConfig;B1_SemelhApps;B2_IconesEsperados;B3_LayoutConsist;B4_AcharAposUpd;B5_PrevisivBotoes;C1_SemAcidente;C2_ControlesPos;C3_SugestoesBusca;C4_AvisoPerda;C5_TocaRapido;D1_AcoesRapidas;D2_Recomendacoes;D3_GerirPlaylists;D4_AdaptaUso;D5_TelasLimpas;E1_SemDistracao;E2_InfoVisivel;E3_Estetica;E4_HomeRelevante
+E01;25 a 34 anos;Ensino médio (completo ou cursando;Todos os dias (ou quase);De 5 a 10 horas;Premium (paga);1;1;2;2;1;3;3;2;3;4;5;5 ;5;5;5 ;5;2;3;1;3;2;1;2;1
+E02;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (paga);4;5 ;1;5;3;5;4;1;1;4;3;5 ;5;3;4;5;5;1;5;2;5;5;3;4
+E03;18 a 24 anos;Ensino superior (cursando graduação);Algumas vezes por semana;De 5 a 10 horas;Premium (Pago);1;4;1;1;1;5;4;2;2;2;3;2;2;2;3;5;2;1;4;2;1;5;3;1
+E04;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;2;3;4;4;5;3;4;5 ;4;5 ;5;4;4;4;2;1;3;3;3;5;4;2
+E05;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;1;5;5;4;5;5;5;5 ;4;5 ;5;3;5 ;5;5;3;5;5 ;4;5;5;4
+E06;18 a 24 anos;Ensino superior (cursando graduação);Algumas vezes por semana;De 1 a 5 horas;Premium (Pago);5 ;5 ;4;4;5;4;4;4;4;4;4;4;3;2;4;4;4;4;4;4;3;5;4;4
+E07;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);5 ;5 ;4;3;3;4;4;4;2;3;4;1;5;4;2;4;4;2;2;1;1;5;3;1
+E08;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;5 ;5;4;3;4;2;4;5 ;2;4;5;3;4;2;4;3;5;3;2;5;3;2
+E09;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);Mais de 20 horas;Premium (Pago);5 ;5 ;5 ;5;5;5;5;5;5;5 ;5;5 ;5;5;5 ;5;5;5;5;5 ;5;5;5;5
+E10;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;5 ;5;4;3;5;5;5;5 ;3;4;2;2;4;5;4;5;3;4;5;5;5;5
+E11;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;5 ;1;3;4;4;5;4;3;5 ;3;3;1;3;4;1;4;3;2;3;5;5;4;1
+E12;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);4;4;1;3;5;5;5;5;4;5 ;4;5 ;5;1;5 ;5;1;5;5;3;4;5;5;3
+E13;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);4;5 ;2;3;2;4;4;2;4;4;4;3;1;2;3;3;5;4;4;1;2;4;2;1
+E14;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);4;4;2;2;4;4;4;2;4;3;3;3;3;3;2;4;2;2;4;3;3;4;3;3
+E15;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;5 ;5 ;5;2;5;5;5;5;5 ;5;5 ;5;5;5 ;5;2;5;5;4;4;5;5;4
+E16;25 a 34 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;4;5;5;5;5;5;5;5 ;4;3;3;5;5 ;5;4;5;5;5 ;5;5;5;5
+E17;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);3;5 ;5 ;4;5;5;5;5;4;5 ;5;5 ;4;2;4;4;2;5;5;3;5;4;5;4
+E18;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);Menos de 1 hora;Gratuita (Free);5 ;1;4;5;3;4;4;5;3;5 ;4;4;4;2;1;2;2;4;2;5 ;5;5;4;2
+E19;18 a 24 anos;Ensino médio (completo ou cursando);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;1;3;4;4;5;5;4;4;5;5 ;2;3;3;4;5;3;5;3;1;5;5;1
+E20;18 a 24 anos;Ensino médio (completo ou cursando);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);4;5 ;3;4;3;5;4;4;3;4;3;3;4;4;5 ;4;2;3;4;3;3;4;4;2
+E21;18 a 24 anos;Ensino médio (completo ou cursando);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;4;3;4;5;4;5;4;4;5 ;5;4;2;2;3;3;2;3;3;4;3;5;4;2
+E22;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);Mais de 20 horas;Premium (Pago);4;3;1;2;4;3;4;2;1;2;1;1;4;4;4;1;1;1;2;1;1;4;2;1
+E23;18 a 24 anos;Ensino superior (cursando graduação);Algumas vezes por semana;De 1 a 5 horas;Premium (Pago);5 ;5 ;3;4;5;4;5;3;3;4;3;5 ;5;1;5 ;4;4;2;1;1;1;5;3;1
+E24;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);4;5 ;3;4;4;4;3;2;3;4;2;2;4;3;4;3;3;4;4;3;3;5;4;2
+E25;35 a 44 anos;Pós-Graduação;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);2;4;2;2;2;4;5;2;3;4;2;3;4;1;2;1;5;3;3;1;1;3;3;1
+E26;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;1;4;5;5;5;2;3;1;1;1;1;4;4;1;5;5;5;5;2;2;5;3;1
+E27;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);5 ;5 ;3;3;4;5;5;5;4;5 ;4;4;4;2;4;4;4;5;4;5 ;3;5;4;3
+E28;18 a 24 anos;Ensino superior (cursando graduação);Raramente;Menos de 1 hora;Gratuita (Free);5 ;4;1;2;3;2;2;2;1;2;2;1;3;2;4;2;3;1;4;2;3;5;3;2
+E29;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);Mais de 20 horas;Premium (Pago);3;4;2;2;3;4;4;2;4;4;2;2;4;2;4;3;3;4;5;2;1;5;2;2
+E30;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;3;4;5;4;5;4;5;5 ;5;4;5;4;5 ;5;4;4;5;5 ;5;5;5;5
+E31;45 anos ou mais;Pós-Graduação;Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;3;5 ;5;5;5;5;5;5;5 ;5;5 ;5;5;5 ;5;3;4;3;5 ;3;5;5;2
+E32;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);3;5 ;3;3;2;4;2;3;4;2;2;3;4;3;3;4;3;2;3;5 ;3;3;4;3
+E33;45 anos ou mais;Ensino superior completo;Raramente;Menos de 1 hora;Gratuita (Free);1;1;2;2;1;1;2;2;2;3;1;2;2;1;1;2;3;3;2;1;2;2;3;2
+E34;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;4;4;5;5;5;4;5;4;5;3;5;3;5 ;4;5;4;3;3;3;3;3;3
+E35;35 a 44 anos;Ensino superior completo;Todos os dias (ou quase);Menos de 1 hora;Premium (Pago);4;4;3;3;3;5;5;3;3;3;1;3;5;3;5 ;5;5;3;5;5 ;5;5;3;5
+E36;45 anos ou mais;Pós-Graduação;Algumas vezes por semana;De 1 a 5 horas;Premium (Pago);4;4;4;3;4;3;3;3;4;3;4;3;3;3;5 ;4;4;4;4;3;3;4;5;4
+E37;45 anos ou mais;Ensino superior completo;Todos os dias (ou quase);De 1 a 5 horas;Gratuita (Free);5 ;5 ;2;3;1;1;5;3;3;5 ;4;4;2;3;4;3;4;3;3;4;2;4;2;2
+E38;45 anos ou mais;Pós-Graduação;Cerca de uma vez por semana;De 1 a 5 horas;Premium (Pago);4;4;5 ;5;5;5;5;5;5;5 ;4;4;5;5;4;5;4;5;5;5 ;5;5;5;4
+E39;25 a 34 anos;Ensino médio (completo ou cursando);Todos os dias (ou quase);De 1 a 5 horas;Gratuita (Free);5 ;4;2;5;3;5;5;5;5;5 ;5;4;4;4;5 ;4;4;4;4;5 ;4;4;4;4
+E40;45 anos ou mais;Ensino superior completo;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;5 ;5;5;5;5;4;4;5 ;5;5 ;5;4;5 ;5;4;5;5;5 ;5;5;5;5
+E41;25 a 34 anos;Ensino superior completo;Cerca de uma vez por semana;Menos de 1 hora;Gratuita (Free);3;5 ;2;3;5;5;5;5;5;5 ;4;5 ;4;2;5 ;5;4;5;5;5 ;4;5;5;3
+E42;35 a 44 anos;Ensino médio (completo ou cursando);Algumas vezes por semana;Menos de 1 hora;Gratuita (Free);5 ;5 ;3;4;4;4;4;4;5;3;3;5 ;5;5;5 ;5;4;5;5;5 ;5;4;5;5
+E43;18 a 24 anos;Ensino superior (cursando graduação);Cerca de uma vez por semana;De 1 a 5 horas;Premium (Pago);2;5 ;3;3;1;1;3;4;3;3;2;4;5;2;2;4;2;4;5;5 ;2;2;5;5
+E44;45 anos ou mais;Ensino superior completo;Raramente;Menos de 1 hora;Gratuita (Free);3;3;3;3;3;5;5;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3
+E45;45 anos ou mais;Ensino superior completo;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;5 ;4;4;5;5;5;4;4;5 ;4;4;5;4;4;3;3;4;4;4;4;5;5;4
+E46;25 a 34 anos;Ensino médio (completo ou cursando);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;4;4;5;5;4;4;3;3;1;5;2;4;3;2;5;4;4;4;4;2;4;5;4
+E47;45 anos ou mais;Pós-Graduação;Cerca de uma vez por semana;De 5 a 10 horas;Premium (Pago);4;4;4;4;4;4;3;3;3;4;4;4;3;3;4;3;2;4;4;4;4;4;4;3
+E48;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;3;3;1;3;3;3;3;5 ;5;5 ;3;5;5 ;4;1;5;5;3;5;5;5;4
+E49;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;5 ;5;5;5;5;4;5;5 ;4;5 ;4;3;4;5;4;4;5;5 ;4;5;4;4
+E50;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;1;4;5;5;5;5;4;5 ;5;3;4;5;5 ;5;4;5;3;3;3;5;5;4
+E51;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);3;5 ;1;3;5;2;3;1;1;2;3;1;3;1;2;3;1;1;4;1;1;3;1;1
+E52;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Gratuita (Free);5 ;2;4;4;3;3;4;4;4;4;4;3;4;4;3;4;3;4;3;2;2;4;3;2
+E53;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Gratuita (Free);4;5 ;4;3;5;4;4;4;4;5 ;4;3;4;4;3;4;4;4;4;4;2;4;4;3
+E54;18 a 24 anos;Ensino superior (cursando graduação);Algumas vezes por mês ;De 1 a 5 horas;Gratuita (Free);4;1;3;3;3;4;4;3;2;3;3;2;2;2;3;3;2;3;3;2;2;4;3;2
+E55;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;1;3;5;4;3;2;3;5 ;3;1;5;4;5 ;5;2;4;2;4;1;5;4;2
+E56;45 anos ou mais;Pós-Graduação;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;3;4;5;5;5;5;5;5 ;4;4;4;4;5 ;4;4;5;5;4;4;4;4;4
+E57;35 a 44 anos;Pós-Graduação;Algumas vezes por semana;De 1 a 5 horas;Gratuita (Free);5 ;1;2;3;1;1;1;1;2;2;2;1;5;3;2;3;1;2;3;2;2;3;2;4
+E58;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);3;5 ;3;5;5;5;5;3;3;3;4;5 ;5;4;3;5;2;2;3;2;2;5;3;2
+E59;35 a 44 anos;Ensino superior completo;Algumas vezes por semana;De 1 a 5 horas;Premium (Pago);4;4;4;4;3;4;4;4;3;3;4;4;4;4;4;4;4;4;4;4;4;4;4;4
+E60;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;5 ;5;5;4;4;4;4;4;3;3;4;5;5 ;5;4;4;5;4;5;5;5;4
+E61;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;4;4;4;3;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;5;5
+E62;45 anos ou mais;Pós-Graduação;Raramente;Menos de 1 hora;Gratuita (Free);2;3;3;3;2;3;3;3;1;1;1;1;2;1;2;2;1;1;1;1;1;3;3;3
+E63;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;4;5;5;4;5;4;4;5 ;2;4;5;2;4;4;4;5;5;4;5;5;3;4
+E64;45 anos ou mais;Ensino superior completo;Raramente;Menos de 1 hora;Gratuita (Free);4;4;3;3;3;4;5;4;4;4;3;4;3;3;4;3;3;3;3;4;3;4;4;3
+E65;45 anos ou mais;Pós-Graduação;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;4;3;4;3;3;4;2;4;3;2;4;2;3;2;3;2;2;3;4;2;4;3;2
+E66;18 a 24 anos;Ensino superior (cursando graduação);Algumas vezes por semana;De 1 a 5 horas;Premium (Pago);4;5 ;3;3;5;4;2;3;5;4;2;5 ;4;2;4;5;2;3;3;4;4;3;3;2
+E67;45 anos ou mais;Ensino superior completo;Raramente;Menos de 1 hora;Premium (Pago);1;1;2;2;4;1;4;1;3;1;4;3;1;4;1;2;1;1;1;4;1;1;1;1
+E68;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;5 ;5;5;4;5;5;5;5 ;3;5 ;5;4;3;5;2;2;4;4;4;5;5;4
+E69;35 a 44 anos;Prefiro não informar;Raramente;Menos de 1 hora;Gratuita (Free);1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1
+E70;35 a 44 anos;Ensino superior completo;Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);3;5 ;5 ;5;5;5;5;3;3;5 ;5;5 ;3;3;5 ;5;3;3;3;4;4;5;5;5
+E71;45 anos ou mais;Ensino médio (completo ou cursando);Todos os dias (ou quase);Mais de 20 horas;Premium (Pago);5 ;5 ;5 ;5;5;5;5;5;5;5 ;5;5 ;5;5;4;4;3;4;5;5 ;5;5;4;5
+E72;45 anos ou mais;Ensino superior completo;Algumas vezes por semana;De 5 a 10 horas;Gratuita (Free);4;4;4;4;4;3;3;3;4;2;4;4;4;4;4;4;4;4;4;4;4;3;4;4
+E73;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;5 ;2;3;4;3;5;5;3;4;3;4;4;2;4;3;5;4;4;4;4;5;5;3
+E74;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);4;5 ;2;3;5;3;5;4;3;3;4;3;5;5;5 ;4;5;5;5;5 ;4;5;4;5
+E75;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);4;5 ;4;4;5;4;4;3;3;3;4;3;5;4;5 ;4;4;3;4;3;3;5;5;3
+E76;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);4;4;2;4;4;4;4;4;4;4;1;3;4;2;4;4;4;3;3;4;4;4;4;2
+E77;35 a 44 anos;Ensino superior completo;Raramente;De 1 a 5 horas;Premium (Pago);1;2;1;2;1;3;2;1;1;1;1;1;1;1;1;2;1;1;1;1;2;1;1;2
+E78;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;5 ;5;3;5;5;5;3;5 ;2;3;3;3;5 ;4;5;2;3;3;3;5;5;2
+E79;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;3;3;4;4;4;3;4;5 ;2;3;3;4;3;2;3;4;3;2;2;4;3;4
+E80;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);3;5 ;2;3;3;4;4;4;3;4;3;4;3;4;5 ;4;4;4;4;4;3;4;4;3
+E81;18 a 24 anos;Ensino superior completo;Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;3;1;3;5;4;3;2;4;4;4;4;4;4;5 ;4;4;4;3;4;3;5;5;3
+E82;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;4;5;4;5;4;5;4;4;3;4;4;4;4;3;3;4;4;4;4;4;4;4
+E83;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 1 a 5 horas;Premium (Pago);5 ;5 ;2;5;5;5;5;5;5;5 ;5;5 ;5;1;5 ;5;5;5;5;5 ;4;5;5;4
+E84;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 5 a 10 horas;Premium (Pago);5 ;5 ;2;5;4;3;5;1;4;4;4;2;1;5;2;4;3;1;3;1;1;4;4;1
+E85;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);Menos de 1 hora;Gratuita (Free);4;3;1;1;5;2;4;3;2;5 ;1;1;5;1;5 ;3;2;3;1;2;1;5;3;1
+E86;18 a 24 anos;Ensino superior (cursando graduação);Todos os dias (ou quase);De 10 a 20 horas;Premium (Pago);5 ;5 ;5 ;1;5;3;4;5;5;2;4;5 ;5;5;3;5;3;2;4;5 ;2;5;5;5

@@ -1,0 +1,6 @@
+# Documentos de apoio (não versionados)
+docs/
+
+# Sistema
+.DS_Store
+Thumbs.db

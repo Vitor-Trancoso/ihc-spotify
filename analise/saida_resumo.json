@@ -1,0 +1,447 @@
+{
+  "n_validos": 86,
+  "alpha_global": 0.961,
+  "alpha_blocos": {
+    "H3_Controle": 0.849,
+    "H4_Consistencia": 0.785,
+    "H5_PrevencaoErros": 0.672,
+    "H7_Flexibilidade": 0.736,
+    "H8_Estetica": 0.809
+  },
+  "desc_blocos": [
+    {
+      "Bloco": "H3_Controle",
+      "Media": 3.45,
+      "DP": 0.91,
+      "Mediana": 3.5,
+      "Pct_Baixo_<=2.5": 14.0,
+      "Pct_Alto_>=3.5": 52.3
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Media": 3.71,
+      "DP": 0.94,
+      "Mediana": 3.8,
+      "Pct_Baixo_<=2.5": 11.6,
+      "Pct_Alto_>=3.5": 62.8
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Media": 3.38,
+      "DP": 0.86,
+      "Mediana": 3.4,
+      "Pct_Baixo_<=2.5": 12.8,
+      "Pct_Alto_>=3.5": 47.7
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Media": 3.46,
+      "DP": 0.92,
+      "Mediana": 3.6,
+      "Pct_Baixo_<=2.5": 15.1,
+      "Pct_Alto_>=3.5": 53.5
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Media": 3.53,
+      "DP": 0.98,
+      "Mediana": 3.75,
+      "Pct_Baixo_<=2.5": 19.8,
+      "Pct_Alto_>=3.5": 59.3
+    }
+  ],
+  "corr_blocos": {
+    "H3_Controle": {
+      "H3_Controle": 1.0,
+      "H4_Consistencia": 0.691,
+      "H5_PrevencaoErros": 0.56,
+      "H7_Flexibilidade": 0.64,
+      "H8_Estetica": 0.693
+    },
+    "H4_Consistencia": {
+      "H3_Controle": 0.691,
+      "H4_Consistencia": 1.0,
+      "H5_PrevencaoErros": 0.691,
+      "H7_Flexibilidade": 0.718,
+      "H8_Estetica": 0.714
+    },
+    "H5_PrevencaoErros": {
+      "H3_Controle": 0.56,
+      "H4_Consistencia": 0.691,
+      "H5_PrevencaoErros": 1.0,
+      "H7_Flexibilidade": 0.685,
+      "H8_Estetica": 0.675
+    },
+    "H7_Flexibilidade": {
+      "H3_Controle": 0.64,
+      "H4_Consistencia": 0.718,
+      "H5_PrevencaoErros": 0.685,
+      "H7_Flexibilidade": 1.0,
+      "H8_Estetica": 0.802
+    },
+    "H8_Estetica": {
+      "H3_Controle": 0.693,
+      "H4_Consistencia": 0.714,
+      "H5_PrevencaoErros": 0.675,
+      "H7_Flexibilidade": 0.802,
+      "H8_Estetica": 1.0
+    }
+  },
+  "top_regras_blocos": [
+    {
+      "se": [
+        "H7_Flexibilidade=Baixo"
+      ],
+      "entao": [
+        "H4_Consistencia=Baixo"
+      ],
+      "sup": 0.105,
+      "conf": 0.692,
+      "lift": 5.954
+    },
+    {
+      "se": [
+        "H4_Consistencia=Baixo"
+      ],
+      "entao": [
+        "H7_Flexibilidade=Baixo"
+      ],
+      "sup": 0.105,
+      "conf": 0.9,
+      "lift": 5.954
+    },
+    {
+      "se": [
+        "H7_Flexibilidade=Baixo"
+      ],
+      "entao": [
+        "H8_Estetica=Baixo"
+      ],
+      "sup": 0.116,
+      "conf": 0.769,
+      "lift": 3.891
+    },
+    {
+      "se": [
+        "H8_Estetica=Neutro"
+      ],
+      "entao": [
+        "H7_Flexibilidade=Neutro"
+      ],
+      "sup": 0.14,
+      "conf": 0.667,
+      "lift": 2.123
+    },
+    {
+      "se": [
+        "H3_Controle=Neutro",
+        "H7_Flexibilidade=Neutro"
+      ],
+      "entao": [
+        "H5_PrevencaoErros=Neutro"
+      ],
+      "sup": 0.116,
+      "conf": 0.769,
+      "lift": 1.946
+    },
+    {
+      "se": [
+        "H5_PrevencaoErros=Neutro",
+        "H7_Flexibilidade=Neutro"
+      ],
+      "entao": [
+        "H3_Controle=Neutro"
+      ],
+      "sup": 0.116,
+      "conf": 0.625,
+      "lift": 1.853
+    },
+    {
+      "se": [
+        "H4_Consistencia=Alto",
+        "H5_PrevencaoErros=Neutro"
+      ],
+      "entao": [
+        "H3_Controle=Neutro"
+      ],
+      "sup": 0.14,
+      "conf": 0.6,
+      "lift": 1.779
+    },
+    {
+      "se": [
+        "H5_PrevencaoErros=Alto",
+        "H8_Estetica=Alto"
+      ],
+      "entao": [
+        "H7_Flexibilidade=Alto"
+      ],
+      "sup": 0.36,
+      "conf": 0.912,
+      "lift": 1.705
+    },
+    {
+      "se": [
+        "H7_Flexibilidade=Alto"
+      ],
+      "entao": [
+        "H5_PrevencaoErros=Alto",
+        "H8_Estetica=Alto"
+      ],
+      "sup": 0.36,
+      "conf": 0.674,
+      "lift": 1.705
+    },
+    {
+      "se": [
+        "H3_Controle=Neutro",
+        "H4_Consistencia=Alto"
+      ],
+      "entao": [
+        "H5_PrevencaoErros=Neutro"
+      ],
+      "sup": 0.14,
+      "conf": 0.667,
+      "lift": 1.686
+    },
+    {
+      "se": [
+        "H3_Controle=Alto",
+        "H7_Flexibilidade=Alto"
+      ],
+      "entao": [
+        "H5_PrevencaoErros=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.788,
+      "lift": 1.653
+    },
+    {
+      "se": [
+        "H5_PrevencaoErros=Alto"
+      ],
+      "entao": [
+        "H3_Controle=Alto",
+        "H7_Flexibilidade=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.634,
+      "lift": 1.653
+    },
+    {
+      "se": [
+        "H3_Controle=Alto",
+        "H4_Consistencia=Alto"
+      ],
+      "entao": [
+        "H5_PrevencaoErros=Alto"
+      ],
+      "sup": 0.314,
+      "conf": 0.771,
+      "lift": 1.618
+    },
+    {
+      "se": [
+        "H5_PrevencaoErros=Alto"
+      ],
+      "entao": [
+        "H3_Controle=Alto",
+        "H4_Consistencia=Alto"
+      ],
+      "sup": 0.314,
+      "conf": 0.659,
+      "lift": 1.618
+    },
+    {
+      "se": [
+        "H3_Controle=Alto",
+        "H8_Estetica=Alto"
+      ],
+      "entao": [
+        "H7_Flexibilidade=Alto"
+      ],
+      "sup": 0.349,
+      "conf": 0.857,
+      "lift": 1.602
+    }
+  ],
+  "top_regras_itens": [
+    {
+      "se": [
+        "D5_TelasLimpas=Baixo"
+      ],
+      "entao": [
+        "E1_SemDistracao=Baixo"
+      ],
+      "sup": 0.233,
+      "conf": 0.909,
+      "lift": 2.522
+    },
+    {
+      "se": [
+        "C4_AvisoPerda=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.221,
+      "conf": 1.0,
+      "lift": 2.389
+    },
+    {
+      "se": [
+        "B3_LayoutConsist=Baixo"
+      ],
+      "entao": [
+        "A3_DesfazerPlay=Baixo"
+      ],
+      "sup": 0.209,
+      "conf": 0.857,
+      "lift": 2.234
+    },
+    {
+      "se": [
+        "A4_CancelarAcao=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.291,
+      "conf": 0.893,
+      "lift": 2.133
+    },
+    {
+      "se": [
+        "A4_CancelarAcao=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.291,
+      "conf": 0.893,
+      "lift": 2.133
+    },
+    {
+      "se": [
+        "D1_AcoesRapidas=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.867,
+      "lift": 2.07
+    },
+    {
+      "se": [
+        "D4_AdaptaUso=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.867,
+      "lift": 2.07
+    },
+    {
+      "se": [
+        "C4_AvisoPerda=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.221,
+      "conf": 0.864,
+      "lift": 2.063
+    },
+    {
+      "se": [
+        "B1_SemelhApps=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.279,
+      "conf": 0.857,
+      "lift": 2.048
+    },
+    {
+      "se": [
+        "B3_LayoutConsist=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.267,
+      "conf": 0.852,
+      "lift": 2.035
+    },
+    {
+      "se": [
+        "B4_AcharAposUpd=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.256,
+      "conf": 0.846,
+      "lift": 2.021
+    },
+    {
+      "se": [
+        "D5_TelasLimpas=Baixo"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Baixo"
+      ],
+      "sup": 0.209,
+      "conf": 0.818,
+      "lift": 2.01
+    },
+    {
+      "se": [
+        "B2_IconesEsperados=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.839,
+      "lift": 2.004
+    },
+    {
+      "se": [
+        "D4_AdaptaUso=Alto",
+        "E4_HomeRelevante=Alto"
+      ],
+      "entao": [
+        "E1_SemDistracao=Alto"
+      ],
+      "sup": 0.302,
+      "conf": 0.839,
+      "lift": 2.004
+    },
+    {
+      "se": [
+        "C1_SemAcidente=Alto",
+        "E1_SemDistracao=Alto"
+      ],
+      "entao": [
+        "E4_HomeRelevante=Alto"
+      ],
+      "sup": 0.233,
+      "conf": 0.833,
+      "lift": 1.991
+    }
+  ]
+}

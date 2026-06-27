@@ -1,0 +1,610 @@
+{
+  "item_total": [
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A4_CancelarAcao",
+      "r_item_total": -0.069,
+      "alpha_bloco": 0.849,
+      "alpha_sem_item": 0.807,
+      "delta": -0.042
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A5_RespeitaConfig",
+      "r_item_total": 0.02,
+      "alpha_bloco": 0.849,
+      "alpha_sem_item": 0.823,
+      "delta": -0.026
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A3_DesfazerPlay",
+      "r_item_total": 0.228,
+      "alpha_bloco": 0.849,
+      "alpha_sem_item": 0.853,
+      "delta": 0.005
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A2_ControleRepr",
+      "r_item_total": 0.417,
+      "alpha_bloco": 0.849,
+      "alpha_sem_item": 0.778,
+      "delta": -0.071
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A1_VoltarTela",
+      "r_item_total": 0.618,
+      "alpha_bloco": 0.849,
+      "alpha_sem_item": 0.66,
+      "delta": -0.189
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B3_LayoutConsist",
+      "r_item_total": 0.483,
+      "alpha_bloco": 0.785,
+      "alpha_sem_item": 0.752,
+      "delta": -0.033
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B1_SemelhApps",
+      "r_item_total": 0.518,
+      "alpha_bloco": 0.785,
+      "alpha_sem_item": 0.763,
+      "delta": -0.022
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B4_AcharAposUpd",
+      "r_item_total": 0.524,
+      "alpha_bloco": 0.785,
+      "alpha_sem_item": 0.745,
+      "delta": -0.041
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B2_IconesEsperados",
+      "r_item_total": 0.53,
+      "alpha_bloco": 0.785,
+      "alpha_sem_item": 0.732,
+      "delta": -0.053
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B5_PrevisivBotoes",
+      "r_item_total": 0.602,
+      "alpha_bloco": 0.785,
+      "alpha_sem_item": 0.828,
+      "delta": 0.043
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C3_SugestoesBusca",
+      "r_item_total": -0.003,
+      "alpha_bloco": 0.672,
+      "alpha_sem_item": 0.684,
+      "delta": 0.012
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C1_SemAcidente",
+      "r_item_total": 0.119,
+      "alpha_bloco": 0.672,
+      "alpha_sem_item": 0.627,
+      "delta": -0.045
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C4_AvisoPerda",
+      "r_item_total": 0.242,
+      "alpha_bloco": 0.672,
+      "alpha_sem_item": 0.62,
+      "delta": -0.052
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C5_TocaRapido",
+      "r_item_total": 0.433,
+      "alpha_bloco": 0.672,
+      "alpha_sem_item": 0.63,
+      "delta": -0.042
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C2_ControlesPos",
+      "r_item_total": 0.499,
+      "alpha_bloco": 0.672,
+      "alpha_sem_item": 0.623,
+      "delta": -0.049
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D2_Recomendacoes",
+      "r_item_total": 0.379,
+      "alpha_bloco": 0.736,
+      "alpha_sem_item": 0.744,
+      "delta": 0.008
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D1_AcoesRapidas",
+      "r_item_total": 0.43,
+      "alpha_bloco": 0.736,
+      "alpha_sem_item": 0.708,
+      "delta": -0.028
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D5_TelasLimpas",
+      "r_item_total": 0.509,
+      "alpha_bloco": 0.736,
+      "alpha_sem_item": 0.755,
+      "delta": 0.019
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D4_AdaptaUso",
+      "r_item_total": 0.525,
+      "alpha_bloco": 0.736,
+      "alpha_sem_item": 0.667,
+      "delta": -0.069
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D3_GerirPlaylists",
+      "r_item_total": 0.551,
+      "alpha_bloco": 0.736,
+      "alpha_sem_item": 0.636,
+      "delta": -0.101
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E2_InfoVisivel",
+      "r_item_total": 0.451,
+      "alpha_bloco": 0.809,
+      "alpha_sem_item": 0.833,
+      "delta": 0.024
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E4_HomeRelevante",
+      "r_item_total": 0.647,
+      "alpha_bloco": 0.809,
+      "alpha_sem_item": 0.751,
+      "delta": -0.057
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E1_SemDistracao",
+      "r_item_total": 0.702,
+      "alpha_bloco": 0.809,
+      "alpha_sem_item": 0.722,
+      "delta": -0.087
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E3_Estetica",
+      "r_item_total": 0.73,
+      "alpha_bloco": 0.809,
+      "alpha_sem_item": 0.714,
+      "delta": -0.094
+    }
+  ],
+  "spearman_top10": [
+    {
+      "Item_A": "C2_ControlesPos",
+      "Item_B": "D5_TelasLimpas",
+      "rho": 0.7660905340715544,
+      "p": 2.3211363004537094e-11,
+      "p_bonferroni": 6.406336189252238e-09,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "A1_VoltarTela",
+      "Item_B": "C5_TocaRapido",
+      "rho": 0.7112865368597308,
+      "p": 5.036670130856405e-06,
+      "p_bonferroni": 0.0013901209561163676,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "E1_SemDistracao",
+      "Item_B": "E4_HomeRelevante",
+      "rho": 0.6901425829262912,
+      "p": 1.9758760058447058e-13,
+      "p_bonferroni": 5.453417776131388e-11,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "B3_LayoutConsist",
+      "Item_B": "E3_Estetica",
+      "rho": 0.689852177583977,
+      "p": 2.041206527887547e-13,
+      "p_bonferroni": 5.63373001696963e-11,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "A2_ControleRepr",
+      "Item_B": "C5_TocaRapido",
+      "rho": 0.6781202073738668,
+      "p": 0.00010150619874891443,
+      "p_bonferroni": 0.028015710854700383,
+      "sig_001": false,
+      "sig_005": true
+    },
+    {
+      "Item_A": "A2_ControleRepr",
+      "Item_B": "D4_AdaptaUso",
+      "rho": 0.6567592965093645,
+      "p": 1.828243803131205e-05,
+      "p_bonferroni": 0.005045952896642126,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "B4_AcharAposUpd",
+      "Item_B": "C2_ControlesPos",
+      "rho": 0.6405974907843225,
+      "p": 1.5641736943585353e-08,
+      "p_bonferroni": 4.317119396429558e-06,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "C2_ControlesPos",
+      "Item_B": "E1_SemDistracao",
+      "rho": 0.6321170920256127,
+      "p": 2.7538176705558114e-08,
+      "p_bonferroni": 7.600536770734039e-06,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "B3_LayoutConsist",
+      "Item_B": "B4_AcharAposUpd",
+      "rho": 0.6206412576622664,
+      "p": 1.8403317609671386e-10,
+      "p_bonferroni": 5.0793156602693026e-08,
+      "sig_001": true,
+      "sig_005": true
+    },
+    {
+      "Item_A": "B2_IconesEsperados",
+      "Item_B": "B3_LayoutConsist",
+      "rho": 0.6092583677041175,
+      "p": 4.821447429715535e-10,
+      "p_bonferroni": 1.3307194906014875e-07,
+      "sig_001": true,
+      "sig_005": true
+    }
+  ],
+  "spearman_sig_count_005": 88,
+  "crosstab_conta": {
+    "H3_Controle": {
+      "Free": 2.83,
+      "Premium": 3.61
+    },
+    "H4_Consistencia": {
+      "Free": 3.19,
+      "Premium": 3.84
+    },
+    "H5_PrevencaoErros": {
+      "Free": 2.89,
+      "Premium": 3.5
+    },
+    "H7_Flexibilidade": {
+      "Free": 2.98,
+      "Premium": 3.58
+    },
+    "H8_Estetica": {
+      "Free": 3.1,
+      "Premium": 3.64
+    }
+  },
+  "mann_whitney_conta": [
+    {
+      "Bloco": "H3_Controle",
+      "Free_n": 17,
+      "Free_media": 2.83,
+      "Premium_n": 69,
+      "Premium_media": 3.61,
+      "diff": 0.77,
+      "U": 305.5,
+      "p": 0.0023,
+      "sig": "**"
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Free_n": 17,
+      "Free_media": 3.19,
+      "Premium_n": 69,
+      "Premium_media": 3.84,
+      "diff": 0.66,
+      "U": 403.0,
+      "p": 0.0464,
+      "sig": "*"
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Free_n": 17,
+      "Free_media": 2.89,
+      "Premium_n": 69,
+      "Premium_media": 3.5,
+      "diff": 0.61,
+      "U": 391.5,
+      "p": 0.0345,
+      "sig": "*"
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Free_n": 17,
+      "Free_media": 2.98,
+      "Premium_n": 69,
+      "Premium_media": 3.58,
+      "diff": 0.6,
+      "U": 380.0,
+      "p": 0.0251,
+      "sig": "*"
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Free_n": 17,
+      "Free_media": 3.1,
+      "Premium_n": 69,
+      "Premium_media": 3.64,
+      "diff": 0.54,
+      "U": 382.5,
+      "p": 0.0268,
+      "sig": "*"
+    }
+  ],
+  "net_score": [
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A3_DesfazerPlay",
+      "pct_alto": 25.4,
+      "pct_baixo": 46.5,
+      "net": -21.1
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E4_HomeRelevante",
+      "pct_alto": 41.9,
+      "pct_baixo": 40.7,
+      "net": 1.2
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E1_SemDistracao",
+      "pct_alto": 41.9,
+      "pct_baixo": 36.0,
+      "net": 5.8
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D5_TelasLimpas",
+      "pct_alto": 40.9,
+      "pct_baixo": 33.3,
+      "net": 7.6
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C2_ControlesPos",
+      "pct_alto": 38.1,
+      "pct_baixo": 28.6,
+      "net": 9.5
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C4_AvisoPerda",
+      "pct_alto": 44.2,
+      "pct_baixo": 31.4,
+      "net": 12.8
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B5_PrevisivBotoes",
+      "pct_alto": 45.1,
+      "pct_baixo": 27.5,
+      "net": 17.6
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D2_Recomendacoes",
+      "pct_alto": 50.0,
+      "pct_baixo": 31.4,
+      "net": 18.6
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C5_TocaRapido",
+      "pct_alto": 48.2,
+      "pct_baixo": 28.6,
+      "net": 19.6
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A2_ControleRepr",
+      "pct_alto": 54.3,
+      "pct_baixo": 28.6,
+      "net": 25.7
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B3_LayoutConsist",
+      "pct_alto": 52.3,
+      "pct_baixo": 24.4,
+      "net": 27.9
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C1_SemAcidente",
+      "pct_alto": 53.5,
+      "pct_baixo": 25.6,
+      "net": 27.9
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D3_GerirPlaylists",
+      "pct_alto": 53.5,
+      "pct_baixo": 24.4,
+      "net": 29.1
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A4_CancelarAcao",
+      "pct_alto": 52.3,
+      "pct_baixo": 15.1,
+      "net": 37.2
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A1_VoltarTela",
+      "pct_alto": 59.1,
+      "pct_baixo": 20.5,
+      "net": 38.6
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B4_AcharAposUpd",
+      "pct_alto": 55.8,
+      "pct_baixo": 16.3,
+      "net": 39.5
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D4_AdaptaUso",
+      "pct_alto": 58.1,
+      "pct_baixo": 15.1,
+      "net": 43.0
+    },
+    {
+      "Bloco": "H3_Controle",
+      "Item": "A5_RespeitaConfig",
+      "pct_alto": 64.0,
+      "pct_baixo": 16.3,
+      "net": 47.7
+    },
+    {
+      "Bloco": "H5_PrevencaoErros",
+      "Item": "C3_SugestoesBusca",
+      "pct_alto": 66.3,
+      "pct_baixo": 17.4,
+      "net": 48.8
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E3_Estetica",
+      "pct_alto": 62.8,
+      "pct_baixo": 11.6,
+      "net": 51.2
+    },
+    {
+      "Bloco": "H7_Flexibilidade",
+      "Item": "D1_AcoesRapidas",
+      "pct_alto": 67.4,
+      "pct_baixo": 14.0,
+      "net": 53.5
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B1_SemelhApps",
+      "pct_alto": 72.1,
+      "pct_baixo": 10.5,
+      "net": 61.6
+    },
+    {
+      "Bloco": "H4_Consistencia",
+      "Item": "B2_IconesEsperados",
+      "pct_alto": 77.9,
+      "pct_baixo": 9.3,
+      "net": 68.6
+    },
+    {
+      "Bloco": "H8_Estetica",
+      "Item": "E2_InfoVisivel",
+      "pct_alto": 82.6,
+      "pct_baixo": 7.0,
+      "net": 75.6
+    }
+  ],
+  "duracao_segundos": {
+    "n": 86,
+    "min": 90.0,
+    "q25": 358.5,
+    "mediana": 502.5,
+    "q75": 733.0,
+    "max": 169410.0,
+    "media": 2663.0,
+    "pct_menos_60s": 0.0
+  },
+  "temas_qualitativos": [
+    {
+      "tema": "Propaganda excessiva (Free)",
+      "n": 14,
+      "cat": "externo"
+    },
+    {
+      "tema": "H8 — Poluição visual",
+      "n": 13,
+      "cat": "H8"
+    },
+    {
+      "tema": "H7 — Recomendações inadequadas",
+      "n": 11,
+      "cat": "H7"
+    },
+    {
+      "tema": "Performance (lentidão, bugs)",
+      "n": 10,
+      "cat": "externo"
+    },
+    {
+      "tema": "H7 — Gestão de playlists",
+      "n": 9,
+      "cat": "H7"
+    },
+    {
+      "tema": "Elogios espontâneos",
+      "n": 12,
+      "cat": "positivo"
+    },
+    {
+      "tema": "H3 — Ações irreversíveis",
+      "n": 5,
+      "cat": "H3"
+    },
+    {
+      "tema": "H4 — Atualizações desorientam",
+      "n": 4,
+      "cat": "H4"
+    },
+    {
+      "tema": "Qualidade de áudio",
+      "n": 4,
+      "cat": "externo"
+    },
+    {
+      "tema": "H7 — Modo aleatório falho",
+      "n": 4,
+      "cat": "H7"
+    },
+    {
+      "tema": "H5 — Adicionar/curtir confuso",
+      "n": 3,
+      "cat": "H5"
+    },
+    {
+      "tema": "H7 — Download offline falho",
+      "n": 3,
+      "cat": "H7"
+    }
+  ]
+}

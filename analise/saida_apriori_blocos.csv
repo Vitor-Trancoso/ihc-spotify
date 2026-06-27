@@ -1,0 +1,91 @@
+se;entao;sup;conf;lift
+H7_Flexibilidade=Baixo;H4_Consistencia=Baixo;0.105;0.692;5.954
+H4_Consistencia=Baixo;H7_Flexibilidade=Baixo;0.105;0.9;5.954
+H7_Flexibilidade=Baixo;H8_Estetica=Baixo;0.116;0.769;3.891
+H8_Estetica=Neutro;H7_Flexibilidade=Neutro;0.14;0.667;2.123
+H3_Controle=Neutro & H7_Flexibilidade=Neutro;H5_PrevencaoErros=Neutro;0.116;0.769;1.946
+H5_PrevencaoErros=Neutro & H7_Flexibilidade=Neutro;H3_Controle=Neutro;0.116;0.625;1.853
+H4_Consistencia=Alto & H5_PrevencaoErros=Neutro;H3_Controle=Neutro;0.14;0.6;1.779
+H5_PrevencaoErros=Alto & H8_Estetica=Alto;H7_Flexibilidade=Alto;0.36;0.912;1.705
+H7_Flexibilidade=Alto;H5_PrevencaoErros=Alto & H8_Estetica=Alto;0.36;0.674;1.705
+H3_Controle=Neutro & H4_Consistencia=Alto;H5_PrevencaoErros=Neutro;0.14;0.667;1.686
+H3_Controle=Alto & H7_Flexibilidade=Alto;H5_PrevencaoErros=Alto;0.302;0.788;1.653
+H5_PrevencaoErros=Alto;H3_Controle=Alto & H7_Flexibilidade=Alto;0.302;0.634;1.653
+H3_Controle=Alto & H4_Consistencia=Alto;H5_PrevencaoErros=Alto;0.314;0.771;1.618
+H5_PrevencaoErros=Alto;H3_Controle=Alto & H4_Consistencia=Alto;0.314;0.659;1.618
+H3_Controle=Alto & H8_Estetica=Alto;H7_Flexibilidade=Alto;0.349;0.857;1.602
+H7_Flexibilidade=Alto;H3_Controle=Alto & H8_Estetica=Alto;0.349;0.652;1.602
+H5_PrevencaoErros=Alto;H4_Consistencia=Alto & H7_Flexibilidade=Alto;0.326;0.683;1.587
+H4_Consistencia=Alto & H7_Flexibilidade=Alto;H5_PrevencaoErros=Alto;0.326;0.757;1.587
+H4_Consistencia=Alto & H5_PrevencaoErros=Alto;H7_Flexibilidade=Alto;0.326;0.848;1.586
+H7_Flexibilidade=Alto;H4_Consistencia=Alto & H5_PrevencaoErros=Alto;0.326;0.609;1.586
+H5_PrevencaoErros=Alto & H7_Flexibilidade=Alto;H8_Estetica=Alto;0.36;0.939;1.584
+H8_Estetica=Alto;H5_PrevencaoErros=Alto & H7_Flexibilidade=Alto;0.36;0.608;1.584
+H3_Controle=Alto & H5_PrevencaoErros=Alto;H7_Flexibilidade=Alto;0.302;0.839;1.568
+H4_Consistencia=Alto & H5_PrevencaoErros=Alto;H3_Controle=Alto;0.314;0.818;1.564
+H3_Controle=Alto;H4_Consistencia=Alto & H5_PrevencaoErros=Alto;0.314;0.6;1.564
+H3_Controle=Alto & H8_Estetica=Alto;H5_PrevencaoErros=Alto;0.302;0.743;1.558
+H5_PrevencaoErros=Alto;H3_Controle=Alto & H8_Estetica=Alto;0.302;0.634;1.558
+H4_Consistencia=Alto & H8_Estetica=Alto;H7_Flexibilidade=Alto;0.395;0.829;1.55
+H7_Flexibilidade=Alto;H4_Consistencia=Alto & H8_Estetica=Alto;0.395;0.739;1.55
+H4_Consistencia=Alto & H7_Flexibilidade=Alto;H8_Estetica=Alto;0.395;0.919;1.55
+H8_Estetica=Alto;H4_Consistencia=Alto & H7_Flexibilidade=Alto;0.395;0.667;1.55
+H5_PrevencaoErros=Alto;H7_Flexibilidade=Alto & H8_Estetica=Alto;0.36;0.756;1.548
+H7_Flexibilidade=Alto & H8_Estetica=Alto;H5_PrevencaoErros=Alto;0.36;0.738;1.548
+H5_PrevencaoErros=Neutro & H7_Flexibilidade=Alto;H8_Estetica=Alto;0.128;0.917;1.546
+H8_Estetica=Alto;H7_Flexibilidade=Alto;0.488;0.824;1.54
+H7_Flexibilidade=Alto;H8_Estetica=Alto;0.488;0.913;1.54
+H3_Controle=Alto & H7_Flexibilidade=Alto;H8_Estetica=Alto;0.349;0.909;1.533
+H3_Controle=Neutro & H7_Flexibilidade=Alto;H8_Estetica=Alto;0.116;0.909;1.533
+H4_Consistencia=Alto & H7_Flexibilidade=Neutro;H5_PrevencaoErros=Neutro;0.105;0.6;1.518
+H5_PrevencaoErros=Alto & H7_Flexibilidade=Alto;H3_Controle=Alto;0.302;0.788;1.506
+H5_PrevencaoErros=Alto;H7_Flexibilidade=Alto;0.384;0.805;1.505
+H7_Flexibilidade=Alto;H5_PrevencaoErros=Alto;0.384;0.717;1.505
+H7_Flexibilidade=Alto;H3_Controle=Alto & H4_Consistencia=Alto;0.326;0.609;1.496
+H3_Controle=Alto & H4_Consistencia=Alto;H7_Flexibilidade=Alto;0.326;0.8;1.496
+H5_PrevencaoErros=Alto & H8_Estetica=Alto;H3_Controle=Alto;0.302;0.765;1.461
+H4_Consistencia=Alto & H7_Flexibilidade=Alto;H3_Controle=Alto;0.326;0.757;1.446
+H3_Controle=Alto;H4_Consistencia=Alto & H7_Flexibilidade=Alto;0.326;0.622;1.446
+H3_Controle=Alto;H5_PrevencaoErros=Alto;0.36;0.689;1.445
+H5_PrevencaoErros=Alto;H3_Controle=Alto;0.36;0.756;1.445
+H4_Consistencia=Alto & H8_Estetica=Alto;H5_PrevencaoErros=Alto;0.326;0.683;1.432
+H5_PrevencaoErros=Alto;H4_Consistencia=Alto & H8_Estetica=Alto;0.326;0.683;1.432
+H4_Consistencia=Alto & H5_PrevencaoErros=Alto;H8_Estetica=Alto;0.326;0.848;1.431
+H3_Controle=Alto & H5_PrevencaoErros=Alto;H8_Estetica=Alto;0.302;0.839;1.414
+H5_PrevencaoErros=Alto;H8_Estetica=Alto;0.395;0.829;1.398
+H8_Estetica=Alto;H5_PrevencaoErros=Alto;0.395;0.667;1.398
+H3_Controle=Alto & H4_Consistencia=Alto;H8_Estetica=Alto;0.337;0.829;1.397
+H3_Controle=Alto & H5_PrevencaoErros=Alto;H4_Consistencia=Alto;0.314;0.871;1.387
+H3_Controle=Alto;H7_Flexibilidade=Alto;0.384;0.733;1.371
+H7_Flexibilidade=Alto;H3_Controle=Alto;0.384;0.717;1.371
+H3_Controle=Alto;H7_Flexibilidade=Alto & H8_Estetica=Alto;0.349;0.667;1.365
+H7_Flexibilidade=Alto & H8_Estetica=Alto;H3_Controle=Alto;0.349;0.714;1.365
+H3_Controle=Neutro & H8_Estetica=Alto;H4_Consistencia=Alto;0.14;0.857;1.365
+H4_Consistencia=Alto & H8_Estetica=Alto;H3_Controle=Alto;0.337;0.707;1.352
+H3_Controle=Alto;H4_Consistencia=Alto & H8_Estetica=Alto;0.337;0.644;1.352
+H3_Controle=Alto & H7_Flexibilidade=Alto;H4_Consistencia=Alto;0.326;0.848;1.351
+H5_PrevencaoErros=Alto & H7_Flexibilidade=Alto;H4_Consistencia=Alto;0.326;0.848;1.351
+H3_Controle=Neutro & H8_Estetica=Alto;H7_Flexibilidade=Alto;0.116;0.714;1.335
+H3_Controle=Alto & H8_Estetica=Alto;H4_Consistencia=Alto;0.337;0.829;1.32
+H5_PrevencaoErros=Alto & H8_Estetica=Alto;H4_Consistencia=Alto;0.326;0.824;1.312
+H8_Estetica=Alto;H3_Controle=Alto;0.407;0.686;1.312
+H3_Controle=Alto;H8_Estetica=Alto;0.407;0.778;1.312
+H3_Controle=Neutro & H7_Flexibilidade=Alto;H4_Consistencia=Alto;0.105;0.818;1.303
+H7_Flexibilidade=Alto & H8_Estetica=Alto;H4_Consistencia=Alto;0.395;0.81;1.289
+H4_Consistencia=Alto;H7_Flexibilidade=Alto & H8_Estetica=Alto;0.395;0.63;1.289
+H4_Consistencia=Alto;H5_PrevencaoErros=Alto;0.384;0.611;1.282
+H5_PrevencaoErros=Alto;H4_Consistencia=Alto;0.384;0.805;1.282
+H7_Flexibilidade=Alto;H4_Consistencia=Alto;0.43;0.804;1.281
+H4_Consistencia=Alto;H7_Flexibilidade=Alto;0.43;0.685;1.281
+H4_Consistencia=Alto;H8_Estetica=Alto;0.477;0.759;1.28
+H8_Estetica=Alto;H4_Consistencia=Alto;0.477;0.804;1.28
+H3_Controle=Alto;H4_Consistencia=Alto;0.407;0.778;1.239
+H4_Consistencia=Alto;H3_Controle=Alto;0.407;0.648;1.239
+H5_PrevencaoErros=Neutro & H8_Estetica=Alto;H4_Consistencia=Alto;0.151;0.765;1.218
+H5_PrevencaoErros=Neutro & H8_Estetica=Alto;H7_Flexibilidade=Alto;0.128;0.647;1.21
+H5_PrevencaoErros=Neutro & H7_Flexibilidade=Alto;H4_Consistencia=Alto;0.105;0.75;1.194
+H3_Controle=Alto & H5_PrevencaoErros=Neutro;H8_Estetica=Alto;0.105;0.692;1.167
+H3_Controle=Neutro & H5_PrevencaoErros=Neutro;H4_Consistencia=Alto;0.14;0.706;1.124
+H3_Controle=Neutro & H4_Consistencia=Alto;H8_Estetica=Alto;0.14;0.667;1.124
+H4_Consistencia=Alto & H5_PrevencaoErros=Neutro;H8_Estetica=Alto;0.151;0.65;1.096
+H3_Controle=Neutro;H4_Consistencia=Alto;0.209;0.621;0.989
