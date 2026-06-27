@@ -15,9 +15,6 @@
 
     <!-- ============ TOPBAR ============ -->
     <header class="t1-topbar" role="banner">
-      <button class="t1-avatar" type="button" aria-label="Abrir perfil de Vitor">
-        <span class="t1-avatar__initials" aria-hidden="true">VT</span>
-      </button>
       <nav class="t1-chips" role="tablist" aria-label="Filtro de tipo de mídia">
         <button class="t1-chip t1-chip--active" role="tab" type="button" aria-selected="true">Tudo</button>
         <button class="t1-chip" role="tab" type="button" aria-selected="false">Música</button>
@@ -82,7 +79,7 @@
       <!-- ============ SUA MISTURA (carrossel) ============ -->
       <section class="t1-section" aria-labelledby="t1-mix-title">
         <header class="t1-section__header">
-          <h2 id="t1-mix-title" class="t1-section__title">Sua mistura</h2>
+          <h2 id="t1-mix-title" class="t1-section__title">Seus Mixes</h2>
           <button class="t1-collapse" type="button" aria-expanded="true" aria-controls="t1-mix-row" aria-label="Recolher seção Sua mistura">
             <i data-lucide="chevron-down" aria-hidden="true"></i>
           </button>
@@ -116,7 +113,7 @@
       <section class="t1-section t1-section--collapsed" aria-labelledby="t1-editorial-title">
         <header class="t1-section__header t1-section__header--button">
           <h2 id="t1-editorial-title" class="t1-section__title">Editorial</h2>
-          <button class="t1-collapse" type="button" aria-expanded="false" aria-controls="t1-editorial-list" aria-label="Expandir seção Editorial">
+          <button class="t1-collapse" type="button" aria-expanded="true" aria-controls="t1-editorial-list" aria-label="Expandir seção Editorial">
             <i data-lucide="chevron-down" aria-hidden="true"></i>
           </button>
         </header>
@@ -152,9 +149,11 @@
         <i data-lucide="library" aria-hidden="true"></i>
         <span>Biblioteca</span>
       </a>
-      <a class="t1-bottom-nav__item" href="#" aria-label="Criar">
-        <i data-lucide="plus" aria-hidden="true"></i>
-        <span>Criar</span>
+      <a class="t1-bottom-nav__item" href="#" aria-label="Seu Perfil">
+        <i class="t1-avatar" aria-label="Abrir perfil de Vitor">
+        <span class="t1-avatar__initials" aria-hidden="true">VT</span>
+      </i>
+        <span>Perfil</span>
       </a>
     </nav>
   </div>
