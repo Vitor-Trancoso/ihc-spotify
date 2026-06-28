@@ -1,6 +1,12 @@
-.t6-body { background: #000; }
+.t6-body { background: #000; overflow: hidden; }
 
+.device-frame.t6-device,
 .t6-device {
+  width: 100%;
+  max-width: 414px;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
   background: #000;
   position: relative;
   overflow: hidden;
