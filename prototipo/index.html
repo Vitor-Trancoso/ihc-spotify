@@ -172,52 +172,52 @@
       <small>HTML/CSS/JS de alta fidelidade — algumas telas são mockups estáticos por decisão do council.</small>
     </h2>
     <div class="grid">
-      <a class="card" href="#/t1">
+      <a class="card" href="telas/t1.html">
         <span class="badge">T1 · Mockup</span>
         <h3>Home minimalista</h3>
         <p>Toggle Compacto/Descobrir + chips de mídia.</p>
       </a>
-      <a class="card" href="#/t2">
+      <a class="card" href="telas/t2.html">
         <span class="badge">T2 · Interativo</span>
         <h3>Player redesenhado</h3>
         <p>Shuffle/Smart Shuffle/Repeat com status textual.</p>
       </a>
-      <a class="card" href="#/t3">
+      <a class="card" href="telas/t3.html">
         <span class="badge">T3 · Interativo</span>
         <h3>Biblioteca + seleção</h3>
         <p>Long-press para selecionar múltiplos + ações em lote.</p>
       </a>
-      <a class="card" href="#/t4">
+      <a class="card" href="telas/t4.html">
         <span class="badge">T4 · Mockup</span>
         <h3>Menu da música</h3>
         <p>Bottom sheet com 4 grupos hierárquicos.</p>
       </a>
-      <a class="card" href="#/t5">
+      <a class="card" href="telas/t5.html">
         <span class="badge">T5 · Interativo</span>
         <h3>Configurações</h3>
         <p>Busca incremental com highlight em tempo real.</p>
       </a>
-      <a class="card" href="#/ma">
+      <a class="card" href="telas/ma.html">
         <span class="badge">MA · Interativo</span>
         <h3>Snackbar Desfazer</h3>
         <p>Reversibilidade com countdown visual de 6s.</p>
       </a>
-      <a class="card" href="#/t6">
+      <a class="card" href="telas/t6.html">
         <span class="badge">T6 · Interativo</span>
         <h3>Descoberta</h3>
-        <p>Discover full-screen com clipes verticais (swipe estilo TikTok).</p>
+        <p>Feed editorial substituindo scroll infinito.</p>
       </a>
-      <a class="card" href="#/t7">
+      <a class="card" href="telas/t7.html">
         <span class="badge">T7 · Interativo</span>
         <h3>Personalizar Home</h3>
         <p>Escolha módulos que aparecem na Home.</p>
       </a>
-      <a class="card" href="#/t8">
+      <a class="card" href="telas/t8.html">
         <span class="badge">T8 · Interativo</span>
         <h3>Notificações</h3>
         <p>Lista cronológica com filtros.</p>
       </a>
-      <a class="card" href="#/t9">
+      <a class="card" href="telas/t9.html">
         <span class="badge">T9 · Interativo</span>
         <h3>Social / Amigos</h3>
         <p>Atividade de amigos e jam sessions.</p>
@@ -229,27 +229,27 @@
       <small>Versões pareadas em fidelidade para comparação antes/depois.</small>
     </h2>
     <div class="grid">
-      <a class="card" data-variant="controle" href="#/controle/t1">
+      <a class="card" data-variant="controle" href="telas/controle/t1-atual.html">
         <span class="badge">T1 · Controle</span>
         <h3>Home atual</h3>
         <p>Versão "Spotify atual" para comparação.</p>
       </a>
-      <a class="card" data-variant="controle" href="#/controle/t2">
+      <a class="card" data-variant="controle" href="telas/controle/t2-atual.html">
         <span class="badge">T2 · Controle</span>
         <h3>Player atual</h3>
         <p>Versão "Spotify atual" para comparação.</p>
       </a>
-      <a class="card" data-variant="controle" href="#/controle/t3">
+      <a class="card" data-variant="controle" href="telas/controle/t3-atual.html">
         <span class="badge">T3 · Controle</span>
         <h3>Biblioteca atual</h3>
         <p>Versão "Spotify atual" para comparação.</p>
       </a>
-      <a class="card" data-variant="controle" href="#/controle/t4">
+      <a class="card" data-variant="controle" href="telas/controle/t4-atual.html">
         <span class="badge">T4 · Controle</span>
         <h3>Menu da música atual</h3>
         <p>Versão "Spotify atual" para comparação.</p>
       </a>
-      <a class="card" data-variant="controle" href="#/controle/t5">
+      <a class="card" data-variant="controle" href="telas/controle/t5-atual.html">
         <span class="badge">T5 · Controle</span>
         <h3>Configurações atuais</h3>
         <p>Versão "Spotify atual" para comparação.</p>
@@ -257,20 +257,9 @@
     </div>
   </main>
 
-  <section id="stage" hidden>
-    <div class="stage__topbar">
-      <button id="stage-back" type="button" aria-label="Voltar à galeria">←</button>
-      <span id="stage-titulo" class="stage__title">—</span>
-    </div>
-    <div class="stage__body">
-      <div class="device-frame">
-        <iframe id="stage-frame" src="about:blank" title="Pré-visualização da tela"></iframe>
-      </div>
-    </div>
-  </section>
+  <!-- Stage iframe removido: cards agora linkam direto para .html (sem nested iframe / topbar duplicado) -->
 
   <script src="js/mock-data.js"></script>
   <script src="js/telemetria.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>
