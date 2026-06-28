@@ -125,6 +125,42 @@
   display: block;
 }
 
+/* Capas mockadas — gradientes em vez de picsum (sem dependencia de rede) */
+.t6-clip__cover-initial {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: 900;
+  font-size: 120px;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: -0.04em;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.5);
+  user-select: none;
+}
+.t6-clip__cover--c1 {
+  background:
+    radial-gradient(circle at 30% 25%, #ff3b3b 0%, transparent 55%),
+    linear-gradient(140deg, #a01818 0%, #2a0000 100%);
+}
+.t6-clip__cover--c2 {
+  background:
+    radial-gradient(circle at 70% 30%, #4ea0ff 0%, transparent 55%),
+    linear-gradient(160deg, #1a4a8a 0%, #04122a 100%);
+}
+.t6-clip__cover--c3 {
+  background:
+    radial-gradient(circle at 50% 30%, #f5c453 0%, transparent 50%),
+    linear-gradient(150deg, #6a3ab0 0%, #1a0830 100%);
+}
+.t6-clip__cover--c4 {
+  background:
+    radial-gradient(circle at 50% 30%, #4cf08a 0%, transparent 55%),
+    linear-gradient(150deg, #0a6a3a 0%, #021410 100%);
+}
+
 .t6-waveform {
   position: absolute;
   inset: 50% auto auto 50%;
