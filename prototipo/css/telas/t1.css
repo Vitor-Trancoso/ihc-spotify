@@ -69,7 +69,57 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  flex: 1 1 auto;
+  min-width: 0;
 }
+
+/* Topbar actions (V2.3 + V2.4) */
+.t1-topbar__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-left: auto;
+}
+
+/* Badge contador no sino (V2.3) */
+.icon-btn[data-notif-count] { position: relative; }
+.icon-btn[data-notif-count]::after {
+  content: attr(data-notif-count);
+  position: absolute; top: 4px; right: 4px;
+  min-width: 16px; height: 16px; padding: 0 4px;
+  background: var(--essential-negative);
+  color: #fff; font-size: 10px; font-weight: 700;
+  border-radius: 999px; display: grid; place-items: center;
+  line-height: 1;
+}
+
+/* Personalizar Home (V2.5) */
+.t1-personalize {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-2);
+}
+.t1-personalize__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: transparent;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+  color: var(--text-subdued);
+  padding: 10px var(--sp-4);
+  border-radius: var(--r-pill);
+  font: var(--fw-medium) var(--fs-caption)/1 var(--font-family);
+  text-decoration: none;
+  min-height: 44px;
+  transition: color var(--d-tap) var(--ease-standard),
+              background-color var(--d-tap) var(--ease-standard);
+}
+.t1-personalize__btn:hover {
+  color: var(--text-base);
+  background: var(--background-tinted-highlight);
+}
+.t1-personalize__btn i { width: 16px; height: 16px; }
 .t1-chips::-webkit-scrollbar { display: none; }
 
 .t1-chip {

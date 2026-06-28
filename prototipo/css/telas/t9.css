@@ -1,0 +1,324 @@
+/* ============================================================
+   T9 — SOCIAL / AMIGOS (V2.4)
+   Atividade dos amigos, jam sessions, feed 24h, toggle share.
+   ============================================================ */
+
+.t9-frame {
+  min-height: 100dvh;
+  background: var(--background-base);
+  color: var(--text-base);
+  padding-bottom: calc(var(--safe-bottom) + 56px + var(--sp-4));
+}
+
+/* ---------- TOPBAR ---------- */
+.t9-topbar {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ---------- MAIN ---------- */
+.t9-main {
+  padding: var(--sp-4) var(--sp-4) 0;
+}
+.t9-subtitle {
+  font-size: var(--fs-body);
+  color: var(--text-subdued);
+  margin: 0 0 var(--sp-5);
+}
+
+/* ---------- SECTIONS ---------- */
+.t9-section { margin-bottom: var(--sp-6); }
+.t9-section__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.t9-section__title {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  letter-spacing: var(--ls-section);
+  font-weight: var(--fw-extrabold);
+  color: var(--text-base);
+}
+
+/* ---------- LIVE BADGE ---------- */
+.t9-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px var(--sp-2);
+  background: var(--green-tint);
+  color: var(--spotify-green);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-micro);
+  border-radius: var(--r-pill);
+  text-transform: uppercase;
+}
+.t9-live-dot {
+  width: 6px; height: 6px;
+  border-radius: var(--r-circle);
+  background: var(--spotify-green);
+  animation: t9-pulse 1.4s ease-in-out infinite;
+}
+@keyframes t9-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ---------- LISTENING NOW ---------- */
+.t9-listening { display: flex; flex-direction: column; gap: var(--sp-1); }
+.t9-friend-row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  padding: var(--sp-2) var(--sp-2);
+  background: transparent;
+  text-align: left;
+  border-radius: var(--r-md);
+  transition: background var(--d-fast) var(--ease-standard);
+}
+.t9-friend-row:active { background: var(--background-tinted-highlight); }
+@media (hover: hover) and (pointer: fine) {
+  .t9-friend-row:hover { background: var(--background-tinted-highlight); }
+}
+
+/* ---------- AVATAR (gradient + iniciais) ---------- */
+.t9-avatar {
+  width: 48px; height: 48px;
+  border-radius: var(--r-circle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+.t9-avatar--sm { width: 36px; height: 36px; font-size: var(--fs-meta); }
+.t9-avatar--ana    { background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%); }
+.t9-avatar--bruno  { background: linear-gradient(135deg, #4A90E2 0%, #1B3A6B 100%); }
+.t9-avatar--camila { background: linear-gradient(135deg, #F7B733 0%, #FC4A1A 100%); }
+.t9-avatar--diego  { background: linear-gradient(135deg, #11998E 0%, #38EF7D 100%); }
+.t9-avatar--eduarda{ background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); }
+.t9-avatar--default{ background: linear-gradient(135deg, #5A5A5A 0%, #2A2A2A 100%); }
+
+/* ---------- FRIEND INFO ---------- */
+.t9-friend-info { min-width: 0; }
+.t9-friend-name {
+  font-size: var(--fs-row);
+  font-weight: var(--fw-semibold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t9-friend-meta {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+/* ---------- EQ BARS (override pra ficar maior na lista) ---------- */
+.t9-eq {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.t9-eq span { width: 3px; }
+
+/* ---------- JAM SESSIONS ---------- */
+.t9-jams { display: flex; flex-direction: column; gap: var(--sp-3); }
+.t9-jam {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-3);
+  background: var(--background-tinted-base);
+  border-radius: var(--r-md);
+}
+.t9-jam__cover {
+  width: 64px; height: 64px;
+  border-radius: var(--r-sm);
+  background: var(--gradient-podcast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.t9-jam__cover svg { width: 28px; height: 28px; }
+.t9-jam--alt .t9-jam__cover { background: var(--gradient-liked-songs); }
+.t9-jam__info { min-width: 0; }
+.t9-jam__title {
+  font-size: var(--fs-row);
+  font-weight: var(--fw-bold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t9-jam__count {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  margin-top: 2px;
+}
+.t9-jam__join {
+  height: 36px;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-pill);
+  background: var(--spotify-green);
+  color: var(--text-on-accent);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  transition: transform var(--d-fast) var(--ease-standard),
+              background var(--d-fast) var(--ease-standard);
+}
+.t9-jam__join:active { transform: scale(0.95); }
+@media (hover: hover) and (pointer: fine) {
+  .t9-jam__join:hover { background: var(--spotify-green-hover); }
+}
+
+/* ---------- FEED 24H ---------- */
+.t9-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  position: relative;
+  padding-left: var(--sp-2);
+}
+.t9-feed-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  padding: var(--sp-2) 0;
+}
+.t9-feed-item__body { min-width: 0; padding-top: 4px; }
+.t9-feed-item__text {
+  font-size: var(--fs-body);
+  color: var(--text-base);
+  line-height: var(--lh-body);
+}
+.t9-feed-item__text strong {
+  font-weight: var(--fw-semibold);
+}
+.t9-feed-item__text .t9-feed-highlight {
+  color: var(--text-base);
+  font-weight: var(--fw-semibold);
+}
+.t9-feed-item__time {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.t9-feed-item__icon {
+  width: 14px; height: 14px;
+  color: var(--text-subdued);
+}
+
+/* ---------- SHARE CARD ---------- */
+.t9-share-card {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-4);
+  background: var(--background-tinted-base);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-subtle);
+}
+.t9-share-card__icon {
+  width: 40px; height: 40px;
+  border-radius: var(--r-circle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-tint);
+  color: var(--spotify-green);
+}
+.t9-share-card__icon svg { width: 20px; height: 20px; }
+.t9-share-card__info { min-width: 0; }
+.t9-share-card__title {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-base);
+}
+.t9-share-card__desc {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  margin-top: 2px;
+  line-height: 1.33;
+}
+
+/* ---------- TOGGLE (iOS-like switch) ---------- */
+.t9-toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  border-radius: var(--r-pill);
+  background: var(--background-highlight);
+  transition: background var(--d-standard) var(--ease-standard);
+  flex-shrink: 0;
+  padding: 0;
+  cursor: pointer;
+  min-width: 48px;
+}
+.t9-toggle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+.t9-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-circle);
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  transition: transform var(--d-standard) var(--ease-spring);
+}
+.t9-toggle[aria-checked="true"] {
+  background: var(--spotify-green);
+}
+.t9-toggle[aria-checked="true"] .t9-toggle__thumb {
+  transform: translateX(20px);
+}
+
+/* ---------- BOTTOM NAV (override pra 5 colunas) ---------- */
+.t9-bottom-nav {
+  grid-template-columns: repeat(5, 1fr);
+}
+.bottom-nav__item--profile .bottom-nav__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-circle);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1ED760 0%, #0D72EA 100%);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+}
+
+/* ---------- SPACER ---------- */
+.t9-spacer { height: var(--sp-5); }

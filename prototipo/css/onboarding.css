@@ -1,0 +1,139 @@
+/* Onboarding V2.8 — tour pós-update */
+.onboarding-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.onboarding-backdrop.is-open {
+  opacity: 1;
+}
+
+.onboarding-backdrop[hidden] {
+  display: none;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 320px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--background-elevated, #181818);
+  color: var(--text-primary, #fff);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  outline: none;
+}
+
+.onboarding-step {
+  font-size: 12px;
+  color: var(--text-subdued, #a7a7a7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.onboarding-illustration {
+  font-size: 64px;
+  line-height: 1;
+  text-align: center;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+}
+
+.onboarding-illustration i[data-lucide] {
+  width: 56px;
+  height: 56px;
+  color: var(--brand, #1ed760);
+}
+
+.onboarding-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.onboarding-text {
+  font-size: 14px;
+  color: var(--text-secondary, #cfcfcf);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.onboarding-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.onboarding-dots {
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.onboarding-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--background-tinted, #3a3a3a);
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.onboarding-dot--active {
+  background: var(--brand, #1ed760);
+  transform: scale(1.15);
+}
+
+.onboarding-skip {
+  background: none;
+  border: 0;
+  color: var(--text-subdued, #a7a7a7);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 4px;
+  min-height: 44px;
+  cursor: pointer;
+  justify-self: start;
+}
+
+.onboarding-skip:hover,
+.onboarding-skip:focus-visible {
+  color: var(--text-primary, #fff);
+}
+
+.onboarding-next {
+  background: var(--brand, #1ed760);
+  color: #000;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  justify-self: end;
+}
+
+.onboarding-next:hover,
+.onboarding-next:focus-visible {
+  filter: brightness(1.05);
+  outline: none;
+}

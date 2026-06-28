@@ -25,6 +25,14 @@
         <button class="t1-chip" role="tab" type="button" aria-selected="false">Podcasts</button>
         <button class="t1-chip" role="tab" type="button" aria-selected="false">Audiolivros</button>
       </nav>
+      <div class="t1-topbar__actions">
+        <a href="t9.html" class="icon-btn" aria-label="Social — amigos">
+          <i data-lucide="users" aria-hidden="true"></i>
+        </a>
+        <a href="t8.html" class="icon-btn" aria-label="Notificações" data-notif-count="3">
+          <i data-lucide="bell" aria-hidden="true"></i>
+        </a>
+      </div>
     </header>
 
     <!-- ============ CONTEÚDO ============ -->
@@ -306,6 +314,14 @@
         </div>
       </aside>
 
+      <!-- Personalizar Home (V2.5) -->
+      <div class="t1-personalize">
+        <a href="t7.html" class="t1-personalize__btn" aria-label="Personalizar Home">
+          <i data-lucide="settings-2" aria-hidden="true"></i>
+          <span>Personalizar Home</span>
+        </a>
+      </div>
+
       <!-- Nota de mockup -->
       <footer class="t1-footnote" role="contentinfo">
         <i data-lucide="info" aria-hidden="true"></i>
@@ -313,26 +329,29 @@
       </footer>
     </main>
 
-    <!-- ============ BOTTOM NAV ============ -->
-    <nav class="t1-bottom-nav" role="navigation" aria-label="Navegação principal">
-      <a class="t1-bottom-nav__item t1-bottom-nav__item--active" href="#" aria-current="page" aria-label="Início">
-        <i data-lucide="house" aria-hidden="true"></i>
-        <span>Início</span>
+    <!-- ============ BOTTOM NAV (V2 — 5 itens) ============ -->
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="t1.html" class="bottom-nav__item bottom-nav__item--active" aria-current="page" aria-label="Início">
+        <i data-lucide="house" aria-hidden="true"></i><span>Início</span>
       </a>
-      <a class="t1-bottom-nav__item" href="#" aria-label="Buscar">
-        <i data-lucide="search" aria-hidden="true"></i>
-        <span>Buscar</span>
+      <a href="t6.html" class="bottom-nav__item" aria-label="Descoberta">
+        <i data-lucide="compass" aria-hidden="true"></i><span>Descoberta</span>
       </a>
-      <a class="t1-bottom-nav__item" href="#" aria-label="Sua Biblioteca">
-        <i data-lucide="library" aria-hidden="true"></i>
-        <span>Biblioteca</span>
+      <a href="#" class="bottom-nav__item" aria-label="Buscar">
+        <i data-lucide="search" aria-hidden="true"></i><span>Buscar</span>
       </a>
-      <a class="t1-bottom-nav__item t1-bottom-nav__item--profile" href="t5.html" aria-label="Perfil e Configurações">
-        <span class="t1-bottom-nav__avatar" aria-hidden="true">VT</span>
-        <span>Perfil</span>
+      <a href="t3.html" class="bottom-nav__item" aria-label="Sua biblioteca">
+        <i data-lucide="library" aria-hidden="true"></i><span>Biblioteca</span>
+      </a>
+      <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil">
+        <span class="bottom-nav__avatar" aria-hidden="true">VT</span><span>Perfil</span>
       </a>
     </nav>
   </div>
+
+  <!-- Onboarding (V2.8) -->
+  <link rel="stylesheet" href="../css/onboarding.css" />
+  <script src="../js/onboarding.js" defer></script>
 
   <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>

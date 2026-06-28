@@ -19,6 +19,12 @@
     </a>
     <h1 class="t3-topbar__title">Sua biblioteca</h1>
     <div class="t3-topbar__actions">
+      <a href="t9.html" class="icon-btn" aria-label="Social — amigos">
+        <i data-lucide="users" aria-hidden="true"></i>
+      </a>
+      <a href="t8.html" class="icon-btn" aria-label="Notificações" data-notif-count="3">
+        <i data-lucide="bell" aria-hidden="true"></i>
+      </a>
       <button class="icon-btn" type="button" aria-label="Buscar na biblioteca" data-action="focus-search">
         <i data-lucide="search" aria-hidden="true"></i>
       </button>
@@ -73,6 +79,10 @@
       <button class="t3-sort" type="button" aria-label="Ordenacao: recentes">
         <i data-lucide="arrow-down-up" aria-hidden="true"></i>
         <span>Recentes</span>
+      </button>
+      <button class="t3-customize-btn" type="button" data-action="open-customize-sheet" id="t3-customize-btn" aria-label="Personalizar biblioteca">
+        <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
+        <span>Personalizar</span>
       </button>
       <div class="t3-view-toggle" role="group" aria-label="Modo de visualizacao">
         <button
@@ -150,23 +160,22 @@
   <!-- Snackbar region -->
   <div class="snackbar-region" id="snackbar-region" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Bottom nav (referencia, nao interativa nesta tela) -->
-  <nav class="bottom-nav" aria-label="Navegacao principal">
-    <a href="../index.html" class="bottom-nav__item" aria-label="Inicio">
-      <i data-lucide="house" aria-hidden="true"></i>
-      <span>Inicio</span>
+  <!-- Bottom nav V2 (5 itens) -->
+  <nav class="bottom-nav bottom-nav--5" aria-label="Navegação principal">
+    <a href="t1.html" class="bottom-nav__item" aria-label="Início">
+      <i data-lucide="house" aria-hidden="true"></i><span>Início</span>
+    </a>
+    <a href="t6.html" class="bottom-nav__item" aria-label="Descoberta">
+      <i data-lucide="compass" aria-hidden="true"></i><span>Descoberta</span>
     </a>
     <a href="#" class="bottom-nav__item" aria-label="Buscar">
-      <i data-lucide="search" aria-hidden="true"></i>
-      <span>Buscar</span>
+      <i data-lucide="search" aria-hidden="true"></i><span>Buscar</span>
     </a>
-    <a href="t3.html" class="bottom-nav__item" aria-current="page" aria-label="Sua biblioteca">
-      <i data-lucide="library" aria-hidden="true"></i>
-      <span>Biblioteca</span>
+    <a href="t3.html" class="bottom-nav__item bottom-nav__item--active" aria-current="page" aria-label="Sua biblioteca">
+      <i data-lucide="library" aria-hidden="true"></i><span>Biblioteca</span>
     </a>
-    <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil e Configurações">
-      <span class="bottom-nav__avatar" aria-hidden="true">VT</span>
-      <span>Perfil</span>
+    <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil">
+      <span class="bottom-nav__avatar" aria-hidden="true">VT</span><span>Perfil</span>
     </a>
   </nav>
 
@@ -207,6 +216,79 @@
           </button>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============= BOTTOM SHEET: PERSONALIZAR BIBLIOTECA (V2.6) ============= -->
+  <section id="t3-customize-sheet" class="bottom-sheet" hidden role="dialog" aria-label="Personalizar Biblioteca" aria-modal="true">
+    <div class="bottom-sheet__backdrop" data-close-sheet></div>
+    <div class="bottom-sheet__panel" role="document">
+      <div class="bottom-sheet__handle" aria-hidden="true"></div>
+      <header class="bottom-sheet__header">
+        <h2 class="bottom-sheet__title">Personalizar Biblioteca</h2>
+        <p class="bottom-sheet__subtitle">Escolha quais filtros aparecem e como visualizar</p>
+      </header>
+
+      <section class="t3-cust-section" aria-labelledby="t3-cust-filters-title">
+        <h3 class="t3-cust-section__title" id="t3-cust-filters-title">Filtros exibidos</h3>
+        <ul class="t3-cust-list" role="list">
+          <li class="t3-cust-row">
+            <span>Tudo</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="all" checked /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Playlists</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="playlists" checked /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Artistas</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="artistas" checked /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Álbuns</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="albuns" checked /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Podcasts</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="podcasts" checked /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Baixadas</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="baixadas" /><span class="t3-switch__track"></span></label>
+          </li>
+          <li class="t3-cust-row">
+            <span>Curtidas</span>
+            <label class="t3-switch"><input type="checkbox" data-cust-filter="curtidas" /><span class="t3-switch__track"></span></label>
+          </li>
+        </ul>
+      </section>
+
+      <section class="t3-cust-section" aria-labelledby="t3-cust-view-title">
+        <h3 class="t3-cust-section__title" id="t3-cust-view-title">Visualização padrão</h3>
+        <div class="t3-cust-radios" role="radiogroup" aria-labelledby="t3-cust-view-title">
+          <label class="t3-cust-radio">
+            <input type="radio" name="t3-cust-view" value="list" checked />
+            <span>Lista</span>
+          </label>
+          <label class="t3-cust-radio">
+            <input type="radio" name="t3-cust-view" value="grid" />
+            <span>Grade</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="t3-cust-section" aria-labelledby="t3-cust-sort-title">
+        <h3 class="t3-cust-section__title" id="t3-cust-sort-title">Ordenação padrão</h3>
+        <select class="t3-cust-select" id="t3-cust-sort" aria-labelledby="t3-cust-sort-title">
+          <option value="recentes">Recentes</option>
+          <option value="az">A-Z</option>
+          <option value="adicionado">Por adicionado</option>
+        </select>
+      </section>
+
+      <div class="t3-cust-footer">
+        <button class="t3-cust-apply" type="button" data-action="apply-customize">Aplicar</button>
+      </div>
     </div>
   </section>
 

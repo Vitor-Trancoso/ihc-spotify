@@ -643,6 +643,88 @@
         });
       });
     }
+
+    // ----- BOTTOM SHEET: PERSONALIZAR BIBLIOTECA (V2.6) -----
+    const $customizeBtn   = document.getElementById("t3-customize-btn");
+    const $customizeSheet = document.getElementById("t3-customize-sheet");
+
+    function abrirCustomize() {
+      if (!$customizeSheet) return;
+      log("personalizar_abrir");
+      if (window.openModal) {
+        window.openModal($customizeSheet, {
+          onClose: () => log("personalizar_fechar")
+        });
+      } else {
+        $customizeSheet.hidden = false;
+      }
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    }
+
+    function fecharCustomize() {
+      if (window.closeModal) window.closeModal();
+      else if ($customizeSheet) $customizeSheet.hidden = true;
+    }
+
+    if ($customizeBtn) $customizeBtn.addEventListener("click", abrirCustomize);
+
+    if ($customizeSheet) {
+      $customizeSheet.querySelectorAll("[data-close-sheet]").forEach((el) => {
+        el.addEventListener("click", fecharCustomize);
+      });
+
+      const $apply = $customizeSheet.querySelector('[data-action="apply-customize"]');
+      if ($apply) {
+        $apply.addEventListener("click", () => {
+          // coleta filtros ativos
+          const filtros = Array.from(
+            $customizeSheet.querySelectorAll('[data-cust-filter]')
+          )
+            .filter((c) => c.checked)
+            .map((c) => c.dataset.custFilter);
+
+          // visualização
+          const viewInput = $customizeSheet.querySelector('input[name="t3-cust-view"]:checked');
+          const view = viewInput ? viewInput.value : "list";
+
+          // ordenação
+          const sortSel = $customizeSheet.querySelector('#t3-cust-sort');
+          const sort = sortSel ? sortSel.value : "recentes";
+
+          // aplica view
+          if (view !== state.view) {
+            state.view = view;
+            $viewBtns.forEach((b) => {
+              const active = b.dataset.view === view;
+              b.dataset.active = String(active);
+              b.setAttribute("aria-pressed", String(active));
+            });
+          }
+
+          // aplica filtros visíveis (esconde chips deselecionados)
+          $chips.forEach((chip) => {
+            const id = chip.dataset.filter;
+            const visivel = filtros.indexOf(id) !== -1;
+            chip.hidden = !visivel;
+          });
+          // se filtro atual ficou escondido, volta pra "all" (se visível) ou primeiro visível
+          const chipAtual = document.querySelector(`.t3-chips .chip[data-filter="${state.filter}"]`);
+          if (!chipAtual || chipAtual.hidden) {
+            const primeiro = Array.from($chips).find((c) => !c.hidden);
+            if (primeiro) {
+              $chips.forEach((c) => (c.dataset.active = "false"));
+              primeiro.dataset.active = "true";
+              state.filter = primeiro.dataset.filter;
+            }
+          }
+
+          log("personalizar_aplicar", { filtros, view, sort });
+          render();
+          fecharCustomize();
+          showSnack("Preferências aplicadas", null, 2400);
+        });
+      }
+    }
   }
 
   // ---------- INIT ----------

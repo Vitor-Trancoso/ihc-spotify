@@ -406,6 +406,28 @@
 }
 .icon-btn:active { transform: scale(0.94); }
 
+/* Badge contador (V2.3) — usado p.ex. no sino de notificações */
+.icon-btn[data-notif-count]:not([data-notif-count="0"])::before {
+  content: attr(data-notif-count);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  background: var(--essential-negative);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  line-height: 16px;
+  text-align: center;
+  border: 2px solid var(--background-base);
+  box-sizing: content-box;
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* -------------------- Divider -------------------- */
 .divider {
   border: 0;

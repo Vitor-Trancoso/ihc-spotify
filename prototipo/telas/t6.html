@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T6 — Descoberta (V2.2) · Spotify Redesign</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/media-cards.css" />
+  <link rel="stylesheet" href="../css/telas/t6.css" />
+</head>
+<body class="t6-body">
+  <div class="device-frame" role="application" aria-label="Protótipo T6 Descoberta">
+
+    <!-- ============ TOPBAR ============ -->
+    <header class="t6-topbar" role="banner">
+      <h1 class="t6-topbar__title">Descoberta</h1>
+      <div class="t6-topbar__actions">
+        <a href="t9.html" class="icon-btn" aria-label="Social — amigos">
+          <i data-lucide="users" aria-hidden="true"></i>
+        </a>
+        <a href="t8.html" class="icon-btn" aria-label="Notificações" data-notif-count="3">
+          <i data-lucide="bell" aria-hidden="true"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main class="t6-main" id="t6-main">
+
+      <!-- HERO -->
+      <section class="t6-hero" aria-labelledby="t6-hero-title">
+        <div class="t6-hero__text">
+          <div class="t6-hero__eyebrow">Para você esta semana</div>
+          <h2 id="t6-hero-title" class="t6-hero__title">Discover Weekly</h2>
+          <p class="t6-hero__sub">Sua playlist semanal personalizada está pronta.</p>
+        </div>
+        <a href="#" class="t6-hero__cover"
+           data-t6-card data-tipo="playlist" data-id="hero-dw" data-nome="Discover Weekly" data-secao="hero"
+           aria-label="Abrir Discover Weekly">
+          <img src="https://picsum.photos/seed/spotify-p0/300/300" alt="" loading="lazy" />
+        </a>
+      </section>
+
+      <!-- 1. NOVIDADES DA SEMANA -->
+      <section class="t6-section" aria-labelledby="t6-novidades-title">
+        <header class="t6-section__header">
+          <h2 id="t6-novidades-title" class="t6-section__title">Novidades da semana</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="novidades" aria-label="Ver tudo de Novidades da semana">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t6-carousel" role="list">
+          <li>
+            <a href="#" class="media-card media-card--album"
+               data-t6-card data-tipo="album" data-id="nv1" data-nome="After Hours" data-secao="novidades"
+               aria-label="Abrir álbum After Hours">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-nv1/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">After Hours</span>
+              <span class="media-card__sub">Álbum · The Weeknd</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="nv2" data-nome="Release Radar" data-secao="novidades"
+               aria-label="Abrir playlist Release Radar">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-nv2/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Release Radar</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--album"
+               data-t6-card data-tipo="album" data-id="nv3" data-nome="Currents" data-secao="novidades"
+               aria-label="Abrir álbum Currents">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-nv3/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Currents</span>
+              <span class="media-card__sub">Álbum · Tame Impala</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="nv4" data-nome="Indie Quente" data-secao="novidades"
+               aria-label="Abrir playlist Indie Quente">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-nv4/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Indie Quente</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2. RECÉM-ADICIONADOS AO SEU GOSTO -->
+      <section class="t6-section" aria-labelledby="t6-recent-title">
+        <header class="t6-section__header">
+          <h2 id="t6-recent-title" class="t6-section__title">Recém-adicionados ao seu gosto</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="recem_adicionados" aria-label="Ver tudo de Recém-adicionados">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t6-grid-2" role="list">
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="rg1" data-nome="Daily Mix 1" data-secao="recem_adicionados"
+               aria-label="Abrir Daily Mix 1">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-p1/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Daily Mix 1</span>
+              <span class="media-card__sub">Tame Impala, MGMT…</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--album"
+               data-t6-card data-tipo="album" data-id="rg2" data-nome="Blonde" data-secao="recem_adicionados"
+               aria-label="Abrir álbum Blonde">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-rg2/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Blonde</span>
+              <span class="media-card__sub">Álbum · Frank Ocean</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--artist"
+               data-t6-card data-tipo="artista" data-id="rg3" data-nome="Phoebe Bridgers" data-secao="recem_adicionados"
+               aria-label="Abrir artista Phoebe Bridgers">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-rg3/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Phoebe Bridgers</span>
+              <span class="media-card__sub">Artista</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="rg4" data-nome="Lo-fi Beats" data-secao="recem_adicionados"
+               aria-label="Abrir Lo-fi Beats">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-p6/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Lo-fi Beats</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. POR GÊNERO -->
+      <section class="t6-section" aria-labelledby="t6-genres-title">
+        <header class="t6-section__header">
+          <h2 id="t6-genres-title" class="t6-section__title">Por gênero</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="generos" aria-label="Ver todos os gêneros">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <div class="t6-genres" role="list">
+          <button class="t6-genre t6-genre--rock"       type="button" data-t6-genre="rock"        role="listitem">Rock</button>
+          <button class="t6-genre t6-genre--indie"      type="button" data-t6-genre="indie"       role="listitem">Indie</button>
+          <button class="t6-genre t6-genre--eletronica" type="button" data-t6-genre="eletronica"  role="listitem">Eletrônica</button>
+          <button class="t6-genre t6-genre--hiphop"     type="button" data-t6-genre="hip-hop"     role="listitem">Hip-Hop</button>
+          <button class="t6-genre t6-genre--mpb"        type="button" data-t6-genre="mpb"         role="listitem">MPB</button>
+          <button class="t6-genre t6-genre--jazz"       type="button" data-t6-genre="jazz"        role="listitem">Jazz</button>
+          <button class="t6-genre t6-genre--lofi"       type="button" data-t6-genre="lo-fi"       role="listitem">Lo-Fi</button>
+        </div>
+      </section>
+
+      <!-- 4. EDITORIAL SPOTIFY -->
+      <section class="t6-section" aria-labelledby="t6-editorial-title">
+        <header class="t6-section__header">
+          <h2 id="t6-editorial-title" class="t6-section__title">Editorial Spotify</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="editorial" aria-label="Ver tudo de Editorial Spotify">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t6-carousel" role="list">
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="ed1" data-nome="Top Brasil" data-secao="editorial"
+               aria-label="Abrir playlist Top Brasil">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-ed1/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Top Brasil</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="ed2" data-nome="Foco Profundo" data-secao="editorial"
+               aria-label="Abrir playlist Foco Profundo">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-ed2/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Foco Profundo</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--playlist"
+               data-t6-card data-tipo="playlist" data-id="ed3" data-nome="Sunset Drive" data-secao="editorial"
+               aria-label="Abrir playlist Sunset Drive">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-ed3/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Sunset Drive</span>
+              <span class="media-card__sub">Playlist · Spotify</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 5. PODCASTS PRA VOCÊ -->
+      <section class="t6-section" aria-labelledby="t6-pod-title">
+        <header class="t6-section__header">
+          <h2 id="t6-pod-title" class="t6-section__title">Podcasts pra você</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="podcasts" aria-label="Ver tudo de Podcasts">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t6-carousel" role="list">
+          <li>
+            <a href="#" class="media-card media-card--podcast cat-tech"
+               data-t6-card data-tipo="podcast" data-id="pod1" data-nome="Lex Fridman Podcast" data-secao="podcasts"
+               aria-label="Abrir podcast Lex Fridman">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-pod1/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Lex Fridman Podcast</span>
+              <span class="media-card__sub">Tecnologia</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--podcast cat-news"
+               data-t6-card data-tipo="podcast" data-id="pod4" data-nome="The Daily" data-secao="podcasts"
+               aria-label="Abrir podcast The Daily">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-pod4/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">The Daily</span>
+              <span class="media-card__sub">Notícias</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--podcast cat-money"
+               data-t6-card data-tipo="podcast" data-id="pod5" data-nome="PrimoCast" data-secao="podcasts"
+               aria-label="Abrir podcast PrimoCast">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-pod5/300/300" alt="" loading="lazy" /></div>
+              <span class="media-card__title">PrimoCast</span>
+              <span class="media-card__sub">Finanças</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 6. AUDIOLIVROS RECOMENDADOS -->
+      <section class="t6-section" aria-labelledby="t6-audio-title">
+        <header class="t6-section__header">
+          <h2 id="t6-audio-title" class="t6-section__title">Audiolivros recomendados</h2>
+          <button class="t6-see-all" type="button" data-t6-see-all="audiolivros" aria-label="Ver tudo de Audiolivros">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t6-grid-2" role="list">
+          <li>
+            <a href="#" class="media-card media-card--audiobook"
+               data-t6-card data-tipo="audiolivro" data-id="ab1" data-nome="Sapiens" data-secao="audiolivros"
+               aria-label="Abrir audiolivro Sapiens">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-ab1/300/400" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Sapiens</span>
+              <span class="media-card__sub">Yuval N. Harari</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="media-card media-card--audiobook"
+               data-t6-card data-tipo="audiolivro" data-id="ab2" data-nome="Pense de Novo" data-secao="audiolivros"
+               aria-label="Abrir audiolivro Pense de Novo">
+              <div class="media-card__cover"><img src="https://picsum.photos/seed/spotify-ab2/300/400" alt="" loading="lazy" /></div>
+              <span class="media-card__title">Pense de Novo</span>
+              <span class="media-card__sub">Adam Grant</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ============ BOTTOM NAV V2 (5 itens) ============ -->
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a href="t1.html" class="bottom-nav__item" aria-label="Início">
+        <i data-lucide="house" aria-hidden="true"></i><span>Início</span>
+      </a>
+      <a href="t6.html" class="bottom-nav__item bottom-nav__item--active" aria-current="page" aria-label="Descoberta">
+        <i data-lucide="compass" aria-hidden="true"></i><span>Descoberta</span>
+      </a>
+      <a href="#" class="bottom-nav__item" aria-label="Buscar">
+        <i data-lucide="search" aria-hidden="true"></i><span>Buscar</span>
+      </a>
+      <a href="t3.html" class="bottom-nav__item" aria-label="Sua biblioteca">
+        <i data-lucide="library" aria-hidden="true"></i><span>Biblioteca</span>
+      </a>
+      <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil">
+        <span class="bottom-nav__avatar" aria-hidden="true">VT</span><span>Perfil</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Bottom nav grid override para 5 itens em T6 -->
+  <style>
+    .bottom-nav { grid-template-columns: repeat(5, 1fr); }
+    .bottom-nav__item--active { color: var(--text-base); }
+    .bottom-nav__item--active svg { stroke: var(--spotify-green); }
+    .bottom-nav__avatar {
+      width: 24px; height: 24px;
+      border-radius: var(--r-circle);
+      background: var(--background-elevated-highlight);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: var(--fw-bold); color: var(--text-base);
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="../js/telemetria.js"></script>
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/mock-data.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../js/telas/t6.js"></script>
+</body>
+</html>

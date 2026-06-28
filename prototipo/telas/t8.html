@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>T8 — Notificações | Spotify Redesign</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/telas/t8.css" />
+</head>
+<body>
+  <div class="t8-frame">
+
+    <!-- TOPBAR -->
+    <header class="topbar" role="banner">
+      <a href="../index.html" class="topbar__back icon-btn" aria-label="Voltar">
+        <i data-lucide="chevron-left" aria-hidden="true"></i>
+      </a>
+      <h1 class="topbar__title">Notificações</h1>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="t8-more-btn" aria-label="Mais opções" aria-haspopup="dialog">
+          <i data-lucide="more-vertical" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- FILTROS -->
+    <div class="t8-filters" role="tablist" aria-label="Filtrar notificações">
+      <button class="chip chip--active" role="tab" aria-selected="true" data-filter="todas">Todas</button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="lancamento">Lançamentos</button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="recomendacao">Recomendações</button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="sistema">Sistema</button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="social">Social</button>
+    </div>
+
+    <!-- LISTA -->
+    <main class="t8-main" role="main">
+      <ul class="t8-list" id="t8-list" aria-label="Lista de notificações"></ul>
+      <div class="t8-empty" id="t8-empty" hidden role="status" aria-live="polite">
+        <div class="t8-empty__icon" aria-hidden="true"><i data-lucide="bell-off"></i></div>
+        <p class="t8-empty__title">Nada por aqui</p>
+        <p class="t8-empty__msg">Sem notificações para este filtro.</p>
+      </div>
+    </main>
+
+    <!-- SHEET de opções (3-pontinhos) -->
+    <div class="backdrop" id="t8-sheet-backdrop" data-close hidden></div>
+    <aside class="sheet" id="t8-sheet" hidden aria-labelledby="t8-sheet-title">
+      <div class="sheet__handle" aria-hidden="true"></div>
+      <h2 class="t8-sheet__title" id="t8-sheet-title">Opções</h2>
+      <ul class="t8-sheet__list">
+        <li>
+          <button class="t8-sheet__item" data-action="mark-all">
+            <i data-lucide="check-check" aria-hidden="true"></i>
+            <span>Marcar todas como lidas</span>
+          </button>
+        </li>
+        <li>
+          <button class="t8-sheet__item t8-sheet__item--danger" data-action="clear-all">
+            <i data-lucide="trash-2" aria-hidden="true"></i>
+            <span>Limpar tudo</span>
+          </button>
+        </li>
+        <li>
+          <button class="t8-sheet__item" data-close>
+            <i data-lucide="x" aria-hidden="true"></i>
+            <span>Cancelar</span>
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- BOTTOM NAV V2 (5 itens) -->
+    <nav class="bottom-nav t8-bottom-nav" aria-label="Navegação principal">
+      <a href="t1.html" class="bottom-nav__item" aria-label="Início">
+        <i data-lucide="house" aria-hidden="true"></i><span>Início</span>
+      </a>
+      <a href="t6.html" class="bottom-nav__item" aria-label="Descoberta">
+        <i data-lucide="compass" aria-hidden="true"></i><span>Descoberta</span>
+      </a>
+      <a href="#" class="bottom-nav__item" aria-label="Buscar">
+        <i data-lucide="search" aria-hidden="true"></i><span>Buscar</span>
+      </a>
+      <a href="t3.html" class="bottom-nav__item" aria-label="Sua biblioteca">
+        <i data-lucide="library" aria-hidden="true"></i><span>Biblioteca</span>
+      </a>
+      <a href="t5.html" class="bottom-nav__item bottom-nav__item--profile" aria-label="Perfil">
+        <span class="bottom-nav__avatar" aria-hidden="true">VT</span><span>Perfil</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ICONS -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- SHARED + TELA -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/telemetria.js"></script>
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="../js/telas/t8.js"></script>
+</body>
+</html>
