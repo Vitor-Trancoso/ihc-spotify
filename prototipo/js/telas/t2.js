@@ -161,24 +161,15 @@
     if ($("np-current")) $("np-current").textContent = fmt(state.posicao);
     if ($("np-total"))   $("np-total").textContent   = fmt(state.total);
 
-    // Status row textual
-    const stShuf = $("np-status-shuffle");
-    if (stShuf) stShuf.setAttribute("data-active", state.shuffle ? "true" : "false");
-    if ($("np-status-shuffle-text"))
-      $("np-status-shuffle-text").textContent = shuffleStatusText(state.shuffle);
-
-    const stRep = $("np-status-repeat");
-    if (stRep) stRep.setAttribute("data-mode", state.repeat);
-    if ($("np-status-repeat-text"))
-      $("np-status-repeat-text").textContent = repeatStatusText(state.repeat);
-
-    // Shuffle button
+    // Shuffle button (label embaixo do ícone)
     const shufBtn = $("np-shuffle");
     if (shufBtn) {
       shufBtn.setAttribute("aria-pressed", state.shuffle ? "true" : "false");
       shufBtn.setAttribute("aria-label",
         state.shuffle ? "Aleatório ativado" : "Aleatório desligado");
     }
+    if ($("np-shuffle-label"))
+      $("np-shuffle-label").textContent = state.shuffle ? "Ativado" : "Off";
 
     // Repeat button
     const repBtn = $("np-repeat");

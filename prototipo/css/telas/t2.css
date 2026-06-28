@@ -286,7 +286,9 @@
 }
 
 /* ---------- STATUS ROW ---------- */
-.np__status-row {
+/* DEPRECATED V2 — status-row removida (label embaixo dos botões substitui) */
+.np__status-row { display: none !important; }
+.np__status-row--deprecated {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -359,18 +361,18 @@
 .np__prev i,
 .np__next i { width: 28px; height: 28px; }
 
-/* Shuffle toggle (verde quando ativo) */
+/* Shuffle toggle (verde quando ativo) — label embaixo do ícone, igual repeat */
 .np__shuffle[aria-pressed="true"] { color: var(--essential-positive); }
-.np__shuffle[aria-pressed="true"]::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: var(--r-circle);
-  background: var(--essential-positive);
+.np__shuffle-label {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  color: var(--text-subdued);
+  line-height: 1;
+}
+.np__shuffle[aria-pressed="true"] .np__shuffle-label {
+  color: var(--essential-positive);
 }
 
 /* Repeat — 3 estados */
