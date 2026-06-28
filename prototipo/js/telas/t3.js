@@ -38,20 +38,88 @@
   const $snackbarRegion = document.getElementById("snackbar-region");
   const $chips          = document.querySelectorAll(".t3-chips .chip");
   const $viewBtns       = document.querySelectorAll(".t3-view-toggle__btn");
+  const $count          = document.getElementById("t3-count");
 
   // ---------- DATA SOURCE ----------
-  // playlists do mock + alguns artistas/podcasts para chips de filtro
+  // V2.1: agrega playlists + artistas + albuns + podcasts + audiobooks
+  // para variedade de shapes nos chips de filtro.
   function carregarItens() {
-    const playlists = (window.MOCK && window.MOCK.playlists) || [];
-    return playlists.map((p) => ({
+    const MOCK = window.MOCK || {};
+    const playlists = (MOCK.playlists || []).map((p) => ({
       id: p.id,
-      tipo: p.tipo || "playlist",
+      tipo: "playlist",
       nome: p.nome,
       capa: p.capa,
       gradiente: p.gradiente,
       meta: `Playlist • ${p.criador || "Voce"} • ${p.total || 0} musicas`,
-      categoria: p.tipo || "playlists"
+      categoria: "playlists"
     }));
+
+    // pega ~6 artistas do array MUSICAS (usando .artista)
+    const artistasUnicos = [];
+    const seenArt = new Set();
+    (MOCK.musicas || []).forEach((m) => {
+      if (m.artista && !seenArt.has(m.artista) && artistasUnicos.length < 6) {
+        seenArt.add(m.artista);
+        artistasUnicos.push(m);
+      }
+    });
+    const artistas = artistasUnicos.map((m, i) => ({
+      id: `art-${i + 1}`,
+      tipo: "artista",
+      nome: m.artista,
+      capa: m.capa,
+      meta: `Artista`,
+      categoria: "artistas"
+    }));
+
+    // pega ~6 albuns do MUSICAS
+    const albunsUnicos = [];
+    const seenAlb = new Set();
+    (MOCK.musicas || []).forEach((m) => {
+      if (m.album && !seenAlb.has(m.album) && albunsUnicos.length < 6) {
+        seenAlb.add(m.album);
+        albunsUnicos.push(m);
+      }
+    });
+    const albuns = albunsUnicos.map((m, i) => ({
+      id: `alb-${i + 1}`,
+      tipo: "album",
+      nome: m.album,
+      capa: m.capa,
+      meta: `Album • ${m.artista}`,
+      categoria: "albuns"
+    }));
+
+    const podcasts = (MOCK.podcasts || []).map((p) => ({
+      id: p.id,
+      tipo: "podcast",
+      nome: p.nome,
+      capa: p.capa,
+      meta: `Podcast • ${p.autor || ""}`,
+      categoria: "podcasts",
+      // heuristica simples para categoria de cor
+      catClass: detectarCatPodcast(p.nome)
+    }));
+
+    const audiobooks = (MOCK.audiolivros || []).map((a) => ({
+      id: a.id,
+      tipo: "audiobook",
+      nome: a.nome,
+      capa: a.capa,
+      meta: `Audiobook • ${a.autor || ""}`,
+      categoria: "audiolivros"
+    }));
+
+    return [].concat(playlists, artistas, albuns, podcasts, audiobooks);
+  }
+
+  function detectarCatPodcast(nome) {
+    const n = (nome || "").toLowerCase();
+    if (/(news|daily|times|jornal)/.test(n)) return "cat-news";
+    if (/(tech|lex|huberman|lab|primo|cast)/.test(n)) return "cat-tech";
+    if (/(comedy|humor|flow)/.test(n)) return "cat-comedy";
+    return "cat-music";
   }
 
   // ---------- RENDER ----------
@@ -69,6 +137,17 @@
     $list.dataset.view = state.view;
     $list.dataset.selectionMode = String(state.selectionMode);
 
+    // V2.7: contador "Mostrando X de Y" (fim do scroll infinito)
+    if ($count) {
+      const total = state.items.length;
+      const n = filtrados.length;
+      $count.textContent = n === 0
+        ? ""
+        : (n === total
+            ? `Mostrando todos os ${total} itens`
+            : `Mostrando ${n} de ${total} itens`);
+    }
+
     if (window.lucide && typeof window.lucide.createIcons === "function") {
       window.lucide.createIcons();
     }
@@ -79,21 +158,44 @@
       const q = state.search.toLowerCase();
       if (!item.nome.toLowerCase().includes(q)) return false;
     }
-    if (state.filter !== "all" && state.filter !== "playlists") {
-      // como o mock so tem playlists, mantemos para o chip "Playlists"
-      // demais filtros nao casam — devolve vazio
-      return false;
-    }
-    return true;
+    const f = state.filter;
+    if (!f || f === "all") return true;
+    // mapeia chips -> categorias
+    const mapa = {
+      playlists: ["playlists"],
+      artistas: ["artistas"],
+      albuns: ["albuns"],
+      podcasts: ["podcasts", "audiolivros"], // podcasts agrupa audiobooks tb
+      baixadas: ["playlists"], // sem campo baixada nas playlists do mock
+      curtidas: ["playlists"]
+    };
+    const aceitas = mapa[f] || [f];
+    return aceitas.indexOf(item.categoria) !== -1;
   }
 
   function renderItem(item) {
     const sel = state.selection.has(item.id);
     // Sanitiza URL: aceita apenas http(s) ou caminhos relativos seguros (evita javascript: e data:)
     const safeCapa = (typeof item.capa === 'string' && /^(https?:\/\/|\/|\.\.?\/)[^\s"'<>]+$/i.test(item.capa)) ? item.capa : '';
-    const coverHTML = item.gradiente || !safeCapa
-      ? `<span class="t3-item__cover t3-item__cover--gradient" aria-hidden="true"><i data-lucide="heart"></i></span>`
-      : `<img class="t3-item__cover" src="${escapeAttr(safeCapa)}" alt="" loading="lazy" />`;
+
+    // V2.1 — Shapes diferenciados por tipo (media-cards.css)
+    const tipoMap = {
+      playlist: "media-card--playlist",
+      album: "media-card--album",
+      artista: "media-card--artist",
+      podcast: "media-card--podcast",
+      audiobook: "media-card--audiobook",
+      music: "media-card--music"
+    };
+    const shapeCls = tipoMap[item.tipo] || "media-card--music";
+    const catCls = item.tipo === "podcast" && item.catClass ? " " + item.catClass : "";
+    const coverClasses = `t3-item__cover media-card ${shapeCls}${catCls}`;
+
+    const innerCover = item.gradiente || !safeCapa
+      ? `<span class="media-card__cover" aria-hidden="true"><i data-lucide="heart" style="margin:auto"></i></span>`
+      : `<span class="media-card__cover"><img src="${escapeAttr(safeCapa)}" alt="" loading="lazy" /></span>`;
+
+    const coverHTML = `<span class="${coverClasses}" aria-hidden="true">${innerCover}</span>`;
 
     return `
       <li>

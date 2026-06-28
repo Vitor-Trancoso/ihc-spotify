@@ -1,0 +1,140 @@
+/* ============================================================
+   Sistema de SHAPES por tipo de mídia (V2.1)
+   Resolve ponto #2 do feedback do time: "Distinção visual entre
+   tipos diferentes de conteúdo".
+   Uso: <div class="media-card media-card--{tipo}"><div class="media-card__cover">...</div></div>
+   Tipos: music, album, playlist, artist, podcast, audiobook
+   ============================================================ */
+
+.media-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.media-card__cover {
+  position: relative;
+  background: var(--background-tinted-base);
+  overflow: hidden;
+  transition: transform var(--d-tap) var(--ease-standard);
+}
+.media-card__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* --- MÚSICA: quadrado liso, raio pequeno --- */
+.media-card--music .media-card__cover {
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+}
+
+/* --- ÁLBUM: quadrado com ABA superior (estilo pasta) --- */
+.media-card--album .media-card__cover {
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  margin-top: 6px; /* espaço pra aba */
+}
+.media-card--album .media-card__cover::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 8px;
+  width: 38%;
+  height: 8px;
+  background: var(--background-elevated-base);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+/* --- PLAYLIST: quadrado com EFEITO DE ECO (3 shadows empilhadas) --- */
+.media-card--playlist .media-card__cover {
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    4px 4px 0 -1px var(--background-elevated-base),
+    8px 8px 0 -2px var(--background-tinted-base);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+/* --- ARTISTA: círculo perfeito --- */
+.media-card--artist .media-card__cover {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.media-card--artist .media-card__title {
+  text-align: center;
+}
+
+/* --- PODCAST: quadrado com FITA LATERAL colorida --- */
+.media-card--podcast .media-card__cover {
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  padding-left: 4px;
+  background: var(--podcast-ribbon-color, var(--spotify-green));
+}
+.media-card--podcast .media-card__cover img {
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+/* Categorias por modificador */
+.media-card--podcast.cat-news .media-card__cover { background: var(--essential-negative); }
+.media-card--podcast.cat-tech .media-card__cover { background: var(--essential-announcement); }
+.media-card--podcast.cat-comedy .media-card__cover { background: var(--essential-warning); }
+.media-card--podcast.cat-music .media-card__cover { background: var(--spotify-green); }
+
+/* --- AUDIOLIVRO: retangular 3:4 com sombra à direita simulando livro --- */
+.media-card--audiobook .media-card__cover {
+  aspect-ratio: 3/4;
+  border-radius: 2px 4px 4px 2px;
+  box-shadow:
+    inset -3px 0 6px rgba(0,0,0,0.4),
+    3px 0 0 -1px rgba(255,255,255,0.04);
+}
+
+/* --- TÍTULO/SUB compartilhados --- */
+.media-card__title {
+  font: var(--fw-semibold) var(--fs-body)/1.25 var(--font-family);
+  color: var(--text-base);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.media-card__sub {
+  font: var(--fw-book) var(--fs-caption)/var(--lh-caption) var(--font-family);
+  color: var(--text-subdued);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover */
+@media (hover: hover) and (pointer: fine) {
+  .media-card:hover .media-card__cover { transform: scale(0.97); }
+}
+
+/* Legenda visual (tooltip de primeira vez) — opcional */
+.media-shapes-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--background-elevated-base);
+  border-radius: var(--r-md);
+}
+.media-shapes-legend__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  font: var(--fw-book) var(--fs-micro) var(--font-family);
+  color: var(--text-subdued);
+}
+.media-shapes-legend__demo {
+  width: 36px; height: 36px;
+  background: var(--background-tinted-highlight);
+}

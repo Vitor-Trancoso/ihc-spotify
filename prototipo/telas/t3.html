@@ -59,7 +59,8 @@
 
     <!-- Chips de filtro -->
     <nav class="t3-chips" aria-label="Filtros de biblioteca">
-      <button class="chip" type="button" data-filter="all" data-active="true">Playlists</button>
+      <button class="chip" type="button" data-filter="all" data-active="true">Tudo</button>
+      <button class="chip" type="button" data-filter="playlists">Playlists</button>
       <button class="chip" type="button" data-filter="artistas">Artistas</button>
       <button class="chip" type="button" data-filter="albuns">Albuns</button>
       <button class="chip" type="button" data-filter="podcasts">Podcasts</button>
@@ -104,6 +105,9 @@
       role="list"
       aria-label="Suas playlists"
     ></ul>
+
+    <!-- Contador (V2.7 — fim do scroll infinito) -->
+    <p class="t3-count" id="t3-count" aria-live="polite"></p>
 
     <!-- Alfabeto lateral -->
     <div class="t3-alpha" id="t3-alpha" aria-hidden="true"></div>

@@ -245,19 +245,35 @@
 .t3-item__cover {
   width: 56px;
   height: 56px;
-  border-radius: var(--r-sm);
-  object-fit: cover;
-  background: var(--background-elevated-highlight);
   flex-shrink: 0;
-}
-.t3-item__cover--gradient {
-  background: var(--gradient-liked-songs);
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* shapes via media-cards.css; aqui apenas garantimos que a capa interna ocupe o slot */
+.t3-item__cover.media-card { gap: 0; }
+.t3-item__cover .media-card__cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-base);
 }
-.t3-item__cover--gradient i { width: 22px; height: 22px; }
+/* fallback gradiente quando nao ha capa */
+.t3-item__cover .media-card__cover:not(:has(img)) {
+  background: var(--gradient-liked-songs);
+}
+.t3-item__cover .media-card__cover i { width: 22px; height: 22px; }
+
+/* compensa "eco" da playlist no slot de 56x56 (eco vaza pra direita/baixo) */
+.t3-item__cover.media-card--playlist { width: 52px; height: 52px; }
+/* podcast: fita lateral colorida pre-existe; ok */
+/* audiobook: mantemos 56x56 mas aspect ratio 3/4 da capa interna */
+.t3-item__cover.media-card--audiobook .media-card__cover {
+  width: 75%;
+  margin: 0 auto;
+}
 
 .t3-item__info { min-width: 0; }
 .t3-item__name {
@@ -354,6 +370,15 @@
   height: auto;
   aspect-ratio: 1;
 }
+.t3-list[data-view="grid"] .t3-item__cover.media-card--playlist,
+.t3-list[data-view="grid"] .t3-item__cover.media-card--audiobook,
+.t3-list[data-view="grid"] .t3-item__cover.media-card--artist {
+  width: 100%;
+  height: auto;
+}
+.t3-list[data-view="grid"] .t3-item__cover .media-card__cover {
+  width: 100%;
+}
 .t3-list[data-view="grid"] .t3-item__more {
   position: absolute;
   top: var(--sp-2);
@@ -439,6 +464,16 @@
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
+/* -------------------- CONTADOR (V2.7) -------------------- */
+.t3-count {
+  text-align: center;
+  color: var(--text-subdued);
+  font-size: var(--fs-micro);
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  margin: 0;
+}
+.t3-count:empty { display: none; }
 
 /* -------------------- EMPTY -------------------- */
 .t3-empty {

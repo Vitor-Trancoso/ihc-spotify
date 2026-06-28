@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/tokens.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/media-cards.css" />
   <link rel="stylesheet" href="../css/telas/t1.css" />
 </head>
 <body class="t1-body">
@@ -50,29 +51,41 @@
       <section class="t1-section" aria-labelledby="t1-recent-title">
         <header class="t1-section__header">
           <h2 id="t1-recent-title" class="t1-section__title">Tocados recentemente</h2>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Tocados recentemente">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
         </header>
         <ul class="t1-recent-grid" role="list">
           <li class="t1-recent-card">
-            <div class="t1-recent-card__cover" aria-hidden="true">
-              <img src="https://picsum.photos/seed/discover/120/120" alt="" loading="lazy" />
+            <div class="media-card media-card--playlist t1-recent-card__shape" aria-hidden="true">
+              <div class="media-card__cover">
+                <img src="https://picsum.photos/seed/discover/120/120" alt="" loading="lazy" />
+              </div>
             </div>
             <span class="t1-recent-card__title">Discover Weekly</span>
           </li>
           <li class="t1-recent-card">
-            <div class="t1-recent-card__cover t1-recent-card__cover--liked" aria-hidden="true">
-              <i data-lucide="heart" aria-hidden="true"></i>
+            <div class="media-card media-card--playlist t1-recent-card__shape" aria-hidden="true">
+              <div class="media-card__cover t1-recent-card__cover--liked">
+                <i data-lucide="heart" aria-hidden="true"></i>
+              </div>
             </div>
             <span class="t1-recent-card__title">Músicas Curtidas</span>
           </li>
           <li class="t1-recent-card">
-            <div class="t1-recent-card__cover" aria-hidden="true">
-              <img src="https://picsum.photos/seed/dailymix/120/120" alt="" loading="lazy" />
+            <div class="media-card media-card--playlist t1-recent-card__shape" aria-hidden="true">
+              <div class="media-card__cover">
+                <img src="https://picsum.photos/seed/dailymix/120/120" alt="" loading="lazy" />
+              </div>
             </div>
             <span class="t1-recent-card__title">Daily Mix 1</span>
           </li>
           <li class="t1-recent-card">
-            <div class="t1-recent-card__cover" aria-hidden="true">
-              <img src="https://picsum.photos/seed/lofi/120/120" alt="" loading="lazy" />
+            <div class="media-card media-card--playlist t1-recent-card__shape" aria-hidden="true">
+              <div class="media-card__cover">
+                <img src="https://picsum.photos/seed/lofi/120/120" alt="" loading="lazy" />
+              </div>
             </div>
             <span class="t1-recent-card__title">Lo-fi Beats</span>
           </li>
@@ -83,53 +96,215 @@
       <section class="t1-section" aria-labelledby="t1-mix-title">
         <header class="t1-section__header">
           <h2 id="t1-mix-title" class="t1-section__title">Seus Mixes</h2>
-          <button class="t1-collapse" type="button" aria-expanded="true" aria-controls="t1-mix-row" aria-label="Recolher seção Sua mistura">
-            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Seus Mixes">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
           </button>
         </header>
         <ul id="t1-mix-row" class="t1-carousel" role="list">
-          <li class="t1-mix-card">
-            <div class="t1-mix-card__cover">
+          <li class="media-card media-card--playlist t1-c-card">
+            <div class="media-card__cover">
               <img src="https://picsum.photos/seed/mixtame/200/200" alt="" loading="lazy" />
             </div>
-            <span class="t1-mix-card__title">Mix Tame Impala</span>
-            <span class="t1-mix-card__sub">MGMT, Pond, Kevin Parker</span>
+            <span class="media-card__title">Mix Tame Impala</span>
+            <span class="media-card__sub">MGMT, Pond, Kevin Parker</span>
           </li>
-          <li class="t1-mix-card">
-            <div class="t1-mix-card__cover">
+          <li class="media-card media-card--playlist t1-c-card">
+            <div class="media-card__cover">
               <img src="https://picsum.photos/seed/mixchill/200/200" alt="" loading="lazy" />
             </div>
-            <span class="t1-mix-card__title">Mix Chill</span>
-            <span class="t1-mix-card__sub">Bon Iver, Sufjan, Phoebe</span>
+            <span class="media-card__title">Mix Chill</span>
+            <span class="media-card__sub">Bon Iver, Sufjan, Phoebe</span>
           </li>
-          <li class="t1-mix-card">
-            <div class="t1-mix-card__cover">
+          <li class="media-card media-card--playlist t1-c-card">
+            <div class="media-card__cover">
               <img src="https://picsum.photos/seed/mixbr/200/200" alt="" loading="lazy" />
             </div>
-            <span class="t1-mix-card__title">Mix BR</span>
-            <span class="t1-mix-card__sub">Caetano, Tim Maia, Marisa</span>
+            <span class="media-card__title">Mix BR</span>
+            <span class="media-card__sub">Caetano, Tim Maia, Marisa</span>
           </li>
         </ul>
       </section>
 
-      <!-- ============ EDITORIAL (colapsada) ============ -->
-      <section class="t1-section t1-section--collapsed" aria-labelledby="t1-editorial-title">
-        <header class="t1-section__header t1-section__header--button">
+      <!-- ============ EDITORIAL (álbuns + playlists) ============ -->
+      <section class="t1-section" aria-labelledby="t1-editorial-title">
+        <header class="t1-section__header">
           <h2 id="t1-editorial-title" class="t1-section__title">Editorial</h2>
-          <button class="t1-collapse" type="button" aria-expanded="true" aria-controls="t1-editorial-list" aria-label="Expandir seção Editorial">
-            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Editorial">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
           </button>
         </header>
-        <p class="t1-section__hint">Selecionado pela equipe Spotify · toque em expandir para ver</p>
-        <ul id="t1-editorial-list" class="t1-carousel" role="list" hidden>
-          <li class="t1-mix-card">
-            <div class="t1-mix-card__cover">
+        <p class="t1-section__hint">Selecionado pela equipe Spotify</p>
+        <ul id="t1-editorial-list" class="t1-carousel" role="list">
+          <li class="media-card media-card--album t1-c-card">
+            <div class="media-card__cover">
               <img src="https://picsum.photos/seed/edit1/200/200" alt="" loading="lazy" />
             </div>
-            <span class="t1-mix-card__title">Top Brasil</span>
+            <span class="media-card__title">Currents</span>
+            <span class="media-card__sub">Álbum · Tame Impala</span>
+          </li>
+          <li class="media-card media-card--playlist t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/edit2/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Top Brasil</span>
+            <span class="media-card__sub">Playlist · Spotify</span>
+          </li>
+          <li class="media-card media-card--album t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/edit3/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Blonde</span>
+            <span class="media-card__sub">Álbum · Frank Ocean</span>
+          </li>
+          <li class="media-card media-card--playlist t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/edit4/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Indie Pop</span>
+            <span class="media-card__sub">Playlist · Spotify</span>
           </li>
         </ul>
       </section>
+
+      <!-- ============ ARTISTAS QUE VOCÊ SEGUE ============ -->
+      <section class="t1-section" aria-labelledby="t1-artists-title">
+        <header class="t1-section__header">
+          <h2 id="t1-artists-title" class="t1-section__title">Artistas que você segue</h2>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Artistas">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t1-carousel t1-carousel--artist" role="list">
+          <li class="media-card media-card--artist t1-c-card t1-c-card--artist">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/tame/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Tame Impala</span>
+          </li>
+          <li class="media-card media-card--artist t1-c-card t1-c-card--artist">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/lana/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Lana Del Rey</span>
+          </li>
+          <li class="media-card media-card--artist t1-c-card t1-c-card--artist">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/daft/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Daft Punk</span>
+          </li>
+          <li class="media-card media-card--artist t1-c-card t1-c-card--artist">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/arctic/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Arctic Monkeys</span>
+          </li>
+          <li class="media-card media-card--artist t1-c-card t1-c-card--artist">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/radiohead/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Radiohead</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ PODCASTS POPULARES ============ -->
+      <section class="t1-section" aria-labelledby="t1-pod-title">
+        <header class="t1-section__header">
+          <h2 id="t1-pod-title" class="t1-section__title">Podcasts populares</h2>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Podcasts">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t1-carousel" role="list">
+          <li class="media-card media-card--podcast cat-tech t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/pod1/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Lex Fridman Podcast</span>
+            <span class="media-card__sub">Tecnologia</span>
+          </li>
+          <li class="media-card media-card--podcast cat-news t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/pod2/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">The Daily</span>
+            <span class="media-card__sub">Notícias</span>
+          </li>
+          <li class="media-card media-card--podcast cat-tech t1-c-card">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/pod3/200/200" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Hipsters Ponto Tech</span>
+            <span class="media-card__sub">Tecnologia</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ AUDIOLIVROS ============ -->
+      <section class="t1-section" aria-labelledby="t1-audio-title">
+        <header class="t1-section__header">
+          <h2 id="t1-audio-title" class="t1-section__title">Audiolivros</h2>
+          <button class="t1-see-all" type="button" aria-label="Ver tudo de Audiolivros">
+            <span>Ver tudo</span>
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
+        </header>
+        <ul class="t1-carousel" role="list">
+          <li class="media-card media-card--audiobook t1-c-card t1-c-card--audiobook">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/book1/200/280" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">Sapiens</span>
+            <span class="media-card__sub">Yuval N. Harari</span>
+          </li>
+          <li class="media-card media-card--audiobook t1-c-card t1-c-card--audiobook">
+            <div class="media-card__cover">
+              <img src="https://picsum.photos/seed/book2/200/280" alt="" loading="lazy" />
+            </div>
+            <span class="media-card__title">1984</span>
+            <span class="media-card__sub">George Orwell</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ LEGENDA DE SHAPES (dispensável) ============ -->
+      <aside class="media-shapes-legend t1-legend" id="t1-shapes-legend" aria-label="Legenda das formas de cards">
+        <button class="t1-legend__close" type="button" aria-label="Fechar legenda" onclick="(function(b){var c=b.closest('.t1-legend');c.hidden=true;try{localStorage.setItem('t1.legend.dismissed','1');}catch(e){}})(this)">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+        <div class="t1-legend__title">Como ler as formas</div>
+        <div class="t1-legend__grid">
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--music t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Música</span>
+          </div>
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--album t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Álbum</span>
+          </div>
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--playlist t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Playlist</span>
+          </div>
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--artist t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Artista</span>
+          </div>
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--podcast cat-tech t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Podcast</span>
+          </div>
+          <div class="media-shapes-legend__item">
+            <div class="media-card media-card--audiobook t1-legend__demo"><div class="media-card__cover"></div></div>
+            <span>Audiolivro</span>
+          </div>
+        </div>
+      </aside>
 
       <!-- Nota de mockup -->
       <footer class="t1-footnote" role="contentinfo">
@@ -162,7 +337,15 @@
   <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
-    if (window.lucide) { window.lucide.createIcons(); }
+    (function(){
+      try {
+        if (localStorage.getItem('t1.legend.dismissed') === '1') {
+          var el = document.getElementById('t1-shapes-legend');
+          if (el) el.hidden = true;
+        }
+      } catch(e) {}
+      if (window.lucide) { window.lucide.createIcons(); }
+    })();
   </script>
 </body>
 </html>
