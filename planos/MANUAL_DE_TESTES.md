@@ -4,6 +4,13 @@ Use este manual para verificar manualmente, tela por tela, se tudo funciona ante
 
 ## Setup
 
+### Opção A — Online (recomendado)
+Abrir direto no celular ou no DevTools mobile do desktop:
+```
+https://vitor-trancoso.github.io/ihc-spotify/prototipo/index.html
+```
+
+### Opção B — Local
 ```bash
 cd /Users/vitormarconi/Documents/GitHub/ihc-spotify/prototipo
 python3 -m http.server 8000
@@ -12,9 +19,9 @@ python3 -m http.server 8000
 Abra **http://localhost:8000** no Chrome.
 **DevTools → Toggle device toolbar (Cmd+Shift+M) → iPhone 12 Pro (390×844) ou iPhone SE (375×667).**
 
-Para teste em celular real: descubra o IP da máquina (`ipconfig getifaddr en0`) e abra `http://SEU_IP:8000` no celular **na mesma rede Wi-Fi**. Android Chrome é o alvo principal (T3 long-press depende disso).
+Para teste em celular real: descubra o IP da máquina (`ipconfig getifaddr en0`) e abra `http://SEU_IP:8000` no celular **na mesma rede Wi-Fi**. **Android Chrome é o alvo principal** (T3 long-press depende disso; iOS Safari tem limitações documentadas).
 
-Use o `index.html` como menu de navegação entre as 11 telas.
+Use o `index.html` como menu de navegação entre as **15 telas** (9 redesign + 5 controle + 1 utilitário onboarding).
 
 ---
 
@@ -32,96 +39,122 @@ Anote em coluna ao lado de cada item. Se ❌, descreva o que aconteceu.
 
 | # | Ação | Esperado |
 |---|---|---|
-| 0.1 | Abrir `http://localhost:8000` | Carrega header "Protótipo Spotify IHC" + grid de 10 cards |
-| 0.2 | Clicar em qualquer card "Redesign" | Abre a tela correspondente |
-| 0.3 | Clicar em qualquer card "Controle (atual)" | Abre versão controle |
-| 0.4 | Botão voltar/back no navegador | Volta ao menu |
+| 0.1 | Abrir a URL | Header "Protótipo Spotify IHC" + texto "**9 telas em redesign** e 5 versões-controle" |
+| 0.2 | Grid de cards | 9 cards Redesign (T1-T5, MA, T6, T7, T8, T9) + 5 cards Controle |
+| 0.3 | Clicar qualquer card | Abre a tela correspondente |
+| 0.4 | Botão voltar do navegador | Volta ao menu |
 | 0.5 | Console (F12) | Sem erros vermelhos |
 
 ---
 
-## T1 — Home minimalista (mockup)
-
-**Esperado**: visual denso, grid 2-col, sem feed TikTok, sem auto-preview. É **mockup estático**.
+## Onboarding (tour pós-update — APARECE na 1ª vez)
 
 | # | Ação | Esperado |
 |---|---|---|
-| 1.1 | Abrir `#/t1` | Topbar com avatar, chips "Tudo / Música / Podcasts / Audiolivros", chip ativo verde |
-| 1.2 | Saudação "Boa noite, Vitor" visível | Tipografia Inter, peso bold |
-| 1.3 | Grid "Tocados recentemente" | 4 cards em 2×2, capa + nome, densidade alta |
-| 1.4 | Seção "Sua mistura" | 1 carrossel horizontal, scroll suave |
-| 1.5 | Seção "Editorial" | Colapsada por padrão, botão para expandir (visual apenas) |
-| 1.6 | Toggle "Compacto / Descobrir" | Visível no topo (não precisa funcionar) |
-| 1.7 | Nota "Mockup estático" no rodapé | Presente e discreta |
-| 1.8 | Scroll horizontal acidental no body | **Não** deve existir |
-| 1.9 | Bottom nav | Tab "Início" ativa em verde |
+| O.1 | 1ª vez que abrir T1 | Após ~800ms aparece overlay com backdrop blur + card centrado "PASSO 1 DE 4 — O que mudou 🎉" |
+| O.2 | Clicar "Próximo" | Avança para passos 2, 3, 4 (Perfil aqui, Long-press, Descoberta) |
+| O.3 | Dots indicadores | Dot ativo verde, demais cinza |
+| O.4 | Clicar "Pular" | Fecha o tour, não aparece de novo |
+| O.5 | Tap no backdrop ou ESC | Fecha o tour |
+| O.6 | No último passo o botão vira "Concluir" | ✓ |
+| O.7 | Recarregar T1 após dispensar | Tour NÃO aparece de novo (lembrou via localStorage) |
+| O.8 | Para forçar de novo | Console: `localStorage.removeItem('spotify_onboarding_v2_done'); location.reload()` |
+
+---
+
+## T1 — Home minimalista (com shapes diferenciados — V2)
+
+**Esperado**: layout limpo, **shapes por tipo de mídia visíveis**, "Ver tudo" em cada seção, bottom nav 5 itens.
+
+| # | Ação | Esperado |
+|---|---|---|
+| 1.1 | Abrir T1 | Topbar: avatar VT + chips "Tudo/Música/Podcasts/Audiolivros" + **ícone social (users)** + **ícone sino com badge "3"** |
+| 1.2 | Saudação "Boa noite, Vitor" | Tipografia bold |
+| 1.3 | Toggle "Compacto / Descobrir" | Visível (mockup) |
+| 1.4 | Seção "Tocados recentemente" | 4 cards 2×2 + botão **"Ver tudo >"** no header |
+| 1.5 | Seção "Seus Mixes" | Carrossel horizontal com cards **playlist (efeito eco/empilhamento)** |
+| 1.6 | Seção "Editorial" | Cards de **álbum (com aba "pasta" no topo)** + playlist |
+| 1.7 | **NOVO** Seção "Artistas que você segue" | Carrossel com **círculos perfeitos** (Tame Impala, Lana Del Rey, Daft Punk) |
+| 1.8 | **NOVO** Seção "Podcasts populares" | Cards com **fita lateral colorida** (vermelha=Notícias, azul=Tecnologia) |
+| 1.9 | **NOVO** Seção "Audiolivros" | Cards **retangulares 3:4** com sombra de livro (Sapiens, 1984) |
+| 1.10 | **NOVO** Legenda "Como ler as formas" | Bloco no rodapé com 6 demos (Música/Álbum/Playlist/Artista/Podcast/Audiolivro). Botão X para fechar |
+| 1.11 | **NOVO** Botão "Personalizar Home" | Discreto, antes da nota mockup → navega para **T7** |
+| 1.12 | Avatar VT no topo | Clicar → vai para **T5 Configurações** |
+| 1.13 | Ícone sino no topo | Clicar → vai para **T8 Notificações** |
+| 1.14 | Ícone social no topo | Clicar → vai para **T9 Social** |
+| 1.15 | Bottom nav | **5 itens**: Início (verde ativo) / **Descoberta** / Buscar / Biblioteca / Perfil (avatar VT) |
+| 1.16 | Tap em "Descoberta" no bottom nav | Vai para **T6** |
+| 1.17 | Tap em "Perfil" no bottom nav | Vai para **T5** |
+| 1.18 | Scroll horizontal acidental no body | Não deve existir |
 
 ---
 
 ## T2 — Player redesenhado (alta fidelidade)
 
-**Esperado**: coração ♥ primário, "+" secundário, shuffle/repeat com **label de texto** sempre visível, Smart Shuffle como **toggle separado**.
+**Esperado**: ♥ primário, "+" secundário, Shuffle/Repeat com **label textual**, **snackbar Desfazer** ao curtir, **picker de playlist** ao adicionar.
 
 | # | Ação | Esperado |
 |---|---|---|
-| 2.1 | Abrir `#/t2` | Header (chevron-down + "TOCANDO DE Playlist Y" + 3-pontinhos) |
+| 2.1 | Abrir T2 | Header (chevron-down + "TOCANDO DE PLAYLIST · Discover Weekly" + 3-pontinhos) |
 | 2.2 | Capa grande quadrada | ~320×320, centralizada |
-| 2.3 | Linha com título da música | ♥ à esquerda do nome ou alinhado primário, "+" pequeno secundário |
-| 2.4 | Clicar no ♥ | Vira verde preenchido, toast "Adicionado às curtidas" (ou similar) |
-| 2.5 | Clicar de novo no ♥ | Desfaz (volta ao outline) |
-| 2.6 | Barra de progresso (slider) | Arrastável; tempo atual/total atualiza |
-| 2.7 | Clicar PLAY/PAUSE | Ícone alterna; logado em telemetria |
-| 2.8 | Clicar Shuffle | Vira verde + label muda para "Aleatório: Ativado" (ou similar texto visível) |
-| 2.9 | Clicar Shuffle de novo | Volta para "Aleatório: Desativado" |
-| 2.10 | Clicar Repeat | Cicla off → tudo → uma, **label texto** muda visível ("Repetir: Off/Tudo/Uma") |
-| 2.11 | Toggle "Smart Shuffle" | Switch separado, NÃO está dentro do ciclo do shuffle normal |
-| 2.12 | Recarregar página | Estado do shuffle/repeat persiste (localStorage) |
-| 2.13 | Mini-player (se houver na tela) | Mostra indicador de shuffle/repeat ativo |
-| 2.14 | Verificar console | `telemetria.logEvent` disparou para cada toggle |
+| 2.3 | ♥ ao lado do nome | Visível, primário |
+| 2.4 | Clicar ♥ | Vira verde preenchido + **snackbar "Adicionada às Curtidas — DESFAZER"** com countdown verde |
+| 2.5 | Clicar ♥ de novo | **Snackbar "Removida das Curtidas — DESFAZER"** |
+| 2.6 | Clicar DESFAZER | Reverte o estado do coração |
+| 2.7 | Ícone "+" / biblioteca ao lado do título | Clicar abre **bottom-sheet picker de playlist** com busca + "**+ Nova playlist**" verde + lista (Discover Weekly, Daily Mix 1-3, Release Radar, Músicas Curtidas) |
+| 2.8 | Tap em uma playlist do picker | Snackbar "Adicionada a {nome} — DESFAZER" + fecha sheet |
+| 2.9 | Barra de progresso | Arrastável; tempo atual/total atualiza |
+| 2.10 | Clicar Shuffle | Vira verde + label **"Aleatório: Ativado"** muda visível |
+| 2.11 | Clicar Repeat | Cicla off → tudo → uma com label **"Repetir: Off/Tudo/Uma"** |
+| 2.12 | Toggle Smart Shuffle | Switch **separado** abaixo (não no ciclo do shuffle normal) |
+| 2.13 | Recarregar | Estado shuffle/repeat persiste (localStorage) |
 
 ---
 
-## T3 — Biblioteca com seleção múltipla (alta fidelidade)
+## T3 — Biblioteca com seleção múltipla + shapes (V2)
 
 **⚠️ Testar em Android Chrome ou desktop. iOS Safari pode falhar no long-press.**
 
 | # | Ação | Esperado |
 |---|---|---|
-| 3.1 | Abrir `#/t3` | Topbar avatar + "Sua biblioteca" + ícone busca |
-| 3.2 | Campo de busca | Sempre visível abaixo do título (não atrás de ícone) |
-| 3.3 | Digitar "rock" na busca | Lista filtra em tempo real |
-| 3.4 | Chips de filtro (Playlists/Artistas/...) | Clicáveis, chip ativo vira verde |
-| 3.5 | Toggle Lista/Grade | Muda layout das playlists |
-| 3.6 | Lista mostra 20 playlists | Cada uma: capa + nome + tipo + contagem |
-| 3.7 | **Long-press** em uma playlist (segurar 500ms) | Feedback visual (scale + outline verde), entra em **modo seleção** |
-| 3.8 | Topbar muda | "1 selecionado" + botões Mover/Remover/Baixar/Compartilhar/Adicionar + X cancelar |
-| 3.9 | Checkboxes aparecem | Fade-in suave em todas as playlists |
-| 3.10 | Tap em outra playlist | Adiciona à seleção, contador vai para "2 selecionados" |
-| 3.11 | Tap de novo na mesma | Remove da seleção |
-| 3.12 | Clicar X cancelar | Volta ao normal, checkboxes somem |
-| 3.13 | Selecionar 3 + clicar Remover | Snackbar "3 playlists removidas — Desfazer" |
-| 3.14 | Clicar Desfazer | Playlists voltam, snackbar some |
-| 3.15 | Alphabet scroll lateral (A-Z) | Barra fina à direita, ao arrastar mostra letra grande |
-| 3.16 | **NÃO deve vibrar** o celular (sem `navigator.vibrate`) | Apenas feedback visual |
-| 3.17 | Sem menu "Copy/Look Up/Share" iOS aparecer no long-press | Se aparecer = bug do `user-select` |
+| 3.1 | Abrir T3 | Topbar: avatar VT + "Sua biblioteca" + **ícone social + sino (badge "3")** + busca + "+" |
+| 3.2 | Campo de busca | Sempre visível (não atrás de ícone) |
+| 3.3 | **NOVO** Chips de filtro | Tudo (verde) / Playlists / Artistas / Albuns / Podcasts / Baixadas / Curtidas |
+| 3.4 | Modo "Tudo" | Capas com **efeito eco** (3 shadows empilhadas) |
+| 3.5 | **NOVO** Tap em "Artistas" | Capas viram **círculos perfeitos** (M83, Tame Impala, Daft Punk, etc) com label "Artista" |
+| 3.6 | Tap em outros chips (Albuns/Podcasts) | Shape correspondente aplicado |
+| 3.7 | Toggle Lista/Grade | Muda layout |
+| 3.8 | Digitar na busca | Lista filtra em tempo real |
+| 3.9 | **Long-press** em uma playlist (segurar 500ms) | Feedback visual (scale + outline verde), entra em **modo seleção** |
+| 3.10 | Topbar muda | "1 selecionado" + Selec. tudo + X cancelar |
+| 3.11 | Tap em outras playlists | Adiciona à seleção |
+| 3.12 | Action bar inferior | Mover / Baixar / Adicionar / Compart. / Remover |
+| 3.13 | Selecionar 3 + Remover | **Snackbar "X removidas — DESFAZER"** |
+| 3.14 | Clicar DESFAZER | Restaura |
+| 3.15 | Alphabet scroll lateral | Barra A-Z à direita |
+| 3.16 | **NOVO** Contador "Mostrando X de Y" | Visível no rodapé da lista |
+| 3.17 | **NOVO** Botão "Personalizar Biblioteca" | Abre sheet com toggles para chips + visualização padrão + ordenação |
+| 3.18 | Botão "+" no topo | Abre sheet **Criar** (Playlist / Pasta / Sessão Jam) |
+| 3.19 | Avatar VT | Vai para T5 Configurações |
+| 3.20 | Bottom nav | 5 itens, Biblioteca ativa em verde |
+| 3.21 | **NÃO deve vibrar** o celular | Sem `navigator.vibrate` |
+| 3.22 | Sem menu "Copy/Look Up/Share" iOS aparecer no long-press | Se aparecer = bug iOS |
 
 ---
 
 ## T4 — Menu contextual (mockup)
 
-**Esperado**: bottom-sheet aberto com 3 grupos visualmente separados. "Adicionar à fila" e "Adicionar à playlist" **NUNCA adjacentes**.
+**Esperado**: bottom-sheet com 3 grupos visualmente separados. "Adicionar à fila" e "Adicionar à playlist" **NUNCA adjacentes**.
 
 | # | Ação | Esperado |
 |---|---|---|
-| 4.1 | Abrir `#/t4` | Tela de playlist com bottom-sheet aberto sobre ela |
-| 4.2 | Cabeçalho do sheet | Capa pequena + título música + artista |
-| 4.3 | Grupo 1: REPRODUÇÃO | Tocar agora / Adicionar à fila / Próxima na fila — ícones distintos, cor neutra |
-| 4.4 | Gap visual entre grupos | ≥24px de separador |
-| 4.5 | Grupo 2: COLEÇÃO | Adicionar à playlist (+) / Curtir (♥ verde) / Baixar (download verde) |
-| 4.6 | Grupo 3: OUTROS | Compartilhar / Ver artista / Ver álbum / Créditos / Denunciar |
-| 4.7 | "Adicionar à fila" e "Adicionar à playlist" | **Em grupos diferentes**, separados por ≥24px |
-| 4.8 | Tap no backdrop | Fecha o sheet (se interatividade mínima estiver lá) |
-| 4.9 | Nota "Mockup — interação em T3" | Discreta no rodapé |
+| 4.1 | Abrir T4 | Tela playlist com bottom-sheet aberto |
+| 4.2 | Cabeçalho do sheet | Capa + título + artista |
+| 4.3 | Grupo 1 REPRODUÇÃO | Tocar agora / Próxima na fila / Adicionar à fila |
+| 4.4 | Gap entre grupos | ≥24px de separador |
+| 4.5 | Grupo 2 COLEÇÃO | Adicionar à playlist (+) / Curtir (♥) / Baixar |
+| 4.6 | Grupo 3 OUTROS | Compartilhar / Ver artista / Ver álbum / Créditos / Denunciar |
+| 4.7 | Fila e Playlist | **Em grupos diferentes**, separados |
 
 ---
 
@@ -129,55 +162,112 @@ Anote em coluna ao lado de cada item. Se ❌, descreva o que aconteceu.
 
 | # | Ação | Esperado |
 |---|---|---|
-| 5.1 | Abrir `#/t5` | Topbar "Configurações" + campo busca sticky abaixo |
-| 5.2 | Seções visíveis | Conta / Reprodução / Qualidade de áudio / Notificações / Privacidade / Acessibilidade / Sobre |
-| 5.3 | Cada linha | Ícone Lucide + título + valor à direita + chevron |
-| 5.4 | Digitar "qualidade" na busca | Filtra itens em tempo real |
-| 5.5 | Termo destacado | `<mark>` amarelo/verde no termo encontrado |
-| 5.6 | Digitar "xyz123" (sem resultado) | Empty state "Nada encontrado..." |
-| 5.7 | Limpar busca (X ou apagar) | Lista volta completa |
-| 5.8 | Tap em um item | Abre detail (overlay simples) |
-| 5.9 | Console | Sem erros, eventos logados |
+| 5.1 | Abrir T5 (ou via Perfil de qualquer tela) | Topbar "Configurações" + busca sticky |
+| 5.2 | Seções visíveis | Conta / Reprodução / Qualidade de áudio / Notificações / etc |
+| 5.3 | Digitar "qualidade" na busca | Filtra em tempo real |
+| 5.4 | Termo destacado | `<mark>` verde no termo encontrado |
+| 5.5 | Digitar "xyz123" | Empty state |
+| 5.6 | Tap em item | Abre detail |
 
 ---
 
-## MA — Snackbar Desfazer (alta fidelidade)
+## MA — Snackbar Desfazer + Ordenar + Histórico (alta fidelidade)
 
-**Tela isolada de demo. Dor #1 do net-score.**
+**Tela demo de reversibilidade.**
 
 | # | Ação | Esperado |
 |---|---|---|
-| MA.1 | Abrir `#/ma` | Playlist com 8 músicas listadas |
-| MA.2 | Swipe-left em uma música (ou botão lixeira) | Música some com animação height-collapse |
-| MA.3 | Snackbar aparece | "Música removida — DESFAZER", acima do mini-player |
-| MA.4 | Barra de countdown | Diminui visualmente em 6 segundos |
-| MA.5 | Clicar DESFAZER antes dos 6s | Música volta para a lista |
-| MA.6 | Não clicar | Após 6s o snackbar some sozinho |
-| MA.7 | Apagar 3 músicas seguidas rapidamente | Snackbar agrupa "3 músicas removidas" OU enfileira |
-| MA.8 | Demo "Limpar busca" | Mesmo padrão de snackbar |
-| MA.9 | Demo "Apagar playlist" | Mesmo padrão |
-| MA.10 | Console | Log de tempo até clicar Desfazer |
+| MA.1 | Abrir MA | Playlist com 8 músicas |
+| MA.2 | **NOVO** Botão "Apagar playlist" vermelho | **NÃO DEVE EXISTIR** (removido por ser perigoso) |
+| MA.3 | **NOVO** Botão "Ordenar" | Abre bottom sheet com 6 critérios (Título A-Z/Z-A, Artista, Data adicionada recente/antiga, Duração). Selecionar reordena |
+| MA.4 | **NOVO** Botão "Histórico" | Abre sheet "Histórico de músicas" com lista combinada: atuais (badge "ATUAL" verde + Remover) e removidas (badge cinza + Restaurar) |
+| MA.5 | Botão lixeira em uma música | Música some + **snackbar "Removida — DESFAZER"** + countdown 6s |
+| MA.6 | Clicar DESFAZER | Música volta |
+| MA.7 | Não clicar em 6s | Snackbar some sozinho, música fica removida |
+| MA.8 | Após remover, abrir Histórico | Música removida aparece marcada |
+| MA.9 | Bottom nav | 5 itens (Início/Descoberta/Buscar/Biblioteca/Perfil) — **NÃO tem mais "Criar"** |
 
 ---
 
-## Controles "Spotify atual" (`#/controle/...`)
+## T6 — Descoberta (NOVA, alta fidelidade)
 
-Cada uma deve reproduzir **fielmente** o problema documentado, **sem caricaturar**. Use para comparação A/B na entrevista.
+**Esperado**: feed editorial agrupado, sem scroll infinito.
 
-### T1-atual — Home feed TikTok
-- Cards gigantes verticais, gradient animado simulando auto-preview, mistura música/podcast/audiolivro sem distinção clara, scroll longo, densidade BAIXA. ✅ se parece com Spotify atual.
+| # | Ação | Esperado |
+|---|---|---|
+| 6.1 | Abrir T6 (ou tap "Descoberta" no bottom nav) | Topbar "Descoberta" + ícones social/sino |
+| 6.2 | Hero | "PARA VOCÊ ESTA SEMANA" + "Discover Weekly" + capa, gradient roxo |
+| 6.3 | Seção "Novidades da semana" | Carrossel 4 cards com **shapes diferenciados** (álbum/playlist) |
+| 6.4 | Seção "Recém-adicionados ao seu gosto" | Grid 2-col |
+| 6.5 | Seção "Por gênero" | Chips clicáveis: Rock / Indie / Eletrônica / Hip-Hop / MPB / Jazz / Lo-Fi com gradients suaves |
+| 6.6 | Seção "Editorial Spotify" | Carrossel playlists oficiais |
+| 6.7 | Seção "Podcasts pra você" | Cards com fita lateral colorida |
+| 6.8 | Seção "Audiolivros" | Cards 3:4 |
+| 6.9 | Botão "Ver tudo >" | Em cada seção |
+| 6.10 | Bottom nav | **Descoberta ativo em verde** |
+| 6.11 | Scroll infinito | **NÃO deve existir** (feed paginado) |
 
-### T2-atual — Player atual
-- ♥ substituído por "+" no destaque. Shuffle com **ciclo único** (off → shuffle → smart) no MESMO botão, 3 estados sutis sem texto. Repeat tri-estado sem label. Mini-player não indica shuffle/repeat. ✅ se reproduz o problema.
+---
 
-### T3-atual — Biblioteca sem lote
-- **SEM** seleção múltipla. Para apagar precisa abrir 3-pontinhos em cada música. SEM alphabet scroll. Busca atrás de ícone (não sticky). Tente apagar 5 e cronometre — deve ser doloroso. ✅ se a fricção é evidente.
+## T7 — Personalizar Home (NOVA, alta fidelidade)
 
-### T4-atual — Menu lista plana
-- Menu contextual sem agrupamentos. "Adicionar à fila" e "Adicionar à playlist" **ADJACENTES**, ícones similares. Tente tocar rápido em "fila" e confira se é fácil errar e clicar em "playlist". ✅ se o erro é fácil de reproduzir.
+| # | Ação | Esperado |
+|---|---|---|
+| 7.1 | Abrir T7 (via botão "Personalizar Home" em T1) | Topbar: voltar + "Personalizar Home" + **botão "Salvar" verde** |
+| 7.2 | Subtítulo | "Mostre ou esconda seções da sua Home. Arraste para reordenar." |
+| 7.3 | Lista de 8 módulos | Drag handle (⋮⋮) à esquerda + nome + descrição + switch iOS à direita |
+| 7.4 | 4 primeiros switches | ON (verdes): Tocados recentemente, Seus Mixes, Feito para você, Artistas |
+| 7.5 | 4 últimos switches | OFF (cinza): Editorial, Podcasts populares, Audiolivros, Novidades sociais |
+| 7.6 | Clicar um switch | Alterna estado + log telemetria |
+| 7.7 | Botão "Restaurar padrão" | Visível no rodapé (verde, sem fundo) |
+| 7.8 | Salvar | Persiste em localStorage |
+| 7.9 | Drag handle | Visual presente (reordenar pode não funcionar — só log) |
 
-### T5-atual — Settings sem busca
-- Lista longa scrollável agrupada por seções, **SEM campo de busca**. Tente achar "qualidade de download" — deve exigir scroll/leitura. ✅ se o caminho é longo.
+---
+
+## T8 — Notificações (NOVA, alta fidelidade)
+
+| # | Ação | Esperado |
+|---|---|---|
+| 8.1 | Abrir T8 (via sino em T1 ou T3) | Topbar: voltar + "Notificações" + 3-pontinhos |
+| 8.2 | Chips de filtro | Todas (verde) / Lançamentos / Recomendações / Sistema / Social |
+| 8.3 | Lista de notificações | 10-12 itens cronológicos |
+| 8.4 | Ícones por tipo | disc (lançamento) / sparkles (recomendação) / info (sistema) / user (social) / trophy (milestone) |
+| 8.5 | Dot verde à esquerda | Em notificações **não lidas** |
+| 8.6 | Tempo relativo | "HÁ 12 MIN", "HÁ 2 H", "ONTEM" cinza |
+| 8.7 | Botão de ação à direita | Tocar / Salvar / Ver / Ouvir / Compartilhar dependendo do tipo |
+| 8.8 | Tap em notificação | Marca como lida (dot some) |
+| 8.9 | Tap em 3-pontinhos | Sheet "Marcar todas como lidas" / "Limpar tudo" |
+| 8.10 | Clicar em chip de filtro | Filtra lista |
+
+---
+
+## T9 — Social / Amigos (NOVA, alta fidelidade)
+
+| # | Ação | Esperado |
+|---|---|---|
+| 9.1 | Abrir T9 (via ícone users em T1 ou T3) | Topbar: voltar + "Social" + ícone search |
+| 9.2 | Subtítulo | "Veja o que seus amigos estão ouvindo" |
+| 9.3 | Seção "Ouvindo agora" | Badge **AO VIVO** verde |
+| 9.4 | Lista de amigos | 3-4 amigos (Ana/Bruno/Camila/Diego) com avatares circulares coloridos + música + indicador equalizador animado verde |
+| 9.5 | Tap em amigo | Abre o player |
+| 9.6 | Seção "Jam Sessions ativas" | 2 jam sessions com capa + "[Anfitrião]'s Jam" + "X participantes" + **botão Entrar verde** |
+| 9.7 | Seção "Últimas 24h" | Timeline de atividades (curtidas, adições) |
+| 9.8 | Seção "Compartilhar minha sessão" | Card com **toggle ON/OFF** + descrição |
+
+---
+
+## Controles "Spotify atual" (`/telas/controle/...`)
+
+| Tela | Verificação rápida |
+|---|---|
+| **t1-atual** | Feed TikTok com cards gigantes, banner Premium, mistura música+podcast+audiolivro sem distinção |
+| **t2-atual** | "+" no destaque, shuffle/repeat **sem labels textuais** (estados sutis) |
+| **t3-atual** | **SEM** seleção múltipla, sem alphabet scroll, busca atrás de ícone, apagar 1-por-1 |
+| **t4-atual** | Menu lista plana, "Adicionar a fila" e "Adicionar a playlist" **ADJACENTES** |
+| **t5-atual** | **SEM** busca, lista longa scrollável |
+
+Use estas como condição-controle no A/B do roteiro de entrevista. **Não** comparar contra o app real (viés de fidelidade).
 
 ---
 
@@ -187,20 +277,20 @@ Cada uma deve reproduzir **fielmente** o problema documentado, **sem caricaturar
 |---|---|---|
 | X.1 | Console (F12) durante navegação | Sem erros vermelhos |
 | X.2 | Network tab | Lucide CDN carrega; sem 404 |
-| X.3 | localStorage (Application tab) | Chave de telemetria existe e enche com eventos |
-| X.4 | Resize para 320px | Não quebra (degrada bem) |
+| X.3 | localStorage (Application tab) | Chaves `spotify_telemetria_*`, `spotify_onboarding_v2_done`, `spotify_home_modules`, estados de shuffle/repeat |
+| X.4 | Resize para 320px | Bottom nav 5 itens não estoura |
 | X.5 | Resize para 414px | Não estica feio |
-| X.6 | Modo escuro fixo | Não há flash branco em transição |
-| X.7 | Inter font carrega | Inspecionar `body { font-family }` — não pode estar caindo em serif |
-| X.8 | Tab key (navegação por teclado) | Foco visível em botões |
-| X.9 | Bottom nav presente | Em todas exceto MA e talvez T2 (player fullscreen) |
+| X.6 | Modo escuro fixo | Sem flash branco |
+| X.7 | Inter font carrega | Não cair em serif |
+| X.8 | Tab key | Foco visível verde em botões |
+| X.9 | Bottom nav | Em todas exceto T2 (player fullscreen) |
 | X.10 | Botão voltar do navegador | Funciona |
+| X.11 | **NOVO** Badge "3" no sino | Visível em T1 e T3 |
+| X.12 | **NOVO** Avatar VT em topo + Perfil em bottom nav | Ambos levam para T5 |
 
 ---
 
 ## Como reportar bugs encontrados
-
-Crie issues no formato:
 
 ```
 [Tela] Descrição curta
@@ -222,5 +312,32 @@ Salve em `planos/BUGS_ENCONTRADOS.md` ou cole no chat e eu corrijo em lote via w
 - ✅ Telemetria registra eventos em `localStorage`
 - ✅ Controles "atual" reproduzem o problema visível
 - ✅ Funciona em Chrome desktop + 1 celular Android real
+- ✅ **NOVO** Onboarding dispara na 1ª vez e não atrapalha
+- ✅ **NOVO** Bottom nav 5 itens não estoura em 360px
+- ✅ **NOVO** Shapes diferenciados visíveis e distinguíveis sem zoom
 
 Falhar em qualquer item = corrigir antes de marcar entrevistas.
+
+---
+
+## Resumo das telas (mapa do protótipo)
+
+| Tela | Tipo | Função | Status |
+|---|---|---|---|
+| index | router | Menu de navegação | ✅ |
+| T1 | mockup | Home minimalista com shapes diferenciados | ✅ V2 |
+| T2 | interativo | Player redesenhado + picker playlist + undo curtir | ✅ V2 |
+| T3 | interativo | Biblioteca com long-press + shapes + personalizar | ✅ V2 |
+| T4 | mockup | Menu contextual agrupado | ✅ |
+| T5 | interativo | Configurações com busca incremental | ✅ |
+| MA | interativo | Snackbar Desfazer + Ordenar + Histórico | ✅ V2 |
+| T6 | interativo | **Descoberta** (NOVA V2) | ✅ V2 |
+| T7 | interativo | **Personalizar Home** (NOVA V2) | ✅ V2 |
+| T8 | interativo | **Notificações** (NOVA V2) | ✅ V2 |
+| T9 | interativo | **Social/Amigos** (NOVA V2) | ✅ V2 |
+| t1-atual | controle | Home Spotify atual | ✅ |
+| t2-atual | controle | Player Spotify atual | ✅ |
+| t3-atual | controle | Biblioteca Spotify atual | ✅ |
+| t4-atual | controle | Menu Spotify atual | ✅ |
+| t5-atual | controle | Configurações Spotify atual | ✅ |
+| Onboarding | overlay | Tour pós-update 4 slides | ✅ V2 |
