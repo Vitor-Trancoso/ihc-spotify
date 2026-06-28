@@ -78,7 +78,16 @@ Anote em coluna ao lado de cada item. Se ❌, descreva o que aconteceu.
 | 1.8 | **NOVO** Seção "Podcasts populares" | Cards com **fita lateral colorida** (vermelha=Notícias, azul=Tecnologia) |
 | 1.9 | **NOVO** Seção "Audiolivros" | Cards **retangulares 3:4** com sombra de livro (Sapiens, 1984) |
 | 1.10 | **NOVO** Legenda "Como ler as formas" | Bloco no rodapé com 6 demos (Música/Álbum/Playlist/Artista/Podcast/Audiolivro). Botão X para fechar |
-| 1.11 | **NOVO** Botão "Personalizar Home" | Discreto, antes da nota mockup → navega para **T7** |
+| 1.11 | **NOVO V2.3** Botão "Personalizar Home" | Discreto, antes da nota mockup → **abre bottom-sheet inline** (NÃO navega mais para T7) |
+| 1.11a | **NOVO V2.3** Bottom-sheet "Personalizar feed" | Handle no topo + header "Personalizar feed" + botão X fechar |
+| 1.11b | Botão "+ Selecionar da Biblioteca" no topo do sheet | Visível, log telemetria ao clicar |
+| 1.11c | Lista de 11 módulos | Top Mixes / Made For You / Albums For You / Artists / Audiobooks / Spotify Originals / Your Playlists / Recently Played / New Releases / Recommended Radio / Episodes For You |
+| 1.11d | Cada linha tem | Drag handle (≡) + nome + ícone olho (eye/eye-off) |
+| 1.11e | Clicar olho | Alterna `.is-hidden` + ícone vira `eye-off` + telemetria `toggle_module` |
+| 1.11f | Drag pelo handle | Reordena visualmente (pointer events) + telemetria `reorder` |
+| 1.11g | Footer "Permitir linhas de recomendação" | Switch verde estilo iOS |
+| 1.11h | Recarregar T1 e reabrir sheet | Estado persiste (localStorage `spotify_t1_feed_modules`) |
+| 1.11i | Tap no backdrop ou X | Fecha sheet, restaura foco |
 | 1.12 | Avatar VT no topo | Clicar → vai para **T5 Configurações** |
 | 1.13 | Ícone sino no topo | Clicar → vai para **T8 Notificações** |
 | 1.14 | Ícone social no topo | Clicar → vai para **T9 Social** |
@@ -189,23 +198,28 @@ Anote em coluna ao lado de cada item. Se ❌, descreva o que aconteceu.
 
 ---
 
-## T6 — Descoberta (NOVA, alta fidelidade)
+## T6 — Descoberta (REFEITA V2.3, alta fidelidade — estilo TikTok/Reels)
 
-**Esperado**: feed editorial agrupado, sem scroll infinito.
+**Esperado**: feed vertical full-screen com swipe entre clipes de música. Versão antiga preservada em `t6-old.html` (carrosséis editoriais) — não está no menu.
 
 | # | Ação | Esperado |
 |---|---|---|
-| 6.1 | Abrir T6 (ou tap "Descoberta" no bottom nav) | Topbar "Descoberta" + ícones social/sino |
-| 6.2 | Hero | "PARA VOCÊ ESTA SEMANA" + "Discover Weekly" + capa, gradient roxo |
-| 6.3 | Seção "Novidades da semana" | Carrossel 4 cards com **shapes diferenciados** (álbum/playlist) |
-| 6.4 | Seção "Recém-adicionados ao seu gosto" | Grid 2-col |
-| 6.5 | Seção "Por gênero" | Chips clicáveis: Rock / Indie / Eletrônica / Hip-Hop / MPB / Jazz / Lo-Fi com gradients suaves |
-| 6.6 | Seção "Editorial Spotify" | Carrossel playlists oficiais |
-| 6.7 | Seção "Podcasts pra você" | Cards com fita lateral colorida |
-| 6.8 | Seção "Audiolivros" | Cards 3:4 |
-| 6.9 | Botão "Ver tudo >" | Em cada seção |
-| 6.10 | Bottom nav | **Descoberta ativo em verde** |
-| 6.11 | Scroll infinito | **NÃO deve existir** (feed paginado) |
+| 6.1 | Abrir T6 (ou tap "Descoberta" no bottom nav) | Topbar com tabs "Pra você / Seguindo" + 1º clipe ocupa **100% do viewport** |
+| 6.2 | Cor de fundo | Dominante extraída do clipe (mock — paleta hardcoded muda por clipe) |
+| 6.3 | Topo do clipe | Hashtag tipo `#synthwave` ou `#electropop` |
+| 6.4 | Centro | Capa grande do álbum + **waveform animada** (10 barras pulsando ao redor) |
+| 6.5 | Stack vertical à direita | Botões circulares: ♥ curtir, 🔖 salvar, ↗ compartilhar, ⋯ mais opções |
+| 6.6 | Contador embaixo de cada action | Formato `1.2k` / `45.6k` / `1.2M` |
+| 6.7 | Footer do clipe | Botão play/pause + título + artista + chips de tags |
+| 6.8 | Indicador "swipe up" | Pequena seta animada na borda inferior |
+| 6.9 | **Swipe vertical / scroll** | Vai para próximo clipe com **scroll-snap** (encaixa no clipe inteiro) |
+| 6.10 | Mudança de clipe | Background do device-frame muda suavemente (transition) + telemetria `view_clip` |
+| 6.11 | Clicar ♥ | Vira preenchido + aria-pressed=true + telemetria `like_clip` |
+| 6.12 | Clicar play/pause | Pausa waveform (classe `.is-paused`) + ícone alterna |
+| 6.13 | Trocar tab "Pra você ↔ Seguindo" | Telemetria `switch_tab` |
+| 6.14 | Scroll horizontal | **NÃO deve existir** |
+| 6.15 | Bottom nav | **Descoberta ativo em verde** (5 itens) |
+| 6.16 | Total de clipes mockados | 4 (After Hours / Midnight City / Get Lucky / Blinding Lights) |
 
 ---
 
@@ -277,7 +291,7 @@ Use estas como condição-controle no A/B do roteiro de entrevista. **Não** com
 |---|---|---|
 | X.1 | Console (F12) durante navegação | Sem erros vermelhos |
 | X.2 | Network tab | Lucide CDN carrega; sem 404 |
-| X.3 | localStorage (Application tab) | Chaves `spotify_telemetria_*`, `spotify_onboarding_v2_done`, `spotify_home_modules`, estados de shuffle/repeat |
+| X.3 | localStorage (Application tab) | Chaves `spotify_telemetria_*`, `spotify_onboarding_v2_done`, `spotify_home_modules`, `spotify_t1_feed_modules`, estados de shuffle/repeat |
 | X.4 | Resize para 320px | Bottom nav 5 itens não estoura |
 | X.5 | Resize para 414px | Não estica feio |
 | X.6 | Modo escuro fixo | Sem flash branco |
@@ -331,7 +345,8 @@ Falhar em qualquer item = corrigir antes de marcar entrevistas.
 | T4 | mockup | Menu contextual agrupado | ✅ |
 | T5 | interativo | Configurações com busca incremental | ✅ |
 | MA | interativo | Snackbar Desfazer + Ordenar + Histórico | ✅ V2 |
-| T6 | interativo | **Descoberta** (NOVA V2) | ✅ V2 |
+| T6 | interativo | **Descoberta** (refeita V2.3 — full-screen TikTok-like) | ✅ V2.3 |
+| t6-old | arquivado | Versão V2.0 da Descoberta (carrosséis editoriais), preservada para histórico | 📦 |
 | T7 | interativo | **Personalizar Home** (NOVA V2) | ✅ V2 |
 | T8 | interativo | **Notificações** (NOVA V2) | ✅ V2 |
 | T9 | interativo | **Social/Amigos** (NOVA V2) | ✅ V2 |

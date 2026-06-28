@@ -1,0 +1,265 @@
+/* ============================================================
+   T6 — DESCOBERTA (V2.2)
+   Substitui scroll infinito da home por seções verticais curadas.
+   ============================================================ */
+
+.t6-body {
+  background: var(--background-base);
+  color: var(--text-base);
+  font-family: var(--font-family);
+  min-height: 100vh;
+}
+
+/* ---------- TOPBAR ---------- */
+.t6-topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  height: 56px;
+  padding: 0 var(--sp-4);
+  background: var(--background-base);
+}
+.t6-topbar__title {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  letter-spacing: var(--ls-section);
+  font-weight: var(--fw-extrabold);
+  color: var(--text-base);
+}
+.t6-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+/* Badge contador para sino (fallback caso components.css ainda não tenha) */
+.icon-btn[data-notif-count]:not([data-notif-count=""]):not([data-notif-count="0"])::before {
+  content: attr(data-notif-count);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  background: var(--essential-negative);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  line-height: 16px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* ---------- MAIN ---------- */
+.t6-main {
+  padding: 0 0 calc(56px + var(--safe-bottom) + var(--sp-6));
+}
+
+/* ---------- HERO ---------- */
+.t6-hero {
+  margin: var(--sp-3) var(--sp-4) var(--sp-5);
+  padding: var(--sp-4);
+  border-radius: var(--r-xl);
+  background: var(--gradient-liked-songs);
+  display: grid;
+  grid-template-columns: 1fr 96px;
+  gap: var(--sp-3);
+  align-items: center;
+  box-shadow: var(--shadow-card);
+}
+.t6-hero__eyebrow {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--sp-1);
+}
+.t6-hero__title {
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+  font-weight: var(--fw-extrabold);
+  color: #fff;
+  margin-bottom: var(--sp-2);
+}
+.t6-hero__sub {
+  font-size: var(--fs-body);
+  color: rgba(255,255,255,0.85);
+}
+.t6-hero__cover {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-cover);
+  background: var(--background-tinted-highlight);
+}
+.t6-hero__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- SECTIONS ---------- */
+.t6-section {
+  margin: 0 0 var(--sp-5);
+}
+.t6-section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 var(--sp-4);
+  margin-bottom: var(--sp-3);
+  gap: var(--sp-2);
+}
+.t6-section__title {
+  font-size: var(--fs-section);
+  line-height: var(--lh-section);
+  letter-spacing: var(--ls-section);
+  font-weight: var(--fw-extrabold);
+  color: var(--text-base);
+}
+.t6-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 44px;
+  padding: 0 var(--sp-1);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-bold);
+  color: var(--text-subdued);
+  background: transparent;
+  letter-spacing: 0.02em;
+}
+.t6-see-all svg { width: 16px; height: 16px; }
+.t6-see-all:active { transform: scale(0.96); }
+
+/* ---------- CAROUSEL HORIZONTAL ---------- */
+.t6-carousel {
+  display: flex;
+  gap: var(--sp-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--sp-4) var(--sp-2);
+  scrollbar-width: none;
+}
+.t6-carousel::-webkit-scrollbar { display: none; }
+.t6-carousel > * {
+  flex: 0 0 140px;
+  scroll-snap-align: start;
+}
+.t6-carousel .media-card__title {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.t6-carousel .media-card__sub {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.t6-carousel .media-card__cover {
+  width: 140px;
+  height: 140px;
+}
+.t6-carousel .media-card--audiobook .media-card__cover {
+  width: 140px;
+  height: 190px;
+}
+
+/* ---------- GRID 2-COL ---------- */
+.t6-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-4);
+}
+.t6-grid-2 .media-card__cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+.t6-grid-2 .media-card__title {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.t6-grid-2 .media-card__sub {
+  font-size: var(--fs-meta);
+  color: var(--text-subdued);
+  display: block;
+}
+
+/* ---------- CHIPS DE GÊNERO ---------- */
+.t6-genres {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-4);
+}
+.t6-genre {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  color: #fff;
+  font-size: var(--fs-row);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.01em;
+  text-align: left;
+  overflow: hidden;
+  transition: transform var(--d-fast) var(--ease-standard);
+}
+.t6-genre:active { transform: scale(0.97); }
+
+.t6-genre--rock        { background: linear-gradient(149.46deg, #8E2DE2 0%, #4A00E0 99.16%); }
+.t6-genre--indie       { background: linear-gradient(149.46deg, #FF6A00 0%, #EE0979 99.16%); }
+.t6-genre--eletronica  { background: linear-gradient(149.46deg, #00C9FF 0%, #92FE9D 99.16%); color: #0a0a0a; }
+.t6-genre--hiphop      { background: linear-gradient(149.46deg, #232526 0%, #FFCB05 99.16%); }
+.t6-genre--mpb         { background: linear-gradient(149.46deg, #27856A 0%, #1ED760 99.16%); }
+.t6-genre--jazz        { background: linear-gradient(149.46deg, #614385 0%, #516395 99.16%); }
+.t6-genre--lofi        {
+  grid-column: 1 / -1;
+  background: linear-gradient(149.46deg, #450AF5 0%, #8E8EE5 99.16%);
+}
+
+/* ---------- PODCAST fita lateral colorida ---------- */
+.t6-carousel .media-card--podcast {
+  position: relative;
+}
+.t6-carousel .media-card--podcast::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+  background: var(--spotify-green);
+  z-index: 1;
+}
+.t6-carousel .media-card--podcast.cat-tech::before  { background: #3D91F4; }
+.t6-carousel .media-card--podcast.cat-news::before  { background: #FFA42B; }
+.t6-carousel .media-card--podcast.cat-pop::before   { background: #F15E6C; }
+.t6-carousel .media-card--podcast.cat-money::before { background: #1ED760; }

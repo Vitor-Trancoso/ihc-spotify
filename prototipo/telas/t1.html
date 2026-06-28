@@ -314,12 +314,12 @@
         </div>
       </aside>
 
-      <!-- Personalizar Home (V2.5) -->
+      <!-- Personalizar Home (V2.5 / sheet in-place) -->
       <div class="t1-personalize">
-        <a href="t7.html" class="t1-personalize__btn" aria-label="Personalizar Home">
+        <button type="button" id="t1-open-personalize-sheet" class="t1-personalize__btn" aria-label="Personalizar feed" aria-haspopup="dialog" aria-controls="t1-personalize-sheet">
           <i data-lucide="settings-2" aria-hidden="true"></i>
-          <span>Personalizar Home</span>
-        </a>
+          <span>Personalizar feed</span>
+        </button>
       </div>
 
       <!-- Nota de mockup -->
@@ -349,12 +349,51 @@
     </nav>
   </div>
 
+  <!-- ============ BOTTOM SHEET: PERSONALIZAR FEED ============ -->
+  <section class="bottom-sheet" id="t1-personalize-sheet" hidden role="dialog" aria-label="Personalizar feed" aria-modal="true">
+    <div class="bottom-sheet__backdrop" data-close-sheet></div>
+    <div class="bottom-sheet__panel t1-pf-panel" role="document">
+      <div class="bottom-sheet__handle" aria-hidden="true"></div>
+      <header class="bottom-sheet__header t1-pf-header">
+        <div>
+          <h2 class="bottom-sheet__title">Personalizar feed</h2>
+          <p class="t1-pf-sub">Reordene e escolha o que aparece na Home</p>
+        </div>
+        <button type="button" class="t1-pf-close" data-close-sheet aria-label="Fechar">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <button type="button" class="t1-pf-add" id="t1-pf-add">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        <span>Selecionar da Biblioteca</span>
+      </button>
+
+      <ul class="t1-pf-list" id="t1-pf-list" role="list"></ul>
+
+      <footer class="t1-pf-footer">
+        <label class="t1-pf-allow">
+          <span class="t1-pf-allow__text">Permitir linhas de recomendação</span>
+          <span class="t1-pf-switch">
+            <input type="checkbox" id="t1-pf-allow-rec" role="switch" aria-checked="true" checked />
+            <span class="t1-pf-switch__track" aria-hidden="true"></span>
+            <span class="t1-pf-switch__thumb" aria-hidden="true"></span>
+          </span>
+        </label>
+      </footer>
+    </div>
+  </section>
+
   <!-- Onboarding (V2.8) -->
   <link rel="stylesheet" href="../css/onboarding.css" />
   <script src="../js/onboarding.js" defer></script>
 
   <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../js/telemetria.js"></script>
+  <script src="../js/dom-utils.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="../js/telas/t1.js"></script>
   <script>
     (function(){
       try {
