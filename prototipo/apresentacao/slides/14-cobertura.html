@@ -1,0 +1,183 @@
+<!-- SLIDE 14 · OWNER: D · Cobertura heurística + V2 backlog · 30s -->
+<style scoped>
+  .cov-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .cov-svg-wrap {
+    background: #0f0f0f;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px;
+    padding: 18px 22px;
+    position: relative;
+  }
+  .cov-svg { width: 100%; height: 360px; display: block; }
+  .cov-svg .h-node {
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    fill: #fff;
+  }
+  .cov-svg .h-sub {
+    font-family: var(--apr-font-mono);
+    font-size: 9px;
+    fill: rgba(255,255,255,.6);
+  }
+  .cov-svg .t-node {
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    fill: var(--apr-text);
+  }
+  .cov-svg .connector {
+    fill: none;
+    stroke-width: 2;
+    opacity: .6;
+    /* pathLength="1" normaliza o traço — dash cobre o path inteiro
+       e a animação desenha de ponta a ponta sem repetir o padrão */
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: drawLine 1.2s ease-out forwards;
+  }
+  @keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cov-svg .connector { animation: none; stroke-dashoffset: 0; }
+  }
+
+  .v2-banner {
+    background: linear-gradient(90deg, rgba(29,185,84,.12), rgba(29,185,84,.04));
+    border: 1px solid rgba(29,185,84,.3);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .v2-banner__label {
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: #1ed760;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .v2-chip {
+    background: #181818;
+    border: 1px solid rgba(255,255,255,.08);
+    color: var(--apr-text-dim);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-family: var(--apr-font-mono);
+    font-weight: 600;
+  }
+</style>
+
+<div class="slide__content" data-time="30" data-optional="true">
+  <span class="block-badge block-badge--prototipo" aria-label="BLOCO 3 · Protótipo">BLOCO 3 · Protótipo</span>
+  <span class="slide__tag">14 / 20 · Cobertura heurística + backlog V2</span>
+  <h1 class="slide__title">Cobrimos <em>as 5</em>, com 4 telas no backlog</h1>
+
+  <div class="cov-wrap">
+    <div class="cov-svg-wrap anim-rise cascade-1">
+      <svg class="cov-svg" viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa heurísticas para telas">
+        <!-- Coluna esquerda: heurísticas (cores canônicas dos badges) -->
+        <g>
+          <!-- H3 · verde -->
+          <circle cx="110" cy="50"  r="27" fill="#1ed760" opacity="0.92"/>
+          <text class="h-node" x="110" y="48" text-anchor="middle">H3</text>
+          <text class="h-sub"  x="110" y="62" text-anchor="middle">Controle</text>
+
+          <!-- H4 · azul -->
+          <circle cx="110" cy="120" r="27" fill="#509bf5" opacity="0.92"/>
+          <text class="h-node" x="110" y="118" text-anchor="middle">H4</text>
+          <text class="h-sub"  x="110" y="132" text-anchor="middle">Consistência</text>
+
+          <!-- H5 · laranja -->
+          <circle cx="110" cy="190" r="27" fill="#ff8c1a" opacity="0.92"/>
+          <text class="h-node" x="110" y="188" text-anchor="middle">H5</text>
+          <text class="h-sub"  x="110" y="202" text-anchor="middle">Prevenção</text>
+
+          <!-- H7 · roxo -->
+          <circle cx="110" cy="260" r="27" fill="#b35cff" opacity="0.92"/>
+          <text class="h-node" x="110" y="258" text-anchor="middle">H7</text>
+          <text class="h-sub"  x="110" y="272" text-anchor="middle">Flexibilidade</text>
+
+          <!-- H8 · ciano -->
+          <circle cx="110" cy="330" r="27" fill="#38e1d2" opacity="0.92"/>
+          <text class="h-node" x="110" y="328" text-anchor="middle" fill="#0a0a0a">H8</text>
+          <text class="h-sub"  x="110" y="342" text-anchor="middle" fill="rgba(0,0,0,.65)">Estética</text>
+        </g>
+
+        <!-- Coluna direita: telas (chips) -->
+        <g font-family="var(--apr-font-mono)">
+          <!-- T1 -->
+          <rect x="736" y="30"  width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="48" text-anchor="middle">T1 Personalizar Home</text>
+          <!-- T7 -->
+          <rect x="736" y="70"  width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="88" text-anchor="middle">T7 Personalizar Feed</text>
+
+          <!-- V2.1 Shapes -->
+          <rect x="736" y="110" width="180" height="28" rx="14" fill="#181818" stroke="rgba(29,185,84,.3)"/>
+          <text class="t-node" x="826" y="128" text-anchor="middle">V2.1 Shapes</text>
+          <!-- V2.8 Onboarding -->
+          <rect x="736" y="150" width="180" height="28" rx="14" fill="#181818" stroke="rgba(29,185,84,.3)"/>
+          <text class="t-node" x="826" y="168" text-anchor="middle">V2.8 Onboarding</text>
+
+          <!-- T3 long-press -->
+          <rect x="736" y="190" width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="208" text-anchor="middle">T3 long-press</text>
+          <!-- T4 menu -->
+          <rect x="736" y="230" width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="248" text-anchor="middle">T4 menu / MA snackbar</text>
+
+          <!-- T2 -->
+          <rect x="736" y="270" width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="288" text-anchor="middle">T2 · T6 · T8 · T9</text>
+
+          <!-- T5 + T1 -->
+          <rect x="736" y="310" width="180" height="28" rx="14" fill="#181818" stroke="rgba(255,255,255,.1)"/>
+          <text class="t-node" x="826" y="328" text-anchor="middle">T1 · T5 · V2.7 fim-scroll</text>
+        </g>
+
+        <!-- Conectores (curvas) — pathLength=1 para desenho contínuo -->
+        <g>
+          <!-- H3 → T1, T7 -->
+          <path class="connector" pathLength="1" d="M137 50  C 420 46,  560 44,  736 44"  stroke="#1ed760"/>
+          <path class="connector" pathLength="1" d="M137 50  C 420 64,  560 84,  736 84"  stroke="#1ed760"/>
+          <!-- H4 → V2.1, V2.8 -->
+          <path class="connector" pathLength="1" d="M137 120 C 420 122, 560 124, 736 124" stroke="#509bf5"/>
+          <path class="connector" pathLength="1" d="M137 120 C 420 142, 560 164, 736 164" stroke="#509bf5"/>
+          <!-- H5 → T3, T4/MA -->
+          <path class="connector" pathLength="1" d="M137 190 C 420 196, 560 204, 736 204" stroke="#ff8c1a"/>
+          <path class="connector" pathLength="1" d="M137 190 C 420 216, 560 244, 736 244" stroke="#ff8c1a"/>
+          <!-- H7 → T2/T6/T8/T9 -->
+          <path class="connector" pathLength="1" d="M137 260 C 420 270, 560 284, 736 284" stroke="#b35cff"/>
+          <!-- H8 → T1/T5/V2.7 -->
+          <path class="connector" pathLength="1" d="M137 330 C 420 330, 560 324, 736 324" stroke="#38e1d2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="v2-banner anim-rise cascade-2">
+      <span class="v2-banner__label">V2 já no protótipo:</span>
+      <span class="v2-chip">Descoberta</span>
+      <span class="v2-chip">Personalizar Feed</span>
+      <span class="v2-chip">Notificações</span>
+      <span class="v2-chip">Social</span>
+      <span class="v2-chip">Onboarding pós-update</span>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p>Mensagem central: <strong>nenhuma heurística ficou descoberta</strong>. Cada uma das 5 mapeia em pelo menos 2 telas do protótipo.</p>
+  <p>H7 é a mais transversal (5 telas) — coerente com o achado de que <em>flexibilidade/controle</em> domina o net-score.</p>
+  <p>Banner inferior mostra que o V2 já vai além do mínimo: 5 telas adicionais cobrem dores de média prioridade. Gancho: "agora a parte qualitativa — o que dois usuários reais disseram quando navegaram nisso".</p>
+</aside>

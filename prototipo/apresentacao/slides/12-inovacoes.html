@@ -1,0 +1,130 @@
+<!-- SLIDE 12 · OWNER: C · 5 inovações principais · 90s -->
+<style scoped>
+  .innov-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .innov-grid .h-card:nth-child(4) { grid-column: 1 / span 1; }
+  .innov-grid .h-card:nth-child(5) { grid-column: 2 / span 2; }
+  @media (max-width: 1000px) {
+    .innov-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .innov-grid .h-card:nth-child(5) { grid-column: 1 / span 2; }
+  }
+  .h-card__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .h-card__num {
+    font-family: var(--apr-font-display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--apr-green-br);
+    line-height: 1;
+  }
+  .h-card__source {
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--apr-text-mute);
+    margin-left: auto;
+  }
+  .h-card__badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+</style>
+
+<div class="slide__content" data-time="90">
+  <span class="block-badge block-badge--prototipo" aria-label="BLOCO 3 · Protótipo">BLOCO 3 · Protótipo</span>
+  <span class="slide__tag">12 / 20 · 5 inovações principais</span>
+  <h1 class="slide__title anim-rise cascade-1">
+    Cinco <em>inovações</em> que carregam o redesign
+  </h1>
+  <p class="slide__subtitle anim-rise cascade-2">
+    Cada uma responde a uma dor mapeada no questionário. Cobertura combinada das 5 heurísticas.
+  </p>
+
+  <div class="innov-grid">
+    <article class="h-card anim-rise cascade-1">
+      <div class="h-card__head">
+        <span class="h-card__num">1</span>
+        <h3 class="h-card__title">Shapes diferenciados</h3>
+        <span class="h-card__source">transversal</span>
+      </div>
+      <p class="h-card__desc">Seis formas codificam o tipo de conteúdo antes de ler o título — música, álbum, playlist, artista, podcast, audiolivro.</p>
+      <div class="h-card__badges">
+        <span class="heuristic-badge heuristic-badge--h4" data-h="4">H4</span>
+        <span class="heuristic-badge heuristic-badge--h8" data-h="8">H8</span>
+      </div>
+    </article>
+
+    <article class="h-card anim-rise cascade-2">
+      <div class="h-card__head">
+        <span class="h-card__num">2</span>
+        <h3 class="h-card__title">Status textual no Player</h3>
+        <span class="h-card__source">T2</span>
+      </div>
+      <p class="h-card__desc">Shuffle / Smart Shuffle / Repeat ganham rótulo legível em vez de ícone ambíguo de cor sutil.</p>
+      <div class="h-card__badges">
+        <span class="heuristic-badge heuristic-badge--h7" data-h="7">H7</span>
+        <span class="heuristic-badge heuristic-badge--h4" data-h="4">H4</span>
+      </div>
+    </article>
+
+    <article class="h-card anim-rise cascade-3">
+      <div class="h-card__head">
+        <span class="h-card__num">3</span>
+        <h3 class="h-card__title">Long-press + bulk + Desfazer</h3>
+        <span class="h-card__source">T3 + MA</span>
+      </div>
+      <p class="h-card__desc">Seleção múltipla na Biblioteca com ação destrutiva sempre pareada a Snackbar de Desfazer.</p>
+      <div class="h-card__badges">
+        <span class="heuristic-badge heuristic-badge--h7" data-h="7">H7</span>
+        <span class="heuristic-badge heuristic-badge--h5" data-h="5">H5</span>
+      </div>
+    </article>
+
+    <article class="h-card anim-rise cascade-4">
+      <div class="h-card__head">
+        <span class="h-card__num">4</span>
+        <h3 class="h-card__title">Busca em Configurações</h3>
+        <span class="h-card__source">T5</span>
+      </div>
+      <p class="h-card__desc">Campo incremental no topo: digitar "wifi" ou "qualidade" salta direto para o ajuste.</p>
+      <div class="h-card__badges">
+        <span class="heuristic-badge heuristic-badge--h7" data-h="7">H7</span>
+        <span class="heuristic-badge heuristic-badge--h8" data-h="8">H8</span>
+      </div>
+    </article>
+
+    <article class="h-card anim-rise cascade-5">
+      <div class="h-card__head">
+        <span class="h-card__num">5</span>
+        <h3 class="h-card__title">Snackbar Desfazer universal</h3>
+        <span class="h-card__source">microação · resposta direta a A3 (net-score −21,1)</span>
+      </div>
+      <p class="h-card__desc">Toda ação destrutiva (remover, esvaziar, sair) dispara o mesmo padrão de Snackbar com 5s para reverter. Linguagem única em T3, T4, MA e backlog.</p>
+      <div class="h-card__badges">
+        <span class="heuristic-badge heuristic-badge--h3" data-h="3">H3</span>
+        <span class="heuristic-badge heuristic-badge--h5" data-h="5">H5</span>
+      </div>
+    </article>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Fala (90s):</strong> percorrer 1→5 em 15s cada. Para cada inovação dizer "dor X → solução Y → heurística Z".</p>
+  <p><strong>Dado-chave:</strong> a inovação 5 (Snackbar universal) ataca diretamente A3, a única dor com net-score negativo (−21,1).</p>
+  <p><strong>Reforço:</strong> cobertura combinada toca todas as 5 heurísticas escolhidas — não há heurística órfã.</p>
+  <p><strong>Honestidade:</strong> a inovação 1 (shapes) veio de feedback de colega, não do questionário — admitir origem mista.</p>
+  <p><strong>Gancho próximo slide:</strong> "Agora, ao vivo: T2, T3, T5 e MA no protótipo navegável."</p>
+</aside>

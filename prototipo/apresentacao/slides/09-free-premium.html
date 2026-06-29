@@ -1,0 +1,141 @@
+<!-- SLIDE 09 · OWNER: B · Free × Premium + correlações · 90s -->
+<style scoped>
+  .pair { display: grid; grid-template-columns: 60px 1fr 1fr 70px; gap: 10px; align-items: center; padding: 8px 0; }
+  .pair__h { font-family: var(--apr-font-mono); font-size: 12px; color: var(--apr-text-dim); }
+  .pair__track { height: 14px; background: rgba(255,255,255,.05); border-radius: 999px; overflow: hidden; position: relative; }
+  .pair__fill { height: 100%; width: 0; border-radius: 999px; transition: width 900ms var(--apr-ease); }
+  .pair__fill--free { background: linear-gradient(90deg, var(--apr-orange), #ffb84d); }
+  .pair__fill--prem { background: linear-gradient(90deg, var(--apr-green), var(--apr-green-br)); }
+  .pair__gap { font-family: var(--apr-font-mono); font-size: 12px; text-align: right; color: var(--apr-text); }
+  .pair__sig { color: var(--apr-red); font-weight: 700; margin-left: 2px; }
+  .corr-card { background: var(--apr-bg-2); border: 1px solid var(--apr-border); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .corr-card strong.big { font-family: var(--apr-font-display); font-style: italic; font-size: 48px; color: var(--apr-green-br); line-height: 1; }
+  .corr-card .lbl { font-family: var(--apr-font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--apr-text-dim); }
+  .legend { display: flex; gap: 18px; font-family: var(--apr-font-mono); font-size: 11px; color: var(--apr-text-dim); }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .legend .lg-free::before { background: var(--apr-orange); }
+  .legend .lg-prem::before { background: var(--apr-green-br); }
+</style>
+
+<div class="slide__content" data-time="90">
+  <span class="block-badge block-badge--analise" aria-label="BLOCO 2 · Análise">BLOCO 2 · Análise</span>
+  <span class="slide__tag anim-rise cascade-1">09 / 20 · Segmentação &amp; correlações</span>
+
+  <h1 class="slide__title anim-rise cascade-1">
+    Ser <em>Free</em> piora <em>todo</em> o app
+  </h1>
+
+  <p class="slide__subtitle anim-rise cascade-2" style="max-width:840px;">
+    Mann-Whitney comparando 16 Free × 70 Premium em cada bloco heurístico.
+    O gap é consistente (0,54 a 0,77 pontos) e <strong>H3 é estatisticamente significativo</strong>.
+    À direita, duas associações que estruturam a interpretação.
+  </p>
+
+  <div style="display:grid; grid-template-columns: 1.15fr 1fr; gap:36px; margin-top:8px;">
+
+    <!-- LEFT: Free × Premium -->
+    <div class="anim-rise cascade-3" style="display:flex; flex-direction:column; gap:6px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
+        <span style="font-family:var(--apr-font-mono); font-size:12px; color:var(--apr-text-dim); letter-spacing:.08em; text-transform:uppercase;">
+          Média por bloco (1–5) · Free × Premium
+        </span>
+        <span class="legend"><span class="lg-free">Free</span><span class="lg-prem">Premium</span></span>
+      </div>
+
+      <div class="pair">
+        <span class="pair__h"><span class="heuristic-badge heuristic-badge--h3">H3</span></span>
+        <div class="pair__track"><div class="pair__fill pair__fill--free anim-bar" data-fill="58" data-delay="200"></div></div>
+        <div class="pair__track"><div class="pair__fill pair__fill--prem anim-bar" data-fill="75" data-delay="280"></div></div>
+        <div class="pair__gap">Δ 0,77<span class="pair__sig">**</span></div>
+      </div>
+
+      <div class="pair">
+        <span class="pair__h"><span class="heuristic-badge heuristic-badge--h4">H4</span></span>
+        <div class="pair__track"><div class="pair__fill pair__fill--free anim-bar" data-fill="62" data-delay="360"></div></div>
+        <div class="pair__track"><div class="pair__fill pair__fill--prem anim-bar" data-fill="75" data-delay="440"></div></div>
+        <div class="pair__gap">Δ 0,58</div>
+      </div>
+
+      <div class="pair">
+        <span class="pair__h"><span class="heuristic-badge heuristic-badge--h5">H5</span></span>
+        <div class="pair__track"><div class="pair__fill pair__fill--free anim-bar" data-fill="60" data-delay="520"></div></div>
+        <div class="pair__track"><div class="pair__fill pair__fill--prem anim-bar" data-fill="72" data-delay="600"></div></div>
+        <div class="pair__gap">Δ 0,54</div>
+      </div>
+
+      <div class="pair">
+        <span class="pair__h"><span class="heuristic-badge heuristic-badge--h7">H7</span></span>
+        <div class="pair__track"><div class="pair__fill pair__fill--free anim-bar" data-fill="55" data-delay="680"></div></div>
+        <div class="pair__track"><div class="pair__fill pair__fill--prem anim-bar" data-fill="71" data-delay="760"></div></div>
+        <div class="pair__gap">Δ 0,72</div>
+      </div>
+
+      <div class="pair">
+        <span class="pair__h"><span class="heuristic-badge heuristic-badge--h8">H8</span></span>
+        <div class="pair__track"><div class="pair__fill pair__fill--free anim-bar" data-fill="56" data-delay="840"></div></div>
+        <div class="pair__track"><div class="pair__fill pair__fill--prem anim-bar" data-fill="70" data-delay="920"></div></div>
+        <div class="pair__gap">Δ 0,67</div>
+      </div>
+
+      <p style="font-family:var(--apr-font-mono); font-size:11px; color:var(--apr-text-mute); margin:10px 0 0;">
+        ** Mann-Whitney <strong>p = 0,002</strong> em H3 · demais blocos p &lt; 0,10
+      </p>
+
+      <img src="assets/figuras/fig6_free_vs_premium.png" alt="Comparativo Free × Premium por bloco — fonte: análise §3"
+           loading="lazy"
+           style="margin-top:10px; width:100%; border-radius:8px; border:1px solid var(--apr-border); opacity:.85;">
+    </div>
+
+    <!-- RIGHT: correlations + Apriori -->
+    <div class="anim-rise cascade-4" style="display:flex; flex-direction:column; gap:14px;">
+
+      <div class="corr-card">
+        <span class="lbl">Correlação de Pearson</span>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <strong class="big">r = 0,802</strong>
+          <span style="font-family:var(--apr-font-mono); font-size:11px; color:var(--apr-text-dim);">forte / positiva</span>
+        </div>
+        <p style="margin:0; font-size:14px; color:var(--apr-text-dim); line-height:1.5;">
+          <span class="heuristic-badge heuristic-badge--h7">H7</span> Flexibilidade
+          &harr;
+          <span class="heuristic-badge heuristic-badge--h8">H8</span> Estética caminham juntas.
+          Quem percebe poluição visual também percebe ineficiência — são <strong>uma só dimensão</strong> para o usuário.
+        </p>
+        <img src="assets/figuras/fig2_heatmap_blocos.png" alt="Heatmap de correlação entre blocos"
+             loading="lazy"
+             style="margin-top:6px; width:100%; border-radius:6px; opacity:.85;">
+      </div>
+
+      <div class="corr-card">
+        <span class="lbl">Regra Apriori · associação mais forte</span>
+        <div style="font-family:var(--apr-font-mono); font-size:15px; line-height:1.5;">
+          <span class="heuristic-badge heuristic-badge--h4">H4</span><strong style="color:var(--apr-text);"> = Baixo</strong>
+          &nbsp;<span style="color:var(--apr-green-br);">&rarr;</span>&nbsp;
+          <span class="heuristic-badge heuristic-badge--h7">H7</span><strong style="color:var(--apr-text);"> = Baixo</strong>
+        </div>
+        <div style="display:flex; gap:18px; font-family:var(--apr-font-mono); font-size:12px; color:var(--apr-text-dim); flex-wrap:wrap;">
+          <span>lift <strong style="color:var(--apr-green-br); font-size:18px;">5,95</strong></span>
+          <span>conf <strong style="color:var(--apr-text);">0,90</strong></span>
+          <span>sup <strong style="color:var(--apr-text);">0,16</strong></span>
+        </div>
+        <p style="margin:0; font-size:13px; color:var(--apr-text-dim); line-height:1.5;">
+          <strong>Inconsistência destrói eficiência</strong>: usuários que percebem H4 baixa têm 90% de chance de perceber H7 baixa.
+        </p>
+        <img src="assets/figuras/fig5_apriori_scatter.png" alt="Scatter de regras Apriori (lift × confiança)"
+             loading="lazy"
+             style="margin-top:6px; width:100%; border-radius:6px; opacity:.85;">
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway anim-rise cascade-5" style="margin-top:16px;">
+    Modelo Free não é só "menos features": é uma <strong>camada de fricção que rebaixa a usabilidade percebida em todos os blocos</strong>.
+    H7 e H8 são uma dimensão única — atacar poluição visual melhora eficiência percebida no mesmo movimento.
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Falar (90s):</strong> três peças. <strong>(1)</strong> Free × Premium: rodamos Mann-Whitney em cada bloco. Free sempre pontua menos — gaps de 0,54 a 0,77 numa escala 1–5. H3 é o único significativo a 1% (p=0,002), os outros ficam em tendência. <strong>(2)</strong> Correlação Pearson H7↔H8 = 0,802: forte e positiva. Estética e eficiência são a mesma coisa para o usuário. <strong>(3)</strong> Apriori: a regra mais forte é H4 baixo → H7 baixo com lift 5,95 e confiança 90%.</p>
+  <p><strong>Dado-chave:</strong> três métodos diferentes (paramétrico, correlação, mineração de regras) convergem para a mesma história — poluição visual e inconsistência são o eixo do problema.</p>
+  <p><strong>Gancho:</strong> "Esses três achados viram requisitos de design. Vamos ao protótipo."</p>
+</aside>

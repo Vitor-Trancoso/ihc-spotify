@@ -1,0 +1,134 @@
+<!-- SLIDE 08 · OWNER: B · Dores (net-score, A3 destaque) · 90s -->
+<style scoped>
+  .neg-bar { position: relative; height: 18px; background: rgba(255,255,255,.04); border-radius: 999px; overflow: hidden; }
+  .neg-bar__center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.18); z-index: 2; }
+  .neg-bar__fill {
+    position: absolute; top: 0; bottom: 0;
+    background: linear-gradient(90deg, #ff5566, var(--apr-red));
+    border-radius: 999px;
+    width: 0;
+    transition: width 1000ms var(--apr-ease);
+  }
+  .neg-bar__fill.is-neg { right: 50%; }
+  .neg-bar__fill.is-pos { left: 50%; background: linear-gradient(90deg, var(--apr-green), var(--apr-green-br)); }
+  .net-row { display: grid; grid-template-columns: 220px 1fr 90px; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--apr-border); }
+  .net-row__label { font-size: 13px; color: var(--apr-text); }
+  .net-row__val { font-family: var(--apr-font-mono); font-size: 14px; text-align: right; font-weight: 600; }
+  .net-row__val--neg { color: var(--apr-red); }
+  .net-row__val--pos { color: var(--apr-green-br); }
+</style>
+
+<div class="slide__content" data-time="90">
+  <span class="block-badge block-badge--analise" aria-label="BLOCO 2 · Análise">BLOCO 2 · Análise</span>
+  <span class="slide__tag anim-rise cascade-1">08 / 20 · Dores priorizadas</span>
+
+  <h1 class="slide__title anim-rise cascade-1">
+    A dor <em>#1</em>: ações destrutivas <em>sem desfazer</em>
+  </h1>
+
+  <p class="slide__subtitle anim-rise cascade-2" style="max-width:820px;">
+    <strong>Net-score</strong> = % avaliações Altas − % avaliações Baixas. Quanto mais negativo, pior.
+    Um único item desaba para o vermelho profundo: <span class="heuristic-badge heuristic-badge--h3">H3 · A3</span>
+    Desfazer ação em playlist.
+  </p>
+
+  <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; margin-top:16px;">
+
+    <!-- HERO BAR A3 -->
+    <div class="anim-rise cascade-3" style="display:flex; flex-direction:column; gap:18px;">
+      <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;">
+        <span class="heuristic-badge heuristic-badge--h3">H3 · A3</span>
+        <strong style="font-size:17px;">Desfazer ação em playlist</strong>
+      </div>
+
+      <div class="neg-bar" style="height:32px;">
+        <div class="neg-bar__center"></div>
+        <div class="neg-bar__fill is-neg anim-bar" data-fill="42" data-delay="300" data-duration="1100"></div>
+      </div>
+
+      <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;">
+        <span class="anim-count"
+              data-from="0" data-to="-21.1" data-duration="1200" data-decimals="1"
+              style="font-family:var(--apr-font-display); font-style:italic; font-weight:800;
+                     font-size: clamp(72px, 8vw, 120px); line-height:1;
+                     color: var(--apr-red); letter-spacing:-.04em;">0,0</span>
+        <span style="font-family:var(--apr-font-mono); font-size:13px; color:var(--apr-text-mute); max-width:240px;">
+          net-score · 46,5% das respostas avaliam baixo · média 2,58 / 5
+        </span>
+      </div>
+
+      <div class="quote" style="margin-top:8px;">
+        Apenas algumas operações que <strong>não podem ser desfeitas</strong>,
+        como apagar música de playlist.
+        <span class="quote__attr">— Respondente <strong>E83</strong> · pergunta aberta · <span class="heuristic-badge heuristic-badge--h3">H3</span></span>
+      </div>
+    </div>
+
+    <!-- RANKING -->
+    <div class="anim-rise cascade-4" style="display:flex; flex-direction:column; gap:6px;">
+      <span style="font-family:var(--apr-font-mono); font-size:12px; color:var(--apr-text-dim); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px;">
+        Ranking net-score (top 5 mais críticos)
+      </span>
+
+      <div class="net-row">
+        <div class="net-row__label"><span class="heuristic-badge heuristic-badge--h3">A3</span> Desfazer playlist</div>
+        <div class="neg-bar">
+          <div class="neg-bar__center"></div>
+          <div class="neg-bar__fill is-neg anim-bar" data-fill="42" data-delay="500"></div>
+        </div>
+        <div class="net-row__val net-row__val--neg">−21,1</div>
+      </div>
+
+      <div class="net-row">
+        <div class="net-row__label"><span class="heuristic-badge heuristic-badge--h8">E4</span> Home relevante</div>
+        <div class="neg-bar">
+          <div class="neg-bar__center"></div>
+          <div class="neg-bar__fill is-pos anim-bar" data-fill="2.4" data-delay="650"></div>
+        </div>
+        <div class="net-row__val net-row__val--pos">+1,2</div>
+      </div>
+
+      <div class="net-row">
+        <div class="net-row__label"><span class="heuristic-badge heuristic-badge--h8">E1</span> Tela sem distrações</div>
+        <div class="neg-bar">
+          <div class="neg-bar__center"></div>
+          <div class="neg-bar__fill is-pos anim-bar" data-fill="11.6" data-delay="800"></div>
+        </div>
+        <div class="net-row__val net-row__val--pos">+5,8</div>
+      </div>
+
+      <div class="net-row">
+        <div class="net-row__label"><span class="heuristic-badge heuristic-badge--h7">D5</span> Telas livres de poluição</div>
+        <div class="neg-bar">
+          <div class="neg-bar__center"></div>
+          <div class="neg-bar__fill is-pos anim-bar" data-fill="14" data-delay="950"></div>
+        </div>
+        <div class="net-row__val net-row__val--pos">+7,0</div>
+      </div>
+
+      <div class="net-row">
+        <div class="net-row__label"><span class="heuristic-badge heuristic-badge--h7">D3</span> Gerir playlist eficiente</div>
+        <div class="neg-bar">
+          <div class="neg-bar__center"></div>
+          <div class="neg-bar__fill is-pos anim-bar" data-fill="16" data-delay="1100"></div>
+        </div>
+        <div class="net-row__val net-row__val--pos">+8,0</div>
+      </div>
+
+      <img src="assets/figuras/fig3_net_score.png" alt="Gráfico net-score por item — fonte: análise §1"
+           loading="lazy"
+           style="margin-top:14px; width:100%; border-radius:8px; border:1px solid var(--apr-border); opacity:.85;">
+    </div>
+  </div>
+
+  <div class="takeaway anim-rise cascade-5" style="margin-top:18px;">
+    Único item no vermelho profundo &rarr; <strong>protótipo prioriza Snackbar de Desfazer universal (MA)</strong> e
+    seleção múltipla com confirmação reversível (T3). Resolver A3 ataca a dor #1 com escopo cirúrgico.
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Falar (90s):</strong> traduzimos cada item Likert num "net-score" — % Alto menos % Baixo. Itens no positivo são boas práticas, no negativo são dores. Quando ordenamos os 24 itens, só UM cai no vermelho profundo: A3, "desfazer ação em playlist", com −21,1. Os outros piores ainda ficam positivos (+1, +5, +7).</p>
+  <p><strong>Dado-chave:</strong> média 2,58 / 5 e 46,5% das respostas baixas. A citação de E83 é literal — usuário sabe nomear o problema. E51 dá a versão complementar ("limpei sem querer a barra de pesquisa").</p>
+  <p><strong>Gancho:</strong> "Mas tem um efeito de SEGUNDA ordem: ser Free piora TODOS os blocos. Próximo slide."</p>
+</aside>

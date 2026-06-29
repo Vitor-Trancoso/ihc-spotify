@@ -1,0 +1,108 @@
+<!-- SLIDE 05 · OWNER A · Heurísticas + instrumento · 60s -->
+<style scoped>
+  .heur-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .heur-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 14px;
+  }
+  /* 5 cards em 2 colunas: as 2 primeiras linhas pareadas (H3·H4 / H5·H7)
+     e a 5ª (H8) ocupa a largura toda — sem célula vazia */
+  .heur-cards .heur-card:last-child { grid-column: 1 / -1; }
+  @media (max-width: 560px) {
+    .heur-cards { grid-template-columns: 1fr; }
+    .heur-cards .heur-card:last-child { grid-column: auto; }
+  }
+  .heur-card {
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .heur-card h3 {
+    font-size: 16px; font-weight: 700; margin: 0; color: var(--apr-text);
+  }
+  .heur-card p {
+    font-size: 13px; line-height: 1.5; color: var(--apr-text-dim); margin: 0;
+  }
+  .instrument-box {
+    background: linear-gradient(160deg, rgba(29,185,84,.10), rgba(29,185,84,.02));
+    border: 1px solid var(--apr-green-dim);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .instrument-box h3 {
+    font-family: var(--apr-font-mono);
+    font-size: 11px; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--apr-green-br); margin: 0;
+  }
+  .instrument-box ul { margin: 0; padding-left: 18px; }
+  .instrument-box li {
+    font-size: 14px; color: var(--apr-text-dim); margin-bottom: 6px; line-height: 1.45;
+  }
+  .instrument-box li strong { color: var(--apr-text); }
+  @media (max-width: 900px) { .heur-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="slide__content" data-time="60">
+  <span class="slide__tag anim-rise cascade-1">04 · Metodologia</span>
+
+  <h1 class="slide__title anim-rise cascade-2">
+    Cinco <em>heurísticas</em> de Nielsen,<br>24 itens Likert
+  </h1>
+
+  <div class="heur-grid">
+    <div class="heur-cards">
+      <div class="heur-card anim-rise cascade-3">
+        <span class="heuristic-badge heuristic-badge--h3" data-h="3">H3</span>
+        <h3>Controle e liberdade</h3>
+        <p>Saídas claras, desfazer/refazer, evitar becos sem saída em ações do usuário.</p>
+      </div>
+      <div class="heur-card anim-rise cascade-4">
+        <span class="heuristic-badge heuristic-badge--h4" data-h="4">H4</span>
+        <h3>Consistência e padrões</h3>
+        <p>Mesmas convenções, mesmos significados — dentro do app e na plataforma.</p>
+      </div>
+      <div class="heur-card anim-rise cascade-5">
+        <span class="heuristic-badge heuristic-badge--h5" data-h="5">H5</span>
+        <h3>Prevenção de erros</h3>
+        <p>Reduzir a chance de erro antes de ele acontecer; confirmar ações destrutivas.</p>
+      </div>
+      <div class="heur-card anim-rise cascade-6">
+        <span class="heuristic-badge heuristic-badge--h7" data-h="7">H7</span>
+        <h3>Flexibilidade e eficiência</h3>
+        <p>Atalhos e personalização para o avançado, sem confundir o iniciante.</p>
+      </div>
+      <div class="heur-card anim-rise cascade-7">
+        <span class="heuristic-badge heuristic-badge--h8" data-h="8">H8</span>
+        <h3>Estética e design minimalista</h3>
+        <p>Mostrar só o que importa agora; ruído visual compete com informação útil.</p>
+      </div>
+    </div>
+
+    <aside class="instrument-box anim-rise cascade-7">
+      <h3>· Instrumento</h3>
+      <ul>
+        <li><strong>Microsoft Forms</strong> com TCLE obrigatório.</li>
+        <li><strong>24 itens Likert</strong> (1 = Discordo · 5 = Concordo).</li>
+        <li>Itens <strong>reversos</strong> para detectar viés de aquiescência.</li>
+        <li>n alvo 80–100 → <strong>n = 86 válidas</strong>.</li>
+        <li>Distribuído em redes sociais e e-mail institucional.</li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Heurísticas e instrumento (60s)</strong>. Ler cada heurística rapidamente — não explicar teoria, só firmar a ideia (controle, consistência, prevenção, flexibilidade, estética).</p>
+  <p>Destacar no box lateral: TCLE + itens reversos + n=86. Itens reversos justificam robustez metodológica.</p>
+  <p>Gancho: "Com instrumento validado em mãos, vamos para a parte mais densa — o que esses 86 usuários disseram."</p>
+</aside>

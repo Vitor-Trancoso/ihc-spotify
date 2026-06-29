@@ -1,0 +1,215 @@
+<!-- SLIDE 10 · OWNER: C · Do dado ao design (Caminho C) · 60s -->
+<style scoped>
+  .caminho-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 36px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .caminho-hub {
+    position: relative;
+    background: linear-gradient(135deg, rgba(30,215,96,.18), rgba(30,215,96,.04));
+    border: 1.5px solid var(--apr-green-br);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: 0 0 0 0 rgba(30,215,96,.45);
+    animation: hubPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes hubPulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(30,215,96,.45); }
+    50%     { box-shadow: 0 0 0 16px rgba(30,215,96,0); }
+  }
+  .caminho-hub__kicker {
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--apr-green-br);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .caminho-hub__title {
+    font-family: var(--apr-font-display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(28px, 2.6vw, 38px);
+    line-height: 1.05;
+    color: var(--apr-text);
+    margin: 0 0 10px 0;
+  }
+  .caminho-hub__sub {
+    font-size: 13px;
+    color: var(--apr-text-dim);
+    margin: 0;
+  }
+  .caminho-hub__roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .caminho-hub__roles span {
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.05);
+    color: var(--apr-text-dim);
+    border: 1px solid var(--apr-border);
+  }
+  .caminho-targets {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .target-card {
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+  }
+  .target-card__code {
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    color: var(--apr-green-br);
+    letter-spacing: .08em;
+  }
+  .target-card__name {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--apr-text);
+    margin: 0;
+  }
+  .target-card__desc {
+    font-size: 12.5px;
+    color: var(--apr-text-dim);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .caminho-arrows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .caminho-arrows path {
+    fill: none;
+    stroke: var(--apr-green-br);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    opacity: .45;
+  }
+  .caminho-rules {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .rule {
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-left: 3px solid var(--apr-green-br);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .rule__label {
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--apr-green-br);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .rule__text {
+    font-size: 13px;
+    color: var(--apr-text-dim);
+    margin: 0;
+    line-height: 1.4;
+  }
+</style>
+
+<div class="slide__content" data-time="60">
+  <span class="block-badge block-badge--prototipo" aria-label="BLOCO 3 · Protótipo">BLOCO 3 · Protótipo</span>
+  <span class="slide__tag">10 / 20 · Do dado ao design</span>
+  <h1 class="slide__title anim-rise cascade-1">
+    Caminho <em>C-modificado</em>: 3 telas profundas + 1 microação
+  </h1>
+  <p class="slide__subtitle anim-rise cascade-2">
+    Escopo cirúrgico saído do council adversarial — atacar onde a dor é maior, com condição-controle pareada para A/B justo.
+  </p>
+
+  <div class="caminho-stage anim-rise cascade-3">
+    <div class="caminho-hub">
+      <span class="caminho-hub__kicker">Council ADJUST</span>
+      <h2 class="caminho-hub__title">Caminho C<br/>modificado</h2>
+      <p class="caminho-hub__sub">6 papéis adversariais convergiram em 4 alvos.</p>
+      <div class="caminho-hub__roles">
+        <span>Creator</span><span>Opposer</span><span>Outbox</span>
+        <span>Investig.</span><span>Neutral</span><span>Judge</span>
+      </div>
+    </div>
+
+    <div class="caminho-targets">
+      <svg class="caminho-arrows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,20 C30,20 50,15 100,12" />
+        <path d="M0,45 C30,45 50,40 100,38" />
+        <path d="M0,55 C30,55 50,60 100,62" />
+        <path d="M0,80 C30,80 50,85 100,88" />
+      </svg>
+      <div class="target-card">
+        <span class="target-card__code">T2 · PLAYER</span>
+        <h3 class="target-card__name">Status textual Shuffle/Smart/Repeat</h3>
+        <p class="target-card__desc">Substitui ícones ambíguos por rótulo + estado visível. H4 + H7.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-card__code">T3 · BIBLIOTECA</span>
+        <h3 class="target-card__name">Long-press + seleção em lote</h3>
+        <p class="target-card__desc">Operações destrutivas com Desfazer pareado. H5 + H7.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-card__code">T5 · CONFIGURAÇÕES</span>
+        <h3 class="target-card__name">Busca incremental</h3>
+        <p class="target-card__desc">Atalho real para "qualidade", "wifi", "download". H7 + H8.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-card__code">MA · MICROAÇÃO</span>
+        <h3 class="target-card__name">Snackbar Desfazer universal</h3>
+        <p class="target-card__desc">Resposta direta a A3 (net-score −21,1). H3 + H5.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="caminho-rules anim-rise cascade-4">
+    <div class="rule">
+      <span class="rule__label">Escopo cirúrgico</span>
+      <p class="rule__text">3 telas + 1 microação — não um redesign de tudo. Foco no que os dados pediram.</p>
+    </div>
+    <div class="rule">
+      <span class="rule__label">Condição-controle pareada</span>
+      <p class="rule__text">Versão "Spotify atual" replicada para A/B justo nas entrevistas (mesmo prototipador).</p>
+    </div>
+    <div class="rule">
+      <span class="rule__label">Não comparar com app real</span>
+      <p class="rule__text">Evita viés de fidelidade visual e ruído de marca durante walkthrough.</p>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Fala (60s):</strong> "Esse slide responde 'por que essas 3 telas e não outras?'. O council ADJUST — 6 papéis adversariais — convergiu para o Caminho C-modificado: T2, T3, T5 e a microação MA."</p>
+  <p><strong>Dado-chave:</strong> os 4 alvos saem direto da §análise: A3 puxa o Snackbar, H4×T2 puxa o status textual, H7 puxa busca em config.</p>
+  <p><strong>Honestidade metodológica:</strong> condição-controle pareada (não comparamos com o app real para evitar viés de marca).</p>
+  <p><strong>Gancho próximo slide:</strong> "Antes de ver as 5 inovações, uma camada transversal: o sistema de shapes."</p>
+</aside>

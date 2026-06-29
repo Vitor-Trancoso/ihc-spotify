@@ -1,0 +1,53 @@
+<!-- SLIDE 01 · OWNER A · Capa · 30s -->
+<style scoped>
+  .capa-blobs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .capa-blobs span {
+    position: absolute; display: block; border-radius: 50%;
+    filter: blur(80px); opacity: .55; mix-blend-mode: screen;
+    animation: float 7s ease-in-out infinite alternate;
+  }
+  .capa-blobs span:nth-child(1) { top: -120px; left: -80px;  width: 420px; height: 420px; background: radial-gradient(circle, #1ed760 0%, transparent 70%); animation-duration: 8s; }
+  .capa-blobs span:nth-child(2) { bottom: -140px; right: -100px; width: 480px; height: 480px; background: radial-gradient(circle, #1DB954 0%, transparent 70%); animation-duration: 11s; }
+  .capa-blobs span:nth-child(3) { top: 30%; right: 18%; width: 240px; height: 240px; background: radial-gradient(circle, #38e1d2 0%, transparent 70%); animation-duration: 9s; opacity: .35; }
+  .slide__content { position: relative; z-index: 1; justify-content: center; align-items: flex-start; gap: 28px; }
+  .capa-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+  .capa-stats .pill {
+    background: rgba(255,255,255,.05); border: 1px solid var(--apr-border-strong);
+    border-radius: 999px; padding: 8px 16px;
+    font-family: var(--apr-font-mono); font-size: 12px; letter-spacing: .06em;
+    color: var(--apr-text-dim); text-transform: uppercase;
+  }
+  .capa-stats .pill strong { color: var(--apr-green-br); font-weight: 700; }
+</style>
+
+<div class="capa-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="slide__content" data-time="30">
+  <span class="slide__tag anim-rise cascade-1">IHC 2026 · Apresentação Final</span>
+
+  <h1 class="slide__title anim-rise cascade-2" style="font-size: clamp(52px, 6.8vw, 100px);">
+    Apresentação Final do trabalho de IHC —<br>
+    <em>redesenhando</em> o Spotify
+  </h1>
+
+  <p class="slide__subtitle anim-rise cascade-3" style="max-width: 820px;">
+    Análise heurística, <strong>86 respostas</strong> e um protótipo navegável.
+  </p>
+
+  <div class="capa-stats anim-rise cascade-4">
+    <span class="pill"><strong>n=86</strong> respostas</span>
+    <span class="pill"><strong>15</strong> telas</span>
+    <span class="pill"><strong>5</strong> heurísticas</span>
+  </div>
+
+  <p class="anim-rise cascade-5" style="margin-top:auto; font-family:var(--apr-font-mono); font-size:13px; color:var(--apr-text-mute);">
+    Disciplina de IHC · Universidade · Equipe de 5 — junho 2026
+  </p>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Abertura (30s)</strong>. Cumprimentar banca, apresentar a equipe (5 nomes em até 5s).</p>
+  <p>Estabelecer o escopo: trabalho final de IHC sobre Spotify Mobile com três frentes — análise quantitativa (n=86), protótipo redesenhado (15 telas) e entrevistas walkthrough.</p>
+  <p>Frase-âncora: "Vamos mostrar o que 86 usuários disseram, o que reconstruímos no protótipo, e o que os entrevistados acharam."</p>
+  <p>Gancho para o próximo slide: "Mas por que o Spotify, e por que essas 5 heurísticas?"</p>
+</aside>

@@ -1,0 +1,188 @@
+<!-- SLIDE 13 · OWNER: D · Demo ao vivo · 120s -->
+<style scoped>
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 24px;
+  }
+  .demo-copy ul {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .demo-copy li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--apr-text-dim);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .demo-copy li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--apr-green, #1DB954);
+    font-size: 14px;
+  }
+  .demo-copy li strong { color: var(--apr-text); }
+
+  .demo-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .device-frame {
+    position: relative;
+    width: 320px;
+    height: 692px;
+    border-radius: 36px;
+    border: 8px solid #1a1a1a;
+    background: #000;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,.55),
+      0 0 0 1px rgba(255,255,255,.04),
+      inset 0 0 0 1px #000;
+  }
+  .device-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #121212;
+    display: block;
+  }
+  .live-pill {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,.65);
+    color: #1ed760;
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(30,215,96,.4);
+    pointer-events: none;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #1ed760;
+    box-shadow: 0 0 8px #1ed760;
+    animation: livePulse 1.4s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .35; transform: scale(.85); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
+  }
+
+  .demo-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .demo-tab {
+    background: #181818;
+    color: var(--apr-text-dim);
+    border: 1px solid rgba(255,255,255,.08);
+    font-family: var(--apr-font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .18s ease;
+  }
+  .demo-tab:hover { color: var(--apr-text); border-color: rgba(255,255,255,.2); }
+  .demo-tab.is-active {
+    background: var(--apr-green, #1DB954);
+    color: #000;
+    border-color: var(--apr-green, #1DB954);
+  }
+</style>
+
+<div class="slide__content" data-time="120">
+  <span class="block-badge block-badge--prototipo" aria-label="BLOCO 3 · Protótipo">BLOCO 3 · Protótipo</span>
+  <span class="slide__tag">13 / 20 · Demo ao vivo</span>
+  <h1 class="slide__title">Vamos ver — <em>demo ao vivo</em></h1>
+
+  <div class="demo-grid">
+    <div class="demo-copy anim-rise cascade-1">
+      <p style="color:var(--apr-text-dim); font-size:16px; line-height:1.55; max-width:480px;">
+        Quatro telas, três minutos. Cada uma resolve uma dor do top-10
+        do net-score com o controle explícito que faltava no app original.
+      </p>
+      <ul>
+        <li><strong>T2 Player</strong> — Smart Shuffle com toggle visível (H3, H7)</li>
+        <li><strong>T3 Bulk + Undo</strong> — long-press, seleção múltipla, desfazer (H5)</li>
+        <li><strong>T5 Busca</strong> — modo offline / "wifi-only" filtra resultados (H7, H8)</li>
+        <li><strong>MA Snackbar</strong> — confirmação reversível com timer (H5)</li>
+      </ul>
+    </div>
+
+    <div class="demo-stage anim-rise cascade-2">
+      <div class="device-frame">
+        <span class="live-pill"><span class="live-dot"></span>AO VIVO</span>
+        <iframe
+          id="demoFrame"
+          src="../../telas/t2.html"
+          data-original-src="../../telas/t2.html"
+          title="Protótipo Spotify V2"
+          loading="lazy"></iframe>
+      </div>
+
+      <div class="demo-tabs" role="tablist">
+        <button class="demo-tab is-active" data-src="../../telas/t2.html">T2 Player</button>
+        <button class="demo-tab" data-src="../../telas/t3.html">T3 Bulk+Undo</button>
+        <button class="demo-tab" data-src="../../telas/t5.html">T5 Busca</button>
+        <button class="demo-tab" data-src="../../telas/ma.html">MA Snackbar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Roteiro (≈120s):</strong> 1) T2 — apontar Smart Shuffle toggle visível ("controle, não magia"). 2) T3 — long-press numa música, selecionar 3, mover, ressaltar Undo. 3) MA — disparar ação destrutiva e mostrar snackbar com timer. 4) T5 — buscar "wifi" e mostrar filtro offline.</p>
+  <p><strong>Plano B:</strong> se iframe não carregar, alternar para GIFs (assets do agente G em <code>../assets/gifs/</code>). <strong>Gancho:</strong> "agora — como tudo isso se mapeia nas heurísticas?"</p>
+</aside>
+
+<script>
+  (function () {
+    const frame = document.getElementById('demoFrame');
+    const tabs = document.querySelectorAll('.demo-tab');
+    if (!frame || !tabs.length) return;
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const src = btn.dataset.src;
+        if (!src) return;
+        tabs.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        frame.style.opacity = '0';
+        frame.style.transition = 'opacity .18s ease';
+        setTimeout(() => {
+          frame.src = src;
+          frame.addEventListener('load', () => { frame.style.opacity = '1'; }, { once: true });
+          // fallback se load demorar
+          setTimeout(() => { frame.style.opacity = '1'; }, 600);
+        }, 120);
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,134 @@
+<!-- SLIDE 11 · OWNER: C · Sistema de shapes V2.1 · 60s -->
+<style scoped>
+  .shapes-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 22px;
+    margin-top: 18px;
+    align-items: end;
+  }
+  @media (max-width: 1100px) {
+    .shapes-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .shape-demo {
+    padding: 18px 8px 14px;
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 14px;
+    transition: transform 240ms var(--apr-ease), border-color 240ms var(--apr-ease);
+  }
+  .shape-demo:hover {
+    transform: translateY(-4px);
+    border-color: var(--apr-green-dim);
+  }
+  .shape-demo__name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--apr-text);
+    margin: 14px 0 2px;
+  }
+  .shape-demo__hint {
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--apr-text-mute);
+  }
+  .shapes-msg {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .shapes-msg__card {
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-left: 3px solid var(--apr-green-br);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .shapes-msg__card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: var(--apr-text);
+  }
+  .shapes-msg__card p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--apr-text-dim);
+    line-height: 1.5;
+  }
+  .shapes-msg__badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+</style>
+
+<div class="slide__content" data-time="60" data-optional="true">
+  <span class="block-badge block-badge--prototipo" aria-label="BLOCO 3 · Protótipo">BLOCO 3 · Protótipo</span>
+  <span class="slide__tag">11 / 20 · Sistema de shapes V2.1</span>
+  <h1 class="slide__title anim-rise cascade-1">
+    Sistema de <em>shapes</em> — leitura instantânea de tipo
+  </h1>
+  <p class="slide__subtitle anim-rise cascade-2">
+    Seis formas, seis tipos de conteúdo. Reconhecimento pré-textual antes mesmo do título carregar.
+  </p>
+
+  <div class="shapes-grid">
+    <div class="shape-demo shape-demo--music anim-rise cascade-1">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Música</p>
+      <p class="shape-demo__hint">quadrado liso</p>
+    </div>
+    <div class="shape-demo shape-demo--album anim-rise cascade-2">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Álbum</p>
+      <p class="shape-demo__hint">aba tipo pasta</p>
+    </div>
+    <div class="shape-demo shape-demo--playlist anim-rise cascade-3">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Playlist</p>
+      <p class="shape-demo__hint">empilhamento eco</p>
+    </div>
+    <div class="shape-demo shape-demo--artist anim-rise cascade-4">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Artista</p>
+      <p class="shape-demo__hint">círculo</p>
+    </div>
+    <div class="shape-demo shape-demo--podcast anim-rise cascade-5">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Podcast</p>
+      <p class="shape-demo__hint">fita lateral</p>
+    </div>
+    <div class="shape-demo shape-demo--audiobook anim-rise cascade-6">
+      <div class="shape-demo__box"></div>
+      <p class="shape-demo__name">Audiolivro</p>
+      <p class="shape-demo__hint">retangular 3:4</p>
+    </div>
+  </div>
+
+  <div class="shapes-msg anim-rise cascade-7">
+    <div class="shapes-msg__card">
+      <h3>Por que importa</h3>
+      <p>No app atual, todos os itens são quadrados idênticos — é preciso ler o subtítulo para saber se é álbum, playlist ou podcast. As shapes resolvem antes do texto, atacando duas heurísticas de uma vez.</p>
+      <div class="shapes-msg__badges">
+        <span class="heuristic-badge heuristic-badge--h4" data-h="4">H4 · Consistência</span>
+        <span class="heuristic-badge heuristic-badge--h8" data-h="8">H8 · Estética</span>
+      </div>
+    </div>
+    <div class="shapes-msg__card">
+      <h3>Origem do feedback</h3>
+      <p>Crítica direta de colega no walkthrough da V1: "tudo parece a mesma coisa". V2.1 transforma o vazio visual em <strong>linguagem de tipo</strong> consistente em T1, T3, T7 e busca.</p>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Fala (60s):</strong> "Esse é o sistema visual que atravessa todas as telas redesenhadas. Seis formas, seis tipos — música, álbum, playlist, artista, podcast, audiolivro."</p>
+  <p><strong>Dado-chave:</strong> ataca H4 (consistência) e H8 (estética) simultaneamente. Resposta direta a feedback do colega na V1.</p>
+  <p><strong>Demonstrar:</strong> apontar para o álbum (aba de pasta = "guarda outras músicas") e podcast (fita lateral = "transmissão"). Metáforas físicas.</p>
+  <p><strong>Gancho:</strong> "As shapes são uma das 5 inovações principais — vamos ver as outras quatro."</p>
+</aside>

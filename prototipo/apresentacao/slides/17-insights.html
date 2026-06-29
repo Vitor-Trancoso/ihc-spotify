@@ -1,0 +1,85 @@
+<!-- SLIDE 17 · OWNER: E · Insights + limitações · 45s -->
+<style scoped>
+  .e17-insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .e17-card { background: var(--apr-bg-2); border: 1px solid var(--apr-green-dim); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--apr-shadow-card); position: relative; overflow: hidden; }
+  .e17-card--warn { border-color: rgba(255,140,26,.35); }
+  .e17-card__icon { width: 40px; height: 40px; border-radius: 50%; background: var(--apr-green-dim); display: flex; align-items: center; justify-content: center; }
+  .e17-card--warn .e17-card__icon { background: rgba(255,140,26,.18); }
+  .e17-card__icon svg { width: 22px; height: 22px; }
+  .e17-card__icon path { stroke: var(--apr-green-br); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 32; stroke-dashoffset: 32; animation: drawCheck 700ms var(--apr-ease) forwards; animation-delay: 600ms; }
+  .e17-card--warn .e17-card__icon path { stroke: var(--apr-orange); }
+  .e17-card__title { font-weight: 700; font-size: 17px; color: var(--apr-text); margin: 0; line-height: 1.3; }
+  .e17-card__desc { font-size: 14px; color: var(--apr-text-dim); line-height: 1.55; margin: 0; }
+  .e17-card__tag { font-family: var(--apr-font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--apr-green-br); }
+  .e17-card--warn .e17-card__tag { color: var(--apr-orange); }
+  .e17-limits { background: linear-gradient(135deg, rgba(255,140,26,.16), rgba(255,140,26,.03)); border: 1px solid rgba(255,140,26,.35); border-radius: 14px; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .e17-limits__header { display: flex; align-items: center; gap: 10px; }
+  .e17-limits__header strong { font-family: var(--apr-font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--apr-orange); }
+  .e17-limits__list { display: flex; gap: 10px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+  .e17-limits__list li { font-family: var(--apr-font-mono); font-size: 12px; color: var(--apr-text); background: rgba(255,140,26,.10); border: 1px solid rgba(255,140,26,.25); padding: 6px 12px; border-radius: 999px; }
+  .e17-limits__msg { font-size: 14px; color: var(--apr-text); line-height: 1.5; }
+  .e17-limits__msg em { color: var(--apr-orange); font-style: normal; font-weight: 600; }
+  @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .e17-card__icon path { stroke-dashoffset: 0; animation: none; } }
+</style>
+
+<div class="slide__content" data-time="45" style="gap: 22px;">
+  <span class="block-badge block-badge--entrevistas" aria-label="BLOCO 4 · Entrevistas">BLOCO 4 · Entrevistas</span>
+  <span class="slide__tag">17 / 20 · Entrevistas</span>
+
+  <h1 class="slide__title anim-rise anim-1" style="font-size: clamp(36px, 4vw, 56px);">
+    Três <em>aprendizados</em>, várias ressalvas
+  </h1>
+
+  <div class="e17-insights">
+
+    <div class="e17-card anim-rise anim-2">
+      <div class="e17-card__icon">
+        <svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg>
+      </div>
+      <span class="e17-card__tag">Insight 1 · validado</span>
+      <h3 class="e17-card__title">Clutter validado</h3>
+      <p class="e17-card__desc">Dois participantes, independentes, usaram <strong>"bagunçado"</strong> espontaneamente para descrever a Home atual. Confirma a H8 quantitativa (n=86) na fala real.</p>
+    </div>
+
+    <div class="e17-card anim-rise anim-3">
+      <div class="e17-card__icon">
+        <svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg>
+      </div>
+      <span class="e17-card__tag">Insight 2 · celebrado</span>
+      <h3 class="e17-card__title">Biblioteca categorizada celebrada</h3>
+      <p class="e17-card__desc">Bernardo e Fernanda destacaram a divisão por shapes/categorias como ganho de navegação. As 6 formas do V2.1 estão funcionando como linguagem de tipo.</p>
+    </div>
+
+    <div class="e17-card e17-card--warn anim-rise anim-4">
+      <div class="e17-card__icon">
+        <svg viewBox="0 0 24 24"><path d="M12 4 L12 14 M12 18 L12 20"/></svg>
+      </div>
+      <span class="e17-card__tag">Insight 3 · ressalva</span>
+      <h3 class="e17-card__title">Player dividiu opiniões</h3>
+      <p class="e17-card__desc">Bernardo preferiu o Player atual ("mais familiar"). O toggle separado de <strong>Smart Shuffle</strong> confundiu em um momento — sinal pra revisar microcopy no V2.</p>
+    </div>
+
+  </div>
+
+  <div class="e17-limits anim-rise anim-5">
+    <div class="e17-limits__header">
+      <strong>Limitações honestas desta rodada</strong>
+    </div>
+    <ul class="e17-limits__list">
+      <li>n = 6 (amostra modesta)</li>
+      <li>sem SUS aplicado</li>
+      <li>sem cronometragem A/B</li>
+      <li>viés de condução (entrevistador é da equipe)</li>
+      <li>viés de aquiescência</li>
+    </ul>
+    <p class="e17-limits__msg">Dados <em>qualitativos suficientes</em> para validar a <em>direção</em> do redesign — <em>não</em> para afirmar Δ quantitativo sobre o Spotify atual. Para escalar: SUS, A/B cronometrado e condução por avaliador externo.</p>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Falar (45s):</strong> apresentar os 3 insights como blocos curtos. Não maquiar o terceiro — assumir que o Player ainda divide.</p>
+  <p><strong>Dado-chave:</strong> "Clutter" valida o H8 quantitativo (net-score negativo no instrumento) — convergência quali ↔ quanti é o sinal forte aqui, mesmo com amostra modesta (n=6).</p>
+  <p><strong>Ressalvas:</strong> antecipar a pergunta da banca sobre a amostra (n=6) — colocar tudo na mesa antes que perguntem. "Validar direção, não Δ" é a frase-chave.</p>
+  <p><strong>Gancho:</strong> "Com isso fechamos o quê fica e o quê vem — próximo slide."</p>
+</aside>

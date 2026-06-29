@@ -1,0 +1,158 @@
+<!-- SLIDE 19 · OWNER: F · Obrigado + perguntas · 15s -->
+<style scoped>
+  .obrigado-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    gap: 28px;
+    position: relative;
+  }
+  .obrigado-title {
+    font-family: var(--apr-font-display);
+    font-weight: 800;
+    font-size: clamp(96px, 14vw, 220px);
+    line-height: .95;
+    letter-spacing: -.04em;
+    margin: 0;
+    background: linear-gradient(135deg, var(--apr-green-br) 0%, #ffffff 50%, var(--apr-green-br) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+  }
+  .obrigado-q {
+    font-family: var(--apr-font-mono);
+    font-size: 14px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--apr-text-dim);
+  }
+  .obrigado-q strong { color: var(--apr-green-br); font-weight: 600; }
+  .obrigado-team {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 720px;
+  }
+  .obrigado-team span {
+    padding: 8px 16px;
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: var(--apr-font-mono);
+    color: var(--apr-text);
+  }
+  .obrigado-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: var(--apr-font-mono);
+    font-size: 12px;
+    color: var(--apr-text-dim);
+    margin-top: 8px;
+  }
+  .obrigado-links a { color: var(--apr-green-br); text-decoration: none; }
+  .qr-placeholder {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    background:
+      repeating-linear-gradient(0deg, var(--apr-text) 0 4px, transparent 4px 8px),
+      repeating-linear-gradient(90deg, var(--apr-text) 0 4px, transparent 4px 8px),
+      var(--apr-bg-3);
+    background-blend-mode: multiply;
+    border: 2px solid var(--apr-border-strong);
+    opacity: .85;
+  }
+  .confetti-layer {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .confetti-layer { display: none; }
+  }
+</style>
+
+<div class="slide__content" data-time="15">
+  <div class="obrigado-wrap" id="obrigado-root">
+    <div class="confetti-layer" id="confetti-layer-19" aria-hidden="true"></div>
+
+    <h1 class="obrigado-title anim-rise anim-1"><em>Obrigado</em></h1>
+    <p class="obrigado-q anim-rise anim-2"><strong>Perguntas?</strong></p>
+
+    <div class="obrigado-team anim-rise anim-3">
+      <span>Filipe Brito</span>
+      <span>João Vitor</span>
+      <span>Paulo Victor</span>
+      <span>Renan Câmara</span>
+      <span>Vitor Marconi</span>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:24px; margin-top: 8px;" class="anim-rise anim-4">
+      <div class="qr-placeholder" aria-label="QR code placeholder para protótipo"></div>
+      <div class="obrigado-links" style="text-align:left;">
+        <span>Protótipo: <a href="https://vitor-trancoso.github.io/ihc-spotify/prototipo/" target="_blank" rel="noopener">vitor-trancoso.github.io/ihc-spotify/prototipo/</a></span>
+        <span>Repo: <a href="https://github.com/vitor-trancoso/ihc-spotify" target="_blank" rel="noopener">github.com/vitor-trancoso/ihc-spotify</a></span>
+        <span>Contato: crianex@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    function fireConfetti(){
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var layer = document.getElementById('confetti-layer-19');
+      if (!layer || layer.dataset.fired === '1') return;
+      layer.dataset.fired = '1';
+      var colors = ['#1DB954', '#1ed760', '#ffffff', '#0a8f3f'];
+      for (var i = 0; i < 36; i++) {
+        var c = document.createElement('div');
+        var size = 6 + Math.random() * 6;
+        c.style.cssText = [
+          'position:absolute',
+          'top:-20px',
+          'left:' + (Math.random() * 100) + '%',
+          'width:' + size + 'px',
+          'height:' + size + 'px',
+          'background:' + colors[i % colors.length],
+          'opacity:' + (0.6 + Math.random() * 0.4),
+          'border-radius:' + (Math.random() > .5 ? '50%' : '2px'),
+          'transform:rotate(' + (Math.random() * 360) + 'deg)',
+          'animation:confettiFall ' + (2400 + Math.random() * 1800) + 'ms ' + (Math.random() * 400) + 'ms cubic-bezier(.22,1,.36,1) forwards'
+        ].join(';');
+        layer.appendChild(c);
+      }
+      if (typeof window.confetti === 'function') {
+        try { window.confetti(); } catch(e) {}
+      }
+    }
+    if (!document.getElementById('confetti-kf-19')) {
+      var st = document.createElement('style');
+      st.id = 'confetti-kf-19';
+      st.textContent = '@keyframes confettiFall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }';
+      document.head.appendChild(st);
+    }
+    document.addEventListener('slide-enter', function(e){
+      var d = e && e.detail;
+      if (d && (d.index === 19 || d.id === 'slide-19' || (d.slide && /19/.test(d.slide)))) {
+        fireConfetti();
+      }
+    });
+    setTimeout(function(){
+      var root = document.getElementById('obrigado-root');
+      if (root && root.closest('.slide.is-active')) fireConfetti();
+    }, 300);
+  })();
+</script>
+
+<aside class="apr-notes">
+  <p><strong>15s.</strong> Curto e direto: agradecer, abrir perguntas. Não improvisar.</p>
+  <p>Apontar para o QR/URL: protótipo navegável já está público.</p>
+  <p>Se a banca puxar discussão técnica densa &rarr; usar slide 20 (backup) com tecla &rarr;.</p>
+</aside>

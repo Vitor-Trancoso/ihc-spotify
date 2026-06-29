@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121212" />
+  <title>Apresentação Final IHC — Spotify</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animacoes.css" />
+</head>
+<body class="apr-body">
+  <div id="apr-progress" aria-hidden="true"></div>
+
+  <main id="apr-stage" aria-live="polite" aria-atomic="false"></main>
+
+  <nav id="apr-nav" aria-label="Navegação de slides">
+    <button type="button" id="apr-prev" aria-label="Slide anterior">&larr;</button>
+    <button type="button" id="apr-next" aria-label="Próximo slide">&rarr;</button>
+  </nav>
+
+  <div id="apr-counter" aria-live="off">01 / 20</div>
+
+  <div id="apr-help" hidden>
+    <strong>Atalhos</strong><br />
+    Setas: navegar &middot; P: notas &middot; T: timer &middot; F: fullscreen &middot; O: overview &middot; 1-9: jump &middot; ?: ajuda
+  </div>
+
+  <aside id="apr-notes-panel" hidden aria-label="Notas do apresentador"></aside>
+  <div id="apr-timer" hidden aria-live="off">20:00</div>
+
+  <!-- Scripts -->
+  <script src="js/animacoes.js" defer></script>
+  <script src="js/apresentador.js" defer></script>
+  <script src="js/nav.js" defer></script>
+</body>
+</html>

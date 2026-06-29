@@ -1,0 +1,65 @@
+<!-- SLIDE 15 · OWNER: E · Entrevistas — método e participantes · 45s -->
+<style scoped>
+  .e15-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .e15-participant { background: var(--apr-bg-2); border: 1px solid var(--apr-border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--apr-shadow-card); }
+  .e15-participant__avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--apr-green), var(--apr-green-br)); display: flex; align-items: center; justify-content: center; font-family: var(--apr-font-display); font-style: italic; font-weight: 800; font-size: 24px; color: #0a0a0a; }
+  .e15-participant__name { font-weight: 700; font-size: 18px; color: var(--apr-text); margin: 0; }
+  .e15-participant__meta { font-family: var(--apr-font-mono); font-size: 11px; color: var(--apr-text-dim); text-transform: uppercase; letter-spacing: .08em; }
+  .e15-participant__desc { font-size: 14px; color: var(--apr-text-dim); line-height: 1.5; margin: 0; }
+  .e15-status { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(30,215,96,.12); border: 1px solid rgba(30,215,96,.35); font-family: var(--apr-font-mono); font-size: 12px; color: var(--apr-green-br); text-transform: uppercase; letter-spacing: .06em; width: max-content; }
+  .e15-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--apr-green-br); }
+  .e15-tasks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+  .e15-task { background: var(--apr-bg-2); border: 1px solid var(--apr-border); border-radius: 10px; padding: 12px 14px; }
+  .e15-task__code { font-family: var(--apr-font-mono); font-size: 11px; color: var(--apr-green-br); text-transform: uppercase; letter-spacing: .08em; }
+  .e15-task__label { font-size: 13px; color: var(--apr-text); margin-top: 4px; line-height: 1.35; }
+  .e15-honesty { background: linear-gradient(135deg, rgba(255,140,26,.14), rgba(255,140,26,.03)); border: 1px solid rgba(255,140,26,.30); border-radius: 12px; padding: 14px 18px; font-size: 14px; color: var(--apr-text); }
+  .e15-honesty strong { color: var(--apr-orange); font-family: var(--apr-font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 4px; }
+</style>
+
+<div class="slide__content" data-time="45" style="gap: 22px;">
+  <span class="block-badge block-badge--entrevistas" aria-label="BLOCO 4 · Entrevistas">BLOCO 4 · Entrevistas</span>
+  <span class="slide__tag">15 / 20 · Entrevistas</span>
+
+  <h1 class="slide__title anim-rise anim-1" style="font-size: clamp(36px, 4vw, 56px);">
+    <em>6 walkthroughs</em> — 2 em destaque
+  </h1>
+
+  <div class="e15-grid anim-rise anim-2">
+    <div class="e15-participant">
+      <div class="e15-participant__avatar">B</div>
+      <h3 class="e15-participant__name">Bernardo Barreto Zambiazzi</h3>
+      <span class="e15-participant__meta">22 anos · Florianópolis · Assíncrono via texto · Conduzido por João Vitor</span>
+      <p class="e15-participant__desc">Respondeu por escrito a 4 perguntas-chave (H5, H8, H7, H8) após navegar pelo protótipo no próprio dispositivo.</p>
+    </div>
+    <div class="e15-participant">
+      <div class="e15-participant__avatar">F</div>
+      <h3 class="e15-participant__name">Fernanda</h3>
+      <span class="e15-participant__meta">Presencial · Walkthrough conduzido por Paulo</span>
+      <p class="e15-participant__desc">Sessão pensar-alto com comparação atual ↔ redesign, foco em Home, Personalizar Feed, Descoberta e Notificações.</p>
+    </div>
+  </div>
+
+  <div class="e15-status anim-rise anim-3">Coleta concluída — 6 sessões</div>
+
+  <div style="display:flex; flex-direction:column; gap:10px;" class="anim-rise anim-4">
+    <span style="font-family: var(--apr-font-mono); font-size: 11px; color: var(--apr-text-dim); text-transform: uppercase; letter-spacing: .08em;">4 tarefas do roteiro</span>
+    <div class="e15-tasks">
+      <div class="e15-task"><div class="e15-task__code">T2</div><div class="e15-task__label">Desligar shuffle no Player</div></div>
+      <div class="e15-task"><div class="e15-task__code">T3</div><div class="e15-task__label">Selecionar + mover 5 músicas</div></div>
+      <div class="e15-task"><div class="e15-task__code">T5</div><div class="e15-task__label">Buscar qualidade de download</div></div>
+      <div class="e15-task"><div class="e15-task__code">MA</div><div class="e15-task__label">Apagar música + desfazer</div></div>
+    </div>
+  </div>
+
+  <div class="e15-honesty anim-rise anim-5">
+    <strong>Honestidade metodológica</strong>
+    Protocolo A/B cronometrado <em>não foi aplicado integralmente</em>. Por escolha de escopo, as sessões foram exploratórias — foco em verbatim e desejabilidade, não em tempos comparativos. Métricas objetivas (SUS, cronometragem A/B) ficariam para um estudo de escala maior.
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Falar (45s):</strong> "Fizemos 6 walkthroughs no total. Destaco 2 aqui para dar dinâmica — Bernardo, assíncrono por texto (conduzido pelo João Vitor); Fernanda, presencial com o Paulo. Todas seguiram o mesmo roteiro de 4 tarefas."</p>
+  <p><strong>Dado-chave:</strong> as 4 tarefas T2/T3/T5/MA cobrem as 4 hipóteses centrais do roteiro, mas o A/B cronometrado não rolou integralmente — foi qualitativo.</p>
+  <p><strong>Honestidade:</strong> mesmo com 6 sessões é amostra modesta — assumir que o forte aqui são citações e padrões qualitativos, não poder estatístico. Se a banca perguntar o total, é 6.</p>
+  <p><strong>Gancho:</strong> "Mesmo com n pequeno, três padrões fortíssimos emergiram. O primeiro veio em uma palavra que duas pessoas usaram sem combinar."</p>
+</aside>

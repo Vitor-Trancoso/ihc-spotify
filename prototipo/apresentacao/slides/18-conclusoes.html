@@ -1,0 +1,100 @@
+<!-- SLIDE 18 · OWNER: F · Conclusões + trabalho futuro · 60s -->
+<style scoped>
+  .conc-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: start; margin-top: 12px; }
+  .conc-col h3 {
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--apr-text-dim);
+    margin: 0 0 16px 0;
+  }
+  .conc-col--futuro h3 { color: var(--apr-orange); }
+  .conc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .conc-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .conc-item--futuro { background: transparent; border-color: var(--apr-border); }
+  .conc-item__icon { flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px; }
+  .conc-item__icon svg { width: 100%; height: 100%; }
+  .conc-item__icon path {
+    fill: none;
+    stroke: var(--apr-green-br);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    transition: stroke-dashoffset 900ms var(--apr-ease);
+  }
+  .slide.is-active .conc-item__icon path { stroke-dashoffset: 0; }
+  .conc-item--futuro .conc-item__icon path { stroke: var(--apr-orange); }
+  .conc-item__text { font-size: 15px; line-height: 1.45; color: var(--apr-text); }
+  .conc-item--futuro .conc-item__text { color: var(--apr-text-dim); font-size: 14px; }
+  .conc-item__text em { font-style: normal; color: var(--apr-green-br); font-weight: 600; }
+  .conc-item--futuro .conc-item__text em { color: var(--apr-orange); }
+</style>
+
+<div class="slide__content" data-time="60">
+  <span class="slide__tag">18 / 20 · Fechamento</span>
+  <h1 class="slide__title">O que <em>fica</em> e o que <em>vem</em></h1>
+
+  <div class="conc-grid">
+    <div class="conc-col conc-col--fica">
+      <h3>&#10003; O que fica</h3>
+      <ul class="conc-list">
+        <li class="conc-item anim-rise anim-1">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg></span>
+          <span class="conc-item__text"><em>Clutter é a dor real</em> — validado quant (net-score A3 = &minus;21,1) e qual (Fernanda: "bagunçado").</span>
+        </li>
+        <li class="conc-item anim-rise anim-2">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg></span>
+          <span class="conc-item__text">Modelo <em>Free</em> é uma camada de usabilidade invisível — score Free &lt; Premium em todos os 5 blocos (gap 0,54&ndash;0,77).</span>
+        </li>
+        <li class="conc-item anim-rise anim-3">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg></span>
+          <span class="conc-item__text"><em>Shapes, busca e undo</em> viraram recomendações concretas no protótipo (3 telas + 1 microação).</span>
+        </li>
+        <li class="conc-item anim-rise anim-4">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M4 12 L10 18 L20 6"/></svg></span>
+          <span class="conc-item__text">Council adversarial preveniu over-engineering — <em>Caminho C</em> reduziu escopo sem perder cobertura heurística.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="conc-col conc-col--futuro">
+      <h3>&rarr; Trabalho futuro</h3>
+      <ul class="conc-list">
+        <li class="conc-item conc-item--futuro anim-rise anim-5">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M5 12 H19 M13 6 L19 12 L13 18"/></svg></span>
+          <span class="conc-item__text">Validar com <em>n &ge; 6</em> e A/B cronometrado com SUS.</span>
+        </li>
+        <li class="conc-item conc-item--futuro anim-rise anim-6">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M5 12 H19 M13 6 L19 12 L13 18"/></svg></span>
+          <span class="conc-item__text">Cobrir <em>H4 (consistência)</em> e onboarding pós-update.</span>
+        </li>
+        <li class="conc-item conc-item--futuro anim-rise anim-7">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M5 12 H19 M13 6 L19 12 L13 18"/></svg></span>
+          <span class="conc-item__text">Testar <em>Personalizar Feed</em> com think-aloud.</span>
+        </li>
+        <li class="conc-item conc-item--futuro anim-rise anim-7">
+          <span class="conc-item__icon"><svg viewBox="0 0 24 24"><path d="M5 12 H19 M13 6 L19 12 L13 18"/></svg></span>
+          <span class="conc-item__text">Replicar com usuários <em>Free segmentados</em>.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>60s.</strong> Fechar com confiança: as 3 entregas (análise, protótipo, entrevistas) convergem para o mesmo veredito &mdash; clutter é o gargalo, Free amplifica tudo.</p>
+  <p>Dado-chave: net-score A3 = &minus;21,1 + gap Free-Premium 0,54&ndash;0,77 + 5 citações alinhadas. Mostrar que council evitou inflação de escopo.</p>
+  <p>Trabalho futuro é honestidade científica, não desculpa: amostra modesta (n=6), falta SUS, falta A/B cronometrado &mdash; caminhos para escalar a validação.</p>
+  <p>Gancho: "Antes de abrir perguntas, agradecimentos." &rarr; slide 19.</p>
+</aside>

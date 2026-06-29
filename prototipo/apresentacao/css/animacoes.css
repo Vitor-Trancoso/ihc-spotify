@@ -1,0 +1,98 @@
+/* ============================================================
+   APRESENTAÇÃO — ANIMAÇÕES
+   ============================================================ */
+
+@keyframes rise {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 var(--apr-green-glow); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 8px transparent; }
+}
+@keyframes float {
+  from { transform: translateY(0) rotate(0deg); }
+  to   { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0    var(--apr-green-glow); }
+  100% { box-shadow: 0 0 0 14px rgba(29,185,84,0); }
+}
+@keyframes barFill {
+  from { width: 0; }
+  to   { width: var(--fill-width, 100%); }
+}
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: var(--dash-len, 1000); }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes confettiDrop {
+  0%   { transform: translateY(-20vh) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* Animation helper classes — triggered on slide enter */
+.slide.is-active .anim-rise { animation: rise 700ms var(--apr-ease) both; }
+
+.slide.is-active .anim-rise.cascade-1 { animation-delay: 0ms; }
+.slide.is-active .anim-rise.cascade-2 { animation-delay: 100ms; }
+.slide.is-active .anim-rise.cascade-3 { animation-delay: 200ms; }
+.slide.is-active .anim-rise.cascade-4 { animation-delay: 300ms; }
+.slide.is-active .anim-rise.cascade-5 { animation-delay: 400ms; }
+.slide.is-active .anim-rise.cascade-6 { animation-delay: 500ms; }
+.slide.is-active .anim-rise.cascade-7 { animation-delay: 600ms; }
+
+/* Not active → reset */
+.slide:not(.is-active) .anim-rise { opacity: 0; }
+
+/* count-up is JS-driven; CSS only ensures smooth fallback */
+.anim-count { transition: color 300ms var(--apr-ease); }
+
+/* bar fill triggered by JS adding .is-animated */
+.anim-bar .bar__fill,
+.anim-bar.bar-fill { transition: width 1000ms var(--apr-ease); }
+
+/* clip reveal */
+.slide.is-active .anim-clip {
+  animation: clipReveal 700ms var(--apr-ease) both;
+}
+
+/* draw line for SVG checks */
+.anim-draw {
+  stroke-dasharray: var(--dash-len, 200);
+  stroke-dashoffset: var(--dash-len, 200);
+}
+.slide.is-active .anim-draw {
+  animation: drawLine 1200ms var(--apr-ease) both;
+}
+
+/* Confetti container */
+.confetti-piece {
+  position: absolute;
+  top: -20vh;
+  width: 8px;
+  height: 14px;
+  background: var(--apr-green-br);
+  border-radius: 2px;
+  animation: confettiDrop 4s linear forwards;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  .slide { transform: none !important; }
+  .confetti-piece { display: none; }
+}

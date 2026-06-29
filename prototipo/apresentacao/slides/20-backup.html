@@ -1,0 +1,147 @@
+<!-- SLIDE 20 · OWNER: F · Backup técnico · sem tempo (consulta) -->
+<style scoped>
+  .backup-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    margin-top: 8px;
+  }
+  .backup-section {
+    background: var(--apr-bg-2);
+    border: 1px solid var(--apr-border);
+    border-radius: 14px;
+    padding: 18px 22px;
+  }
+  .backup-section h3 {
+    margin: 0 0 12px 0;
+    font-family: var(--apr-font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--apr-green-br);
+  }
+  .backup-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .backup-figs figure { margin: 0; }
+  .backup-figs img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--apr-border);
+    background: var(--apr-bg-3);
+    cursor: zoom-in;
+  }
+  .backup-figs figcaption {
+    margin-top: 4px;
+    font-family: var(--apr-font-mono);
+    font-size: 10px;
+    color: var(--apr-text-mute);
+    text-align: center;
+  }
+  table.apriori {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-family: var(--apr-font-mono);
+    color: var(--apr-text-dim);
+  }
+  table.apriori th, table.apriori td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--apr-border);
+    text-align: left;
+  }
+  table.apriori th {
+    color: var(--apr-text);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  table.apriori td:nth-child(n+2) { text-align: right; }
+  table.apriori tr:first-child td { color: var(--apr-green-br); font-weight: 600; }
+  .refs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--apr-text-dim); }
+  .refs li::before { content: "[•] "; color: var(--apr-green-br); font-family: var(--apr-font-mono); }
+  .links-list { display: flex; flex-direction: column; gap: 6px; font-family: var(--apr-font-mono); font-size: 12px; }
+  .links-list a { color: var(--apr-green-br); text-decoration: none; }
+  .links-list a:hover { text-decoration: underline; }
+</style>
+
+<div class="slide__content" data-reference="true">
+  <span class="slide__tag">20 / 20 · Apêndice (backup &mdash; modo consulta)</span>
+  <h1 class="slide__title" style="font-size: clamp(36px, 4vw, 56px);"><em>Apêndice</em> técnico</h1>
+  <p class="slide__subtitle" style="margin-top:-8px;">Material denso para responder à banca &mdash; fora do cronômetro.</p>
+
+  <div class="backup-grid">
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <section class="backup-section">
+        <h3>Figuras densas (item-a-item)</h3>
+        <div class="backup-figs">
+          <figure>
+            <img src="assets/figuras/fig2_heatmap_blocos.png" alt="Heatmap de correlação entre blocos de heurísticas" loading="lazy">
+            <figcaption>fig2 · Heatmap correlação por bloco</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/figuras/fig10_score_blocos.png" alt="Distribuição de score por bloco heurístico" loading="lazy">
+            <figcaption>fig10 · Score por bloco</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="backup-section">
+        <h3>Regras Apriori &mdash; top 10 por lift</h3>
+        <table class="apriori">
+          <thead>
+            <tr><th>Antecedente &rarr; Consequente</th><th>Sup.</th><th>Conf.</th><th>Lift</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>H4=Baixo &rarr; H7=Baixo</td><td>0,12</td><td>0,71</td><td>5,95</td></tr>
+            <tr><td>H7=Baixo &rarr; H4=Baixo</td><td>0,12</td><td>0,99</td><td>5,87</td></tr>
+            <tr><td>H8=Baixo &rarr; H5=Baixo</td><td>0,14</td><td>0,64</td><td>4,12</td></tr>
+            <tr><td>H5=Baixo &rarr; H8=Baixo</td><td>0,14</td><td>0,89</td><td>4,03</td></tr>
+            <tr><td>H3=Baixo, H7=Baixo &rarr; H4=Baixo</td><td>0,09</td><td>0,95</td><td>3,88</td></tr>
+            <tr><td>Free &rarr; H3=Baixo</td><td>0,18</td><td>0,82</td><td>3,12</td></tr>
+            <tr><td>H4=Alto &rarr; H7=Alto</td><td>0,41</td><td>0,76</td><td>1,68</td></tr>
+            <tr><td>H7=Alto &rarr; H8=Alto</td><td>0,43</td><td>0,79</td><td>1,55</td></tr>
+            <tr><td>Premium &rarr; H3=Alto</td><td>0,52</td><td>0,71</td><td>1,42</td></tr>
+            <tr><td>H3=Alto &rarr; H8=Alto</td><td>0,49</td><td>0,74</td><td>1,38</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <section class="backup-section">
+        <h3>Referências bibliográficas</h3>
+        <ul class="refs">
+          <li>Nielsen, J. (1994). <em>Heuristic evaluation</em>. In: Usability Inspection Methods.</li>
+          <li>Cronbach, L. J. (1951). <em>Coefficient alpha and the internal structure of tests</em>. Psychometrika, 16(3), 297&ndash;334.</li>
+          <li>Mann, H. B. &amp; Whitney, D. R. (1947). <em>On a test of whether one of two random variables is stochastically larger than the other</em>. Ann. Math. Stat., 18(1), 50&ndash;60.</li>
+          <li>Agrawal, R. &amp; Srikant, R. (1994). <em>Fast algorithms for mining association rules</em> (Apriori). Proc. VLDB, 487&ndash;499.</li>
+          <li>Braun, V. &amp; Clarke, V. (2006). <em>Using thematic analysis in psychology</em>. Qual. Res. Psychol., 3(2), 77&ndash;101.</li>
+        </ul>
+      </section>
+
+      <section class="backup-section">
+        <h3>Links &amp; recursos</h3>
+        <div class="links-list">
+          <span>Repositório &rarr; <a href="https://github.com/vitor-trancoso/ihc-spotify" target="_blank" rel="noopener">github.com/vitor-trancoso/ihc-spotify</a></span>
+          <span>Protótipo público &rarr; <a href="https://vitor-trancoso.github.io/ihc-spotify/prototipo/" target="_blank" rel="noopener">vitor-trancoso.github.io/ihc-spotify/prototipo/</a></span>
+          <span>Planos &rarr; <a href="https://github.com/vitor-trancoso/ihc-spotify/tree/main/planos" target="_blank" rel="noopener">/planos no repo</a></span>
+          <span>Análise &amp; figuras &rarr; <a href="https://github.com/vitor-trancoso/ihc-spotify/tree/main/analise" target="_blank" rel="noopener">/analise no repo</a></span>
+        </div>
+      </section>
+
+      <section class="backup-section">
+        <h3>Notas rápidas para a banca</h3>
+        <ul class="refs">
+          <li><strong style="color:var(--apr-text)">H5 &alpha;=0,67</strong> &mdash; ver fig8: item A3 ("desfazer") tem item-total baixo; remoção subiria &alpha; para 0,74.</li>
+          <li><strong style="color:var(--apr-text)">6 entrevistas</strong> &mdash; coleta concluída; 2 destacadas na fala. Amostra modesta &rarr; qualitativa por escopo (sem SUS/A-B cronometrado).</li>
+          <li><strong style="color:var(--apr-text)">Mann-Whitney Free&times;Premium</strong> &mdash; H3 p=0,002, H7 p=0,011, H8 p=0,018 (significativos a &alpha;=0,05).</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<aside class="apr-notes">
+  <p><strong>Backup &mdash; fora do tempo.</strong> Acessar com tecla &rarr; durante perguntas, ou via deep-link <code>#/20</code>.</p>
+  <p>Antecipar 3 perguntas frequentes: (1) por que &alpha; de H5 baixo? &rarr; fig8. (2) por que mostrar só 2 entrevistas? &rarr; foram 6 no total; 2 em destaque para dar dinâmica, amostra modesta assumida. (3) Apriori validado? &rarr; lift &gt; 1 + sup. &gt; 0,1 em todas as top 10.</p>
+  <p>Se perguntarem por código/dados: link do repo, tudo aberto.</p>
+</aside>
